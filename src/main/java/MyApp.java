@@ -11,3 +11,4 @@ public class MyApp {
         logger.trace("Configuration File Defined To Be :: " + System.getProperty("log4j.configurationFile"));
     }
 }
+//test commit
