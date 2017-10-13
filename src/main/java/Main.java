@@ -10,7 +10,7 @@ public class Main {
         Logger logger = LogManager.getRootLogger();
         logger.trace("Configuration File Defined To Be :: " + System.getProperty("log4j.configurationFile"));
         System.out.print("Hello, world");
-        
+        System.out.print("Hello, world");
     }
 }
 //test commit
