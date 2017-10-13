@@ -11,7 +11,6 @@ https://trello.com/invite/b/eLwvL51P/f6e701390a82d7bf584f7db5b7e90b4a/software-d
 # Regles
 Technic notes: the project will be coded in Java and the User Interface (UI) will be realize with the JavaFX library (using FXML for layout description and CSS for decoration)
 
-## Rules
 ### Game Setup : 
 
 cards are shuffled 
