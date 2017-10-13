@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Citizens of katar
-=======
 # TeamSoftDevProc
 
 I followed this video to setup maven in a new project
@@ -39,4 +36,3 @@ Technic notes: the project will be coded in Java and the User Interface (UI) wil
 - Elf : copy and use the power of one of the card in front of you
 - Dryad : steal a card in front of your opponent and add it in front of you without activating its power.
 - Troll: swap the cards in front of you with the cards in front of your opponent
->>>>>>> 40c36fa2fbbf2b19b4cc0cc2ad547dc3a920fb77
