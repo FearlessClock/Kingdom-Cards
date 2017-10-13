@@ -13,8 +13,8 @@ Technic notes: the project will be coded in Java and the User Interface (UI) wil
 
 ### Game Setup : 
 
--Cards are shuffled 
--Each player draw 5 cards
+- Cards are shuffled 
+- Each player draw 5 cards
 
 ### How it works ?
 
