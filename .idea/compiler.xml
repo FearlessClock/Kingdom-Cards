@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="tdspLog4J" />
+        <module name="KingdomCards" />
+        <module name="tdsp-Log4J" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="tdspLog4J" target="1.5" />
+      <module name="KingdomCards" target="1.5" />
+      <module name="tdsp-Log4J" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

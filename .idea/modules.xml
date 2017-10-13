@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/tdspLog4J.iml" filepath="$PROJECT_DIR$/tdspLog4J.iml" />
+      <module fileurl="file://$PROJECT_DIR$/KingdomCards.iml" filepath="$PROJECT_DIR$/KingdomCards.iml" />
     </modules>
   </component>
 </project>
