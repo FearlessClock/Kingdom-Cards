@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TeamSoftDevProc.iml" filepath="$PROJECT_DIR$/.idea/TeamSoftDevProc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tdspLog4J.iml" filepath="$PROJECT_DIR$/tdspLog4J.iml" />
     </modules>
   </component>
 </project>
