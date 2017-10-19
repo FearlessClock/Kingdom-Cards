@@ -24,5 +24,17 @@ public class DeckTest {
 		deck.Shuffle(); // Shuffle 1 deck
 		Assert.assertNotEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // After shuffle => not equals
 	}
+	
+	@Test
+	public void GetCardTest(){
+		Deck deck = new Deck();
+		
+		int lenght = deck.GetDeck().size(); // get initial size
+		Card first_card = deck.GetDeck().get(0); // get initial first card
+
+		Assert.assertEquals(deck.GetFirstCard(), first_card);  // check if first card remove is the initial first card
+		Assert.assertEquals(deck.GetDeck().size(), lenght - 1); // check if size is ok with 1 card remove
+		
+	}
 
 }
