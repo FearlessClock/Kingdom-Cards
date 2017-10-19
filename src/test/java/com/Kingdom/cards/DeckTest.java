@@ -9,15 +9,16 @@ import org.junit.Test;
 
 
 public class DeckTest {
+    Deck deck;
 
 	@Before
 	public void setUp() throws Exception {
+         deck = new Deck();
 	}
 
 	@Test
 	public void ShuffleTest() {
 		// Create 2 deck (no shuffle) => equals
-		Deck deck = new Deck();
 		Deck deckNoShuffle = new Deck();
 
 		Assert.assertEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // Before shuffle => equals
@@ -27,7 +28,6 @@ public class DeckTest {
 	
 	@Test
 	public void GetCardTest(){
-		Deck deck = new Deck();
 		
 		int lenght = deck.GetDeck().size(); // get initial size
 		Card first_card = deck.GetDeck().get(0); // get initial first card
