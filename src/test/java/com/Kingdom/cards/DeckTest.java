@@ -20,7 +20,7 @@ public class DeckTest {
 		Deck deck = new Deck();
 		Deck deckNoShuffle = new Deck();
 
-		Assert.assertEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // Before shuffle => equals (NOT WORKING IDK WHY !)
+		Assert.assertEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // Before shuffle => equals
 		deck.Shuffle(); // Shuffle 1 deck
 		Assert.assertNotEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // After shuffle => not equals
 	}

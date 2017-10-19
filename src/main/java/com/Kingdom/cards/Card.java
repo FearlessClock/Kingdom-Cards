@@ -20,4 +20,12 @@ public class Card {
     public String toString(){
     	return Name;
     }
+    
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if(obj.getClass() == this.getClass()) return true;
+        else return false;
+    }
 }
