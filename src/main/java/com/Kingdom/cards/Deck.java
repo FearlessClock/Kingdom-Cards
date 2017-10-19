@@ -17,19 +17,23 @@ public class Deck {
 		}
 	}
 	
-	public List<Card> GetDeck(){
+	protected List<Card> GetDeck(){
 		return deck;
 	}
 	
-	public Card GetFirstCard(){
-		return deck.get(0);
+	protected Card GetFirstCard(){ // return the first card and remove it from the deck
+		Card card = deck.get(0);
+		deck.remove(0);
+		return card;
 	}
 
 	protected void Shuffle(){ // Shuffle the deck
 		Collections.shuffle(deck); 
 	}
 	
-	public void ShowAll(){ // Print all card name in order of the deck stack
+	
+	
+	protected void ShowAll(){ // Print all card name in order of the deck stack
 		for(Card card : deck){
 			System.out.println(card.toString());
 		}
