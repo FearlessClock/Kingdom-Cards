@@ -21,9 +21,9 @@ public class DeckTest {
 		// Create 2 deck (no shuffle) => equals
 		Deck deckNoShuffle = new Deck();
 
-		Assert.assertEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // Before shuffle => equals
+		Assert.assertEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // Before shuffle => equals
 		deck.Shuffle(); // Shuffle 1 deck
-		Assert.assertNotEquals(deck.GetDeck(), deckNoShuffle.GetDeck()); // After shuffle => not equals
+		Assert.assertNotEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // After shuffle => not equals
 	}
 	
 	@Test
@@ -32,9 +32,18 @@ public class DeckTest {
 		int lenght = deck.GetDeck().size(); // get initial size
 		Card first_card = deck.GetDeck().get(0); // get initial first card
 
-		Assert.assertEquals(deck.GetFirstCard(), first_card);  // check if first card remove is the initial first card
-		Assert.assertEquals(deck.GetDeck().size(), lenght - 1); // check if size is ok with 1 card remove
+		Assert.assertEquals(first_card, deck.GetFirstCard());  // check if first card remove is the initial first card
+		Assert.assertEquals(lenght - 1, deck.GetDeck().size()); // check if size is ok with 1 card remove
 		
+	}
+	
+	@Test
+	public void IsEmptyTest(){
+		Assert.assertEquals(false, deck.IsEmpty());
+		while(deck.GetDeck().size() > 0){
+			deck.GetFirstCard();
+		}
+		Assert.assertEquals(true, deck.IsEmpty());
 	}
 
 }
