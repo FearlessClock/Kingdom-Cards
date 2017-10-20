@@ -29,18 +29,18 @@ public class DeckTest {
 	@Test
 	public void GetCardTest(){
 		
-		int lenght = deck.GetDeck().size(); // get initial size
+		int lenght = deck.Size(); // get initial size
 		Card first_card = deck.GetDeck().get(0); // get initial first card
 
 		Assert.assertEquals(first_card, deck.GetFirstCard());  // check if first card remove is the initial first card
-		Assert.assertEquals(lenght - 1, deck.GetDeck().size()); // check if size is ok with 1 card remove
+		Assert.assertEquals(lenght - 1, deck.Size()); // check if size is ok with 1 card remove
 		
 	}
 	
 	@Test
 	public void IsEmptyTest(){
 		Assert.assertEquals(false, deck.IsEmpty());
-		while(deck.GetDeck().size() > 0){
+		while(deck.Size() > 0){
 			deck.GetFirstCard();
 		}
 		Assert.assertEquals(true, deck.IsEmpty());
