@@ -38,4 +38,12 @@ public class Player {
 		}
 		else return false;
 	}
+	
+	public int ScoreBoard(){
+		int score = SizeBoard();
+		if(board.contains(new Troll()) && board.contains(new Elf()) && board.contains(new Gnome()) && board.contains(new Goblin()) && board.contains(new Korrigan()) && board.contains(new Dryad())){
+			score += 3;
+		}
+		return score;
+	}
 }

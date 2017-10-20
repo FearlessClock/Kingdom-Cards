@@ -15,6 +15,18 @@ public class Deck {
 		for(int i = 0; i < 7; i++){ // Add 7 Elf Card to deck
 			deck.add(new Elf());
 		}
+		for(int i = 0; i < 7; i++){ // Add 7 Gnome Card to deck
+			deck.add(new Gnome());
+		}
+		for(int i = 0; i < 7; i++){ // Add 7 Korrigan Card to deck
+			deck.add(new Korrigan());
+		}
+		for(int i = 0; i < 7; i++){ // Add 7 Goblin Card to deck
+			deck.add(new Goblin());
+		}
+		for(int i = 0; i < 7; i++){ // Add 7 Dryad Card to deck
+			deck.add(new Dryad());
+		}
 	}
 	
 	protected List<Card> GetDeck(){
