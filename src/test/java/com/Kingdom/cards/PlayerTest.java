@@ -28,7 +28,7 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void PlayerCard(){
+	public void PlayCard(){
 		for(int i = 0; i < 5; i++){ // Draw 5 cards in hand of player
 			player.Draw(deck);
 		}
@@ -40,6 +40,23 @@ public class PlayerTest {
 		Assert.assertEquals(true, player.board.contains(card1)); // Test if card1 is place on board
 		Assert.assertEquals(sizeHand - 1, player.SizeHand()); // Test if size of hand decrease
 		Assert.assertEquals(sizeBoard + 1, player.SizeBoard()); // Test if size of board increase
+	}
+	
+	@Test
+	public void ScoreBoard(){
+		while(!deck.IsEmpty()){
+			player.Draw(deck);
+		}
+		player.PlayCard(new Troll()); // Play 1 card => score = 1
+		Assert.assertEquals(1, player.ScoreBoard()); // Score after 1 card play
+		
+		// play one of each card => 1 (current) + 5 (number of cards) + 3 (bonus point)
+		player.PlayCard(new Dryad());
+		player.PlayCard(new Gnome());
+		player.PlayCard(new Korrigan());
+		player.PlayCard(new Goblin());
+		player.PlayCard(new Elf());
+		Assert.assertEquals(9, player.ScoreBoard());
 	}
 
 }
