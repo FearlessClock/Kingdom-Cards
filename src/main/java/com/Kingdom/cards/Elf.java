@@ -5,7 +5,7 @@ public class Elf extends Card{
 	
 	public Elf(){
 		super();
-		this.Name = "Elf";
+		this.name = "Elf";
 	}
 
 }

@@ -4,6 +4,6 @@ public class Troll extends Card{
 	
 	public Troll(){
 		super();
-		this.Name = "Troll";
+		this.name = "Troll";
 	}
 }

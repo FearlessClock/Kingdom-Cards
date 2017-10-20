@@ -9,6 +9,7 @@ public class Player {
 	
 	public String pseudo;
 	protected List<Card> hand = new ArrayList<Card>();
+	protected List<Card> board = new ArrayList<Card>();
 	
 	public Player(){
 		
@@ -18,12 +19,23 @@ public class Player {
 		this.pseudo = pseudo;
 	}
 	
-	protected Deck Draw(Deck deck){
+	protected void Draw(Deck deck){
 		hand.add(deck.GetFirstCard());
-		return deck;
 	}
 	
 	public int SizeHand(){
 		return hand.size();
+	}
+	public int SizeBoard(){
+		return board.size();
+	}
+	
+	protected boolean PlayCard(Card card){
+		if(hand.contains(card)){
+			hand.remove(card);
+			board.add(card);
+			return true;
+		}
+		else return false;
 	}
 }

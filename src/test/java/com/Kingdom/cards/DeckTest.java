@@ -17,7 +17,7 @@ public class DeckTest {
 	}
 
 	@Test
-	public void ShuffleTest() {
+	public void Shuffle() {
 		// Create 2 deck (no shuffle) => equals
 		Deck deckNoShuffle = new Deck();
 
@@ -27,7 +27,7 @@ public class DeckTest {
 	}
 	
 	@Test
-	public void GetCardTest(){
+	public void GetCard(){
 		
 		int lenght = deck.Size(); // get initial size
 		Card first_card = deck.GetDeck().get(0); // get initial first card
@@ -38,7 +38,7 @@ public class DeckTest {
 	}
 	
 	@Test
-	public void IsEmptyTest(){
+	public void IsEmpty(){
 		Assert.assertEquals(false, deck.IsEmpty());
 		while(deck.Size() > 0){
 			deck.GetFirstCard();

@@ -2,7 +2,7 @@ package com.Kingdom.cards;
 
 public class Card {
     String race;
-    String Name;
+    String name;
 
     public Card() {
         race = "Human";
@@ -12,13 +12,13 @@ public class Card {
         return race;
     }
     
-    public String GetName() {
-    	return Name;
+    public String Getname() {
+    	return name;
 	}
     
     @Override
     public String toString(){
-    	return Name;
+    	return name;
     }
     
     @Override
