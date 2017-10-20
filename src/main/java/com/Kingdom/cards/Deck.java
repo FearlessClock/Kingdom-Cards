@@ -6,7 +6,7 @@ import java.util.ListIterator;
 
 
 public class Deck {
-	List<Card> deck = new ArrayList<Card>();
+	protected List<Card> deck = new ArrayList<Card>();
 	
 	public Deck(){
 		for(int i = 0; i < 7; i++){ // Add 7 Troll Card to deck
@@ -31,7 +31,9 @@ public class Deck {
 		Collections.shuffle(deck); 
 	}
 	
-	
+	protected Boolean IsEmpty(){
+		return deck.size() == 0;
+	}
 	
 	protected void ShowAll(){ // Print all card name in order of the deck stack
 		for(Card card : deck){
