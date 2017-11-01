@@ -34,7 +34,7 @@ public class MainMenuController {
     @FXML
     private void btnOptionsCall(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/OptionsScene.fxml"));
+        Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/OptionsView.fxml"));
         Scene scene = new Scene(fieldScene,600,600);
         stage.setScene(scene);
         stage.show();
