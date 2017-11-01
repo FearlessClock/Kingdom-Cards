@@ -19,7 +19,7 @@ public class Player {
 		this.pseudo = pseudo;
 	}
 	
-	protected void Draw(Deck deck){
+	public void Draw(Deck deck){
 		hand.add(deck.GetFirstCard());
 	}
 	
