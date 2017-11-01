@@ -1,8 +1,10 @@
-package com.Kingdom.cards;
+package com.Kingdom.cards.Model;
 
 public class Card {
-    String race;
-    String name;
+    //TODO Make a setter
+    public String race;
+    //TODO Make a setter
+    public String name;
 
     public Card() {
         race = "Human";

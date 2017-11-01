@@ -1,7 +1,6 @@
 package com.Kingdom.cards;
 
-import static org.junit.Assert.*;
-
+import com.Kingdom.cards.Model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

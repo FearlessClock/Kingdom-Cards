@@ -1,8 +1,9 @@
 package com.Kingdom.cards;
+import com.Kingdom.cards.Model.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class Deck {
@@ -33,7 +34,7 @@ public class Deck {
 		return deck;
 	}
 	
-	protected Card GetFirstCard(){ // return the first card and remove it from the deck
+	public Card GetFirstCard(){ // return the first card and remove it from the deck
 		Card card = deck.get(0);
 		deck.remove(0);
 		return card;

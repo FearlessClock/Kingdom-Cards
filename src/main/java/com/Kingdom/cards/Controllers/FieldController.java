@@ -1,7 +1,7 @@
 package com.Kingdom.cards.Controllers;
 
 import com.Kingdom.cards.Deck;
-import com.Kingdom.cards.Player;
+import com.Kingdom.cards.Model.Player;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 
-public class controller {
+public class FieldController {
 	
 	@FXML
 	Button btnDraw;

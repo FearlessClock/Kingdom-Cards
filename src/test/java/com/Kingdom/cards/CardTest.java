@@ -1,9 +1,8 @@
 package com.Kingdom.cards;
 
+import com.Kingdom.cards.Model.Card;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class CardTest {
     @org.junit.Before
