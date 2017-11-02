@@ -1,5 +1,6 @@
 package com.Kingdom.cards;
 
+import com.Kingdom.cards.Model.Korrigan;
 import org.junit.Assert;
 import org.junit.Test;
 
