@@ -13,13 +13,13 @@ public class DeckTest {
 
 	@Before
 	public void setUp() throws Exception {
-         deck = new Deck();
+         deck = new Deck(8);
 	}
 
 	@Test
 	public void Shuffle() {
 		// Create 2 deck (no shuffle) => equals
-		Deck deckNoShuffle = new Deck();
+		Deck deckNoShuffle = new Deck(8);
 
 		Assert.assertEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // Before shuffle => equals
 		deck.Shuffle(); // Shuffle 1 deck
