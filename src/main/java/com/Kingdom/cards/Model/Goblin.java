@@ -1,7 +1,10 @@
-package com.Kingdom.cards;
+package com.Kingdom.cards.Model;
+
+import com.Kingdom.cards.Model.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Goblin extends Card {
 
