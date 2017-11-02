@@ -1,4 +1,4 @@
-package com.Kingdom.cards;
+package com.Kingdom.cards.Model;
 
 public class Elf extends Card{
 

@@ -1,4 +1,6 @@
-package com.Kingdom.cards;
+package com.Kingdom.cards.Model;
+
+import com.Kingdom.cards.Model.Card;
 
 public class Dryad extends Card{
 
