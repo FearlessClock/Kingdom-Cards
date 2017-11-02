@@ -25,11 +25,7 @@ public class Main extends Application {
         System.setProperty("log4j.configurationFile", "log4j2-test");
         Logger logger = LogManager.getRootLogger();
         logger.trace("Configuration File Defined To Be :: " + System.getProperty("log4j.configurationFile"));
-<<<<<<< HEAD
-        System.out.print("Hello, world");
-=======
         System.out.print("Hello, world\n");
         launch(args);
->>>>>>> c590bdc363998486aa021b832843bc70c17d49c5
     }
 }
