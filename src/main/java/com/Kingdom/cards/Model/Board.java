@@ -7,13 +7,15 @@ import java.util.List;
 
 public class Board {
 
-    List player1Cards;
-    List player2Cards;
+    private List<Card> player1Cards;
+    private List<Card> player2Cards;
+
+
 
     public Board()
     {
-        player1Cards = new ArrayList();
-        player2Cards = new ArrayList();
+        player1Cards = new ArrayList<Card>();
+        player2Cards = new ArrayList<Card>();
     }
 
     public void PlayCard(Card card, FieldController.PlayerTurn playerTurn)

@@ -5,6 +5,7 @@ import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Card;
 import com.Kingdom.cards.Model.Player;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
+import java.util.List;
 import java.util.Random;
 
 
@@ -46,17 +48,17 @@ public class FieldController {
     Label turnLbl;
 
     //The deck of cards
-    Deck deck;
+    private Deck deck;
 
     //Board containing all the cards
-    Board board;
+    private Board board;
 
     //Player 1
-    Player player1 = new Player();
-    AI player2 = new AI();
+    private Player player1 = new Player();
+    private AI player2 = new AI();
 
     //Number of cards per player
-    int nmbrOfCardsInit = 5;
+    private int nmbrOfCardsInit = 5;
 
 
     //Player turn state variable
@@ -64,15 +66,15 @@ public class FieldController {
         player1, player2
     }
 
-    PlayerTurn playerTurn;
-    boolean playerHasDrawn = false;
+    private PlayerTurn playerTurn;
+    private boolean playerHasDrawn = false;
 
     //The state of the game, where we are.
     public enum GameState {
         init, game, end
     }
 
-    GameState gamestate;
+    private GameState gamestate;
 
     //Labels showing the number of cards per person
     @FXML
@@ -98,6 +100,8 @@ public class FieldController {
         }
 
         playerTurn = FlipACoin();
+        //TODO Make this a function. Needs to make the other players buttons disabled and opacied
+        EndTurn();
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
        /* //Start game loop
@@ -136,8 +140,6 @@ public class FieldController {
         String id = (button).getId();
         int idInt = Integer.parseInt(id.split("p")[0]);
 
-        Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-
         if (playerTurn == PlayerTurn.player1) {
             Card playedCard = player1.hand.PlayCard(idInt);
             board.PlayCard(playedCard, playerTurn);
@@ -149,16 +151,34 @@ public class FieldController {
         }
     }
 
-    public void EndTurn(ActionEvent actionEvent) {
+    public void EndTurn() {
+        ObservableList<Node> buttonsP1 = player1Field.getChildren();
+        ObservableList<Node> buttonsP2 = player1Field.getChildren();
         if(playerTurn == PlayerTurn.player1)
         {
             playerHasDrawn = false;
             playerTurn = PlayerTurn.player2;
+            for (Node b : buttonsP1) {
+                b.setDisable(false);
+                b.setOpacity(1);
+            }
+            for (Node b : buttonsP2) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
+            }
         }
         else
         {
             playerHasDrawn = false;
             playerTurn = PlayerTurn.player1;
+            for (Node b : buttonsP1) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
+            }
+            for (Node b : buttonsP2) {
+                b.setDisable(false);
+                b.setOpacity(1);
+            }
         }
         turnLbl.setText(playerTurn.toString());
     }
