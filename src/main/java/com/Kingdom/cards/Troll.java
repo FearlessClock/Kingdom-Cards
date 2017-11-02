@@ -4,7 +4,7 @@ public class Troll extends Card {
 	
 	public Troll(){
 		super();
-		this.name = "Troll";
+		this.race = "Troll";
 	}
 	
 	public String toString(){
