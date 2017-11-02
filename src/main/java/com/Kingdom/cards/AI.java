@@ -5,8 +5,7 @@ import com.Kingdom.cards.Model.Player;
 
 public class AI extends Player {
 
-    public AI()
-    {
+    public AI() {
         this.pseudo = "";
         hand = new Hand();
     }

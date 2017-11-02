@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3bea3222-e26c-4093-8705-920df8057f06" name="Default" comment="[+] Added end turn&#10;[*] Made buttons grayed out when not turn">
+    <list default="true" id="3bea3222-e26c-4093-8705-920df8057f06" name="Default" comment="[*] Fixed Card graying">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java" afterPath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/FieldController.java" afterPath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/FieldController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java" afterPath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java" afterPath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java" afterPath="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml" afterPath="$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,9 +23,18 @@
       <file leaf-file-name="FieldController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/FieldController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="69" column="20" lean-forward="false" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="575">
+              <caret line="207" column="32" lean-forward="false" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
+              <folding>
+                <element signature="e#2566#2724#0" expanded="true" />
+                <element signature="e#2723#2724#0" expanded="true" />
+                <element signature="e#2908#3066#0" expanded="true" />
+                <element signature="e#3065#3066#0" expanded="true" />
+                <element signature="e#4147#4305#0" expanded="true" />
+                <element signature="e#4304#4305#0" expanded="true" />
+                <element signature="e#4607#4765#0" expanded="true" />
+                <element signature="e#4764#4765#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -29,8 +42,8 @@
       <file leaf-file-name="FieldView.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="31" selection-end-column="61" />
+            <state relative-caret-position="352">
+              <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -43,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+              <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -54,8 +67,8 @@
       <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="28" column="2" lean-forward="true" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+            <state relative-caret-position="462">
+              <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,7 +80,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="404">
-              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+              <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -102,11 +115,13 @@
       <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+            <state relative-caret-position="341">
+              <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
               <folding>
-                <element signature="e#339#340#0" expanded="true" />
-                <element signature="e#381#382#0" expanded="true" />
+                <element signature="e#161#162#0" expanded="true" />
+                <element signature="e#194#195#0" expanded="true" />
+                <element signature="e#542#543#0" expanded="true" />
+                <element signature="e#589#590#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -163,14 +178,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Timer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Deck.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/Kingdom/cards/DeckTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Gnome.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/Kingdom/cards/PlayerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Hand.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/FieldViewSceneBuilder.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml" />
         <option value="$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/FieldController.java" />
       </list>
     </option>
@@ -584,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1509648418470</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="[+] Added end turn&#10;[*] Made buttons grayed out when not turn">
+      <created>1509657083452</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1509657083452</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -606,11 +629,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32781458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32781458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -642,7 +664,9 @@
     <MESSAGE value="[+] Added basic AI extending Player" />
     <MESSAGE value="[+] Added label to show turn&#10;[+] Added AI to game" />
     <MESSAGE value="[+] Added end turn&#10;[*] Made buttons grayed out when not turn" />
-    <option name="LAST_COMMIT_MESSAGE" value="[+] Added end turn&#10;[*] Made buttons grayed out when not turn" />
+    <MESSAGE value="[+] Removed dummy buttons&#10;[*] Made first 5 cards drew pop into hand&#10;[*] Gave the buttons real names" />
+    <MESSAGE value="[*] Fixed Card graying" />
+    <option name="LAST_COMMIT_MESSAGE" value="[*] Fixed Card graying" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -906,31 +930,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/FieldViewSceneBuilder.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+        <state relative-caret-position="199">
+          <caret line="20" column="56" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="56" />
           <folding />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/javafx-src.zip!/javafx/scene/layout/Pane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="17" column="8" lean-forward="true" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        <state relative-caret-position="341">
+          <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
           <folding>
-            <element signature="e#339#340#0" expanded="true" />
-            <element signature="e#381#382#0" expanded="true" />
+            <element signature="e#4298#4299#0" expanded="false" />
+            <element signature="e#4340#4341#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/javafx-src.zip!/javafx/scene/Parent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        <state relative-caret-position="193">
+          <caret line="566" column="28" lean-forward="false" selection-start-line="566" selection-start-column="14" selection-end-line="566" selection-end-column="28" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#23786#23787#0" expanded="false" />
+            <element signature="e#23817#23818#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -946,65 +974,72 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/FieldViewSceneBuilder.fxml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/AI.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="20" column="56" lean-forward="false" selection-start-line="20" selection-start-column="46" selection-end-line="20" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="29" column="60" lean-forward="false" selection-start-line="29" selection-start-column="60" selection-end-line="31" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/javafx-src.zip!/javafx/scene/layout/Pane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="141" column="28" lean-forward="true" selection-start-line="141" selection-start-column="28" selection-end-line="141" selection-end-column="28" />
-          <folding>
-            <element signature="e#4298#4299#0" expanded="true" />
-            <element signature="e#4340#4341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="28" column="2" lean-forward="true" selection-start-line="28" selection-start-column="2" selection-end-line="28" selection-end-column="2" />
+        <state relative-caret-position="189">
+          <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/javafx-src.zip!/javafx/scene/Parent.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="566" column="28" lean-forward="false" selection-start-line="566" selection-start-column="14" selection-end-line="566" selection-end-column="28" />
+        <state relative-caret-position="462">
+          <caret line="22" column="2" lean-forward="false" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
           <folding>
-            <element signature="e#23786#23787#0" expanded="true" />
-            <element signature="e#23817#23818#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/MainMenuController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="30" column="5" lean-forward="false" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Model/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="28" column="16" lean-forward="false" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding>
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#194#195#0" expanded="true" />
+            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/FieldView.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Kingdom/cards/Controllers/FieldController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="69" column="20" lean-forward="false" selection-start-line="69" selection-start-column="20" selection-end-line="69" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="575">
+          <caret line="207" column="32" lean-forward="false" selection-start-line="207" selection-start-column="32" selection-end-line="207" selection-end-column="32" />
+          <folding>
+            <element signature="e#2566#2724#0" expanded="true" />
+            <element signature="e#2723#2724#0" expanded="true" />
+            <element signature="e#2908#3066#0" expanded="true" />
+            <element signature="e#3065#3066#0" expanded="true" />
+            <element signature="e#4147#4305#0" expanded="true" />
+            <element signature="e#4304#4305#0" expanded="true" />
+            <element signature="e#4607#4765#0" expanded="true" />
+            <element signature="e#4764#4765#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

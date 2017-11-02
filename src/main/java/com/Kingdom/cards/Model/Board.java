@@ -11,21 +11,15 @@ public class Board {
     private List<Card> player2Cards;
 
 
-
-    public Board()
-    {
+    public Board() {
         player1Cards = new ArrayList<Card>();
         player2Cards = new ArrayList<Card>();
     }
 
-    public void PlayCard(Card card, FieldController.PlayerTurn playerTurn)
-    {
-        if(FieldController.PlayerTurn.player1 == playerTurn)
-        {
+    public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
+        if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
-        }
-        else
-        {
+        } else {
             player2Cards.add(card);
         }
     }

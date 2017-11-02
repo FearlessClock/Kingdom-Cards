@@ -7,15 +7,13 @@ import com.Kingdom.cards.Model.Card;
 import com.Kingdom.cards.Model.Player;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
-import java.util.List;
 import java.util.Random;
 
 
@@ -38,7 +36,7 @@ public class FieldController {
 	* 3) End game
 	* */
 
-	//The horizontal box
+    //The horizontal box
     @FXML
     HBox player1Field;
     @FXML
@@ -95,8 +93,24 @@ public class FieldController {
         nmbrOfCardsPlayer2.textProperty().bind(player2.hand.nmbrOfCardsStrProperty);
 
         for (int i = 0; i < nmbrOfCardsInit; i++) {
-            player1.Draw(deck);
-            player2.Draw(deck);
+            Card c = player1.Draw(deck);
+            Button b = new Button(c.GetRace());
+            b.setId(i + "p1");
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            player1Field.getChildren().add(b);
+            c = player2.Draw(deck);
+            b = new Button(c.GetRace());
+            b.setId(i + "p2");
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            player2Field.getChildren().add(b);
         }
 
         playerTurn = FlipACoin();
@@ -127,15 +141,32 @@ public class FieldController {
 
     public void DrawCard(ActionEvent event) {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
-            player1.Draw(deck);
+            Card c = player1.Draw(deck);
             playerHasDrawn = true;
+
+            Button b = new Button(c.GetRace());
+            b.setId("1p1");
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            player1Field.getChildren().add(b);
         } else if (!playerHasDrawn && playerTurn == PlayerTurn.player2) {
-            player2.Draw(deck);
+            Card c = player2.Draw(deck);
             playerHasDrawn = true;
+            Button b = new Button(c.GetRace());
+            b.setId("1p2");
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            player2Field.getChildren().add(b);
         }
     }
 
-    public void SendCard(ActionEvent event) {
+    private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
         String id = (button).getId();
         int idInt = Integer.parseInt(id.split("p")[0]);
@@ -153,31 +184,28 @@ public class FieldController {
 
     public void EndTurn() {
         ObservableList<Node> buttonsP1 = player1Field.getChildren();
-        ObservableList<Node> buttonsP2 = player1Field.getChildren();
-        if(playerTurn == PlayerTurn.player1)
-        {
+        ObservableList<Node> buttonsP2 = player2Field.getChildren();
+        if (playerTurn == PlayerTurn.player1) {
             playerHasDrawn = false;
             playerTurn = PlayerTurn.player2;
             for (Node b : buttonsP1) {
-                b.setDisable(false);
-                b.setOpacity(1);
-            }
-            for (Node b : buttonsP2) {
                 b.setDisable(true);
                 b.setOpacity(0.5);
             }
-        }
-        else
-        {
+            for (Node b : buttonsP2) {
+                b.setDisable(false);
+                b.setOpacity(1);
+            }
+        } else {
             playerHasDrawn = false;
             playerTurn = PlayerTurn.player1;
             for (Node b : buttonsP1) {
-                b.setDisable(true);
-                b.setOpacity(0.5);
-            }
-            for (Node b : buttonsP2) {
                 b.setDisable(false);
                 b.setOpacity(1);
+            }
+            for (Node b : buttonsP2) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
             }
         }
         turnLbl.setText(playerTurn.toString());
