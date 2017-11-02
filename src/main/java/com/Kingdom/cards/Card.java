@@ -11,16 +11,16 @@ public class Card {
     public String GetRace(){
         return race;
     }
-    
+
     public String Getname() {
     	return name;
 	}
-    
+
     @Override
     public String toString(){
     	return name;
     }
-    
+
     @Override
     public boolean equals(Object obj){
         if (obj == null) return false;
@@ -28,8 +28,8 @@ public class Card {
         if(obj.getClass() == this.getClass()) return true;
         else return false;
     }
-    
+
     public void Power(){
-    	
+
     }
 }
