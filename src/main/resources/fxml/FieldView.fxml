@@ -9,13 +9,12 @@
 
 <?import javafx.scene.layout.HBox?>
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.FieldController">
-   <children>
-      <GridPane layoutY="4.0" prefHeight="359.0" prefWidth="409.0">
+    <GridPane layoutY="4.0" prefHeight="359.0" prefWidth="1000.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="1000.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="1000.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="1000" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="1000.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -26,25 +25,23 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <HBox fx:id="player2Field" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
+             <Label fx:id="turnLbl" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" />
+             <HBox fx:id="player2Field" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+                 <Label prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" text="AI player"/>
+                 <Button fx:id="1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SendCard" prefHeight="111.0" prefWidth="52.0" text="Button" textAlignment="CENTER"/>
+                 <Button fx:id="2p1" mnemonicParsing="false" onAction="#SendCard" prefHeight="139.0" prefWidth="52.0" text="Button" />
+             </HBox>
+             <Label fx:id="nmbrOfCardsPlayer2" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="5" />
+             <HBox fx:id="gameButtons" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
                  <Button fx:id="btnDraw" mnemonicParsing="false" onAction="#DrawCard" text="Draw card" />
                  <Button fx:id="btnEndTurn" mnemonicParsing="false" onAction="#EndTurn" text="End turn" />
              </HBox>
-             <Label fx:id="nmbrOfCardsPlayer1" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" />
-             <Label fx:id="nmbrOfCardsPlayer2" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="1" />
-             <HBox fx:id="player2Field" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="0">
-                 <children>
-                     <Button fx:id="1p1" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SendCard" prefHeight="111.0" prefWidth="52.0" text="Button" textAlignment="CENTER"/>
-                     <Button fx:id="2p1" mnemonicParsing="false" onAction="#SendCard" prefHeight="139.0" prefWidth="52.0" text="Button" />
-                 </children>
-             </HBox>
-             <HBox fx:id="player1Field" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
-                 <children>
-                     <Button fx:id="1p2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SendCard" prefHeight="111.0" prefWidth="52.0" text="Button" textAlignment="CENTER"/>
-                     <Button fx:id="2p2" mnemonicParsing="false" onAction="#SendCard" prefHeight="139.0" prefWidth="52.0" text="Button" />
-                 </children>
+             <Label fx:id="nmbrOfCardsPlayer1" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="7" />
+             <HBox fx:id="player1Field" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="8">
+                 <Label prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" text="Player   "/>
+                 <Button fx:id="1p2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#SendCard" prefHeight="111.0" prefWidth="52.0" text="Button" textAlignment="CENTER"/>
+                 <Button fx:id="2p2" mnemonicParsing="false" onAction="#SendCard" prefHeight="139.0" prefWidth="52.0" text="Button" />
              </HBox>
          </children>
       </GridPane>
-   </children>
 </AnchorPane>

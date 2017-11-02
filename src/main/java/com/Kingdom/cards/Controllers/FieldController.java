@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Controllers;
 
+import com.Kingdom.cards.AI;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Card;
@@ -41,6 +42,9 @@ public class FieldController {
     @FXML
     HBox player2Field;
 
+    @FXML
+    Label turnLbl;
+
     //The deck of cards
     Deck deck;
 
@@ -49,7 +53,7 @@ public class FieldController {
 
     //Player 1
     Player player1 = new Player();
-    Player player2 = new Player();
+    AI player2 = new AI();
 
     //Number of cards per player
     int nmbrOfCardsInit = 5;
@@ -94,6 +98,7 @@ public class FieldController {
         }
 
         playerTurn = FlipACoin();
+        turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
        /* //Start game loop
         new AnimationTimer() {
@@ -155,6 +160,7 @@ public class FieldController {
             playerHasDrawn = false;
             playerTurn = PlayerTurn.player1;
         }
+        turnLbl.setText(playerTurn.toString());
     }
 
 }
