@@ -51,10 +51,4 @@ public class Deck {
 	public int Size(){
 		return deck.size();
 	}
-	
-	protected void ShowAll(){ // Print all card name in order of the deck stack
-		for(Card card : deck){
-			System.out.println(card.toString());
-		}
-	}
 }
