@@ -15,6 +15,10 @@ public class Player {
         this.pseudo = pseudo;
         hand = new Hand();
     }
+    
+    public void Score(){
+    	
+    }
 
     public Card Draw(Deck deck) {
         Card c = deck.GetFirstCard();
@@ -29,4 +33,8 @@ public class Player {
     public Card PlayCard(int cardIndex) {
         return hand.PlayCard(cardIndex);
     }
+    
+	
 }
+
+
