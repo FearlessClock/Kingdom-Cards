@@ -9,7 +9,7 @@ import org.junit.Test;
 
 
 public class DeckTest {
-    Deck deck;
+    private Deck deck;
 
 	@Before
 	public void setUp() throws Exception {
@@ -17,8 +17,14 @@ public class DeckTest {
 	}
 
 	@Test
+	public void test()
+	{
+		System.out.println("Gello");
+	}
+
+	@Test
 	public void Shuffle() {
-		// Create 2 deck (no shuffle) => equals
+		// Create 2 deck (no shuffle) => equalsd
 		Deck deckNoShuffle = new Deck(8);
 
 		Assert.assertEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // Before shuffle => equals
