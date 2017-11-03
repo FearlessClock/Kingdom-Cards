@@ -12,14 +12,9 @@ public class Card {
         return race;
     }
 
-    public String Getname() {
+    public String GetName() {
     	return name;
 	}
-
-    @Override
-    public String toString(){
-    	return name;
-    }
 
     @Override
     public boolean equals(Object obj){
