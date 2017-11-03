@@ -11,10 +11,4 @@ public class GnomeTest {
     public void setUp() throws Exception {
     }
 	
-	@Test
-	public void TexttoString() throws Exception{
-		Gnome gnome = new Gnome();
-		
-		Assert.assertEquals(gnome.toString(), "You get a Gnome\nPower : Draw 2 cards");
-	}
 }
