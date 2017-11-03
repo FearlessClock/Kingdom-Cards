@@ -20,6 +20,10 @@ public class DeckTest {
 	public void test()
 	{
 		System.out.println("Gello");
+		if("Name".equals("Name"))
+        {
+            System.out.println("Yp");
+        }
 	}
 
 	@Test
