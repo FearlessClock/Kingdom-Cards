@@ -24,10 +24,12 @@
         </rowConstraints>
         <Label fx:id="turnLbl" prefHeight="17.0" prefWidth="85.0" GridPane.columnIndex="1" />
         <HBox fx:id="player2Field" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.valignment="CENTER" />
+        <HBox fx:id="player2Board" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
         <Label fx:id="nmbrOfCardsPlayer2" prefHeight="17.0" prefWidth="85.0" />
         <Label fx:id="nmbrOfCardsPlayer1" prefHeight="8.0" prefWidth="85.0" GridPane.rowIndex="4" />
       <Label prefHeight="17.0" prefWidth="85.0" text="Board" GridPane.columnIndex="1" GridPane.rowIndex="1" />
         <HBox fx:id="player1Field" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+         <HBox fx:id="player1Board" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
          <Label prefHeight="17.0" prefWidth="85.0" text="Player" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <Label prefHeight="17.0" prefWidth="85.0" text="Board" GridPane.columnIndex="1" GridPane.rowIndex="3" />
          <Button mnemonicParsing="false" onAction="#EndTurn" text="End turn" GridPane.rowIndex="2" />

@@ -41,6 +41,11 @@ public class FieldController {
     HBox player1Field;
     @FXML
     HBox player2Field;
+    
+    @FXML
+    HBox player1Board;
+    @FXML
+    HBox player2Board;
 
     @FXML
     Label turnLbl;
@@ -92,19 +97,21 @@ public class FieldController {
         nmbrOfCardsPlayer1.textProperty().bind(player1.hand.nmbrOfCardsStrProperty);
         nmbrOfCardsPlayer2.textProperty().bind(player2.hand.nmbrOfCardsStrProperty);
 
+        Card c;
+        Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
-            Card c = player1.Draw(deck);
-            Button b = new Button(c.GetRace());
-            b.setId(i + "p1");
+            c = player1.Draw(deck);
+            b = new Button(c.GetRace());
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
                 }
             });
             player1Field.getChildren().add(b);
+        }
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = player2.Draw(deck);
             b = new Button(c.GetRace());
-            b.setId(i + "p2");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -145,7 +152,6 @@ public class FieldController {
             playerHasDrawn = true;
 
             Button b = new Button(c.GetRace());
-            b.setId("1p1");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -156,7 +162,6 @@ public class FieldController {
             Card c = player2.Draw(deck);
             playerHasDrawn = true;
             Button b = new Button(c.GetRace());
-            b.setId("1p2");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -168,18 +173,37 @@ public class FieldController {
 
     private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
-        String id = (button).getId();
-        int idInt = Integer.parseInt(id.split("p")[0]);
 
         if (playerTurn == PlayerTurn.player1) {
-            Card playedCard = player1.hand.PlayCard(idInt);
+            //Card playedCard = player1.hand.PlayCard(idInt);
+        	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
+            
         } else {
-            Card playedCard = player2.hand.PlayCard(idInt);
+            //Card playedCard = player2.hand.PlayCard(idInt);
+            Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player2Field.getChildren().remove(button);
         }
+        
+        UpdateBoard();
+    }
+    
+    public void UpdateBoard(){
+    	player1Board.getChildren().clear();
+    	player2Board.getChildren().clear();
+    	Button b;
+    	for(int i = 0; i < board.getPlayer1Cards().size(); i++){
+    		b = new Button(board.getPlayer1Cards().get(i).GetRace());
+            b.setId(i + "b1");
+            player1Board.getChildren().add(b);
+    	}
+    	for(int i = 0; i < board.getPlayer2Cards().size(); i++){
+    		b = new Button(board.getPlayer2Cards().get(i).GetRace());
+            b.setId(i + "b2");
+            player2Board.getChildren().add(b);
+    	}
     }
 
     public void EndTurn() {
