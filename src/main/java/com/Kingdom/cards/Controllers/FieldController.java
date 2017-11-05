@@ -21,7 +21,7 @@ public class FieldController {
 
 	/*
     * Kingdom cards! A card game about a growing population.
-	* Generate a Deck, the deck contains 8 cards of each race.
+	* Generate a Deck, the deck contains 7 cards of each race.
 	* Each player draws 1 card till both players have 5 cards.
 	* Flip a coin to see who starts
 	* The first player draws a card. He plays a card. Both are obligatory
@@ -85,7 +85,7 @@ public class FieldController {
         gamestate = GameState.init;
         board = new Board();
         //Generate the deck of cards
-        deck = new Deck(8);
+        deck = new Deck(7);
         //Shuffle the deck of cards
         deck.Shuffle();
 
@@ -209,6 +209,7 @@ public class FieldController {
             }
         }
         turnLbl.setText(playerTurn.toString());
+        DrawCard(null);
     }
 
 }
