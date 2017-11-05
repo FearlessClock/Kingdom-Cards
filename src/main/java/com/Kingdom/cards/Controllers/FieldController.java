@@ -198,12 +198,12 @@ public class FieldController {
     	Button b;
     	for(int i = 0; i < board.getPlayer1Cards().size(); i++){
     		b = new Button(board.getPlayer1Cards().get(i).GetRace());
-            b.setId(i + "b1");
+            b.setDisable(true);
             player1Board.getChildren().add(b);
     	}
     	for(int i = 0; i < board.getPlayer2Cards().size(); i++){
     		b = new Button(board.getPlayer2Cards().get(i).GetRace());
-            b.setId(i + "b2");
+            b.setDisable(true);
             player2Board.getChildren().add(b);
     	}
     }
