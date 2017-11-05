@@ -15,19 +15,14 @@ public class Hand {
 
     List<Card> hand = new ArrayList<Card>();
     IntegerProperty nmbrOfCardsProperty = new SimpleIntegerProperty(0);
-    public StringProperty nmbrOfCardsStrProperty = new SimpleStringProperty("0");
+    
     public int GetNmbrOfCards()
     {
         return nmbrOfCardsProperty.get();
     }
-    final ChangeListener changeListener = new ChangeListener() {
-        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-            nmbrOfCardsStrProperty.set(Integer.toString(GetNmbrOfCards()));
-        }
-    };
 
     public Hand() {
-        nmbrOfCardsProperty.addListener(changeListener);
+        
     }
 
     public void AddToHand(Card card) {
