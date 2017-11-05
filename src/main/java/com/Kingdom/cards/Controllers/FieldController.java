@@ -95,8 +95,8 @@ public class FieldController {
         //Shuffle the deck of cards
         deck.Shuffle();
 
-        nmbrOfCardsPlayer1.textProperty().bind(player1.hand.nmbrOfCardsStrProperty);
-        nmbrOfCardsPlayer2.textProperty().bind(player2.hand.nmbrOfCardsStrProperty);
+        nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
+        nmbrOfCardsPlayer2.textProperty().bind(board.player2Score_2);
 
         Card c;
         Button b;
