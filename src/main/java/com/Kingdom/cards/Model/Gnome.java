@@ -14,7 +14,6 @@ public class Gnome extends Card {
 
 	public String toString(){
 		return ("You get a " + race + "\nPower : Draw 2 cards" );
-
 	}
 
 	public void Power(Player player, Deck deck, Board board){

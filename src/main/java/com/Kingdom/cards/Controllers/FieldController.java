@@ -63,7 +63,8 @@ public class FieldController {
     public enum PlayerTurn {
         player1, player2
     }
-
+    
+    
     private PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
 

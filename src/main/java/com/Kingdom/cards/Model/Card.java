@@ -29,7 +29,5 @@ public class Card {
         else return false;
     }
 
-    public void Power(){
-
-    }
+    public void Power(){}
 }

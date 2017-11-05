@@ -13,16 +13,13 @@ public class Korrigan extends Card {
 
 	public String toString(){
 		return ("You get a " + race + "\nPower : Draw 2 random cards within your opponent hand" );
-
 	}
 
-	public void Power(List<Card> opponentHand , List<Card> ourHand){
+	public void Power(List<Card> opponentHand , List<Card> ourHand){ // A modifier
 		for (int i = 0 ; i < 2 ; i++){
 			int cardPos = (int) (Math.random() * opponentHand.size());
 			ourHand.add(opponentHand.get(cardPos));
 			opponentHand.remove(cardPos);
 		}
-
-
 	}
 }
