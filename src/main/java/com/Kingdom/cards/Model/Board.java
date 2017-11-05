@@ -16,7 +16,15 @@ public class Board {
         player2Cards = new ArrayList<Card>();
     }
 
-    public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
+    public List<Card> getPlayer1Cards() {
+		return player1Cards;
+	}
+
+	public List<Card> getPlayer2Cards() {
+		return player2Cards;
+	}
+
+	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
         if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
         } else {
