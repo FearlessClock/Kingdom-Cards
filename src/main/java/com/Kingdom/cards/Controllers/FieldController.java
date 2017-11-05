@@ -71,6 +71,7 @@ public class FieldController {
 
     private PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
+    private boolean playerHasPlay = true;
 
     //The state of the game, where we are.
     public enum GameState {
@@ -173,7 +174,8 @@ public class FieldController {
 
     private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
-
+        playerHasPlay = true;
+        
         if (playerTurn == PlayerTurn.player1) {
             //Card playedCard = player1.hand.PlayCard(idInt);
         	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
@@ -207,33 +209,37 @@ public class FieldController {
     }
 
     public void EndTurn() {
-        ObservableList<Node> buttonsP1 = player1Field.getChildren();
-        ObservableList<Node> buttonsP2 = player2Field.getChildren();
-        if (playerTurn == PlayerTurn.player1) {
-            playerHasDrawn = false;
-            playerTurn = PlayerTurn.player2;
-            for (Node b : buttonsP1) {
-                b.setDisable(true);
-                b.setOpacity(0.5);
+    	if(playerHasPlay){
+            ObservableList<Node> buttonsP1 = player1Field.getChildren();
+            ObservableList<Node> buttonsP2 = player2Field.getChildren();
+            if (playerTurn == PlayerTurn.player1) {
+                playerHasDrawn = false;
+                playerHasPlay = false;
+                playerTurn = PlayerTurn.player2;
+                for (Node b : buttonsP1) {
+                    b.setDisable(true);
+                    b.setOpacity(0.5);
+                }
+                for (Node b : buttonsP2) {
+                    b.setDisable(false);
+                    b.setOpacity(1);
+                }
+            } else {
+                playerHasDrawn = false;
+                playerHasPlay = false;
+                playerTurn = PlayerTurn.player1;
+                for (Node b : buttonsP1) {
+                    b.setDisable(false);
+                    b.setOpacity(1);
+                }
+                for (Node b : buttonsP2) {
+                    b.setDisable(true);
+                    b.setOpacity(0.5);
+                }
             }
-            for (Node b : buttonsP2) {
-                b.setDisable(false);
-                b.setOpacity(1);
-            }
-        } else {
-            playerHasDrawn = false;
-            playerTurn = PlayerTurn.player1;
-            for (Node b : buttonsP1) {
-                b.setDisable(false);
-                b.setOpacity(1);
-            }
-            for (Node b : buttonsP2) {
-                b.setDisable(true);
-                b.setOpacity(0.5);
-            }
-        }
-        turnLbl.setText(playerTurn.toString());
-        DrawCard(null);
+            turnLbl.setText(playerTurn.toString());
+            DrawCard(null);
+    	}
     }
 
 }
