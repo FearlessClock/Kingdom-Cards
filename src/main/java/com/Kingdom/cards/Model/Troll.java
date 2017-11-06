@@ -13,11 +13,6 @@ public class Troll extends Card {
 		this.name = "Troll";
 	}
 
-	public String toString(){
-		return ("You get a " + race + "\nPower : Swap the cards in front of you with the cards in front of your opponent" );
-
-	}
-
 	public void Power(Board board, FieldController.PlayerTurn playerTurn){
 		List<Card> tmpCards = new ArrayList<Card>();
 		int i = 0;

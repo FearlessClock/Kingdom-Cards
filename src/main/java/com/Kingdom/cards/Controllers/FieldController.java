@@ -21,7 +21,7 @@ public class FieldController {
 
 	/*
     * Kingdom cards! A card game about a growing population.
-	* Generate a Deck, the deck contains 8 cards of each race.
+	* Generate a Deck, the deck contains 7 cards of each race.
 	* Each player draws 1 card till both players have 5 cards.
 	* Flip a coin to see who starts
 	* The first player draws a card. He plays a card. Both are obligatory
@@ -41,6 +41,11 @@ public class FieldController {
     HBox player1Field;
     @FXML
     HBox player2Field;
+    
+    @FXML
+    HBox player1Board;
+    @FXML
+    HBox player2Board;
 
     @FXML
     Label turnLbl;
@@ -63,10 +68,10 @@ public class FieldController {
     public enum PlayerTurn {
         player1, player2
     }
-    
-    
+
     private PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
+    private boolean playerHasPlay = true;
 
     //The state of the game, where we are.
     public enum GameState {
@@ -86,26 +91,28 @@ public class FieldController {
         gamestate = GameState.init;
         board = new Board();
         //Generate the deck of cards
-        deck = new Deck(8);
+        deck = new Deck(7);
         //Shuffle the deck of cards
         deck.Shuffle();
 
-        nmbrOfCardsPlayer1.textProperty().bind(player1.hand.nmbrOfCardsStrProperty);
-        nmbrOfCardsPlayer2.textProperty().bind(player2.hand.nmbrOfCardsStrProperty);
+        nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
+        nmbrOfCardsPlayer2.textProperty().bind(board.player2Score_2);
 
+        Card c;
+        Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
-            Card c = player1.Draw(deck);
-            Button b = new Button(c.GetRace());
-            b.setId(i + "p1");
+            c = player1.Draw(deck);
+            b = new Button(c.GetRace());
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
                 }
             });
             player1Field.getChildren().add(b);
+        }
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = player2.Draw(deck);
             b = new Button(c.GetRace());
-            b.setId(i + "p2");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -146,7 +153,6 @@ public class FieldController {
             playerHasDrawn = true;
 
             Button b = new Button(c.GetRace());
-            b.setId("1p1");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -157,7 +163,6 @@ public class FieldController {
             Card c = player2.Draw(deck);
             playerHasDrawn = true;
             Button b = new Button(c.GetRace());
-            b.setId("1p2");
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -169,47 +174,72 @@ public class FieldController {
 
     private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
-        String id = (button).getId();
-        int idInt = Integer.parseInt(id.split("p")[0]);
-
+        playerHasPlay = true;
+        
         if (playerTurn == PlayerTurn.player1) {
-            Card playedCard = player1.hand.PlayCard(idInt);
+            //Card playedCard = player1.hand.PlayCard(idInt);
+        	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
+            
         } else {
-            Card playedCard = player2.hand.PlayCard(idInt);
+            //Card playedCard = player2.hand.PlayCard(idInt);
+            Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player2Field.getChildren().remove(button);
         }
+        
+        UpdateBoard();
+    }
+    
+    public void UpdateBoard(){
+    	player1Board.getChildren().clear();
+    	player2Board.getChildren().clear();
+    	Button b;
+    	for(int i = 0; i < board.getPlayer1Cards().size(); i++){
+    		b = new Button(board.getPlayer1Cards().get(i).GetRace());
+            b.setDisable(true);
+            player1Board.getChildren().add(b);
+    	}
+    	for(int i = 0; i < board.getPlayer2Cards().size(); i++){
+    		b = new Button(board.getPlayer2Cards().get(i).GetRace());
+            b.setDisable(true);
+            player2Board.getChildren().add(b);
+    	}
     }
 
     public void EndTurn() {
-        ObservableList<Node> buttonsP1 = player1Field.getChildren();
-        ObservableList<Node> buttonsP2 = player2Field.getChildren();
-        if (playerTurn == PlayerTurn.player1) {
-            playerHasDrawn = false;
-            playerTurn = PlayerTurn.player2;
-            for (Node b : buttonsP1) {
-                b.setDisable(true);
-                b.setOpacity(0.5);
+    	if(playerHasPlay){
+            ObservableList<Node> buttonsP1 = player1Field.getChildren();
+            ObservableList<Node> buttonsP2 = player2Field.getChildren();
+            if (playerTurn == PlayerTurn.player1) {
+                playerHasDrawn = false;
+                playerHasPlay = false;
+                playerTurn = PlayerTurn.player2;
+                for (Node b : buttonsP1) {
+                    b.setDisable(true);
+                    b.setOpacity(0.5);
+                }
+                for (Node b : buttonsP2) {
+                    b.setDisable(false);
+                    b.setOpacity(1);
+                }
+            } else {
+                playerHasDrawn = false;
+                playerHasPlay = false;
+                playerTurn = PlayerTurn.player1;
+                for (Node b : buttonsP1) {
+                    b.setDisable(false);
+                    b.setOpacity(1);
+                }
+                for (Node b : buttonsP2) {
+                    b.setDisable(true);
+                    b.setOpacity(0.5);
+                }
             }
-            for (Node b : buttonsP2) {
-                b.setDisable(false);
-                b.setOpacity(1);
-            }
-        } else {
-            playerHasDrawn = false;
-            playerTurn = PlayerTurn.player1;
-            for (Node b : buttonsP1) {
-                b.setDisable(false);
-                b.setOpacity(1);
-            }
-            for (Node b : buttonsP2) {
-                b.setDisable(true);
-                b.setOpacity(0.5);
-            }
-        }
-        turnLbl.setText(playerTurn.toString());
+            turnLbl.setText(playerTurn.toString());
+            DrawCard(null);
+    	}
     }
 
 }

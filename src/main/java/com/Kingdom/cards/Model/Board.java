@@ -2,64 +2,117 @@ package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Controllers.FieldController;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Board {
 
     private List<Card> player1Cards;
     private List<Card> player2Cards;
+    
+    IntegerProperty player1Score = new SimpleIntegerProperty(0);
+    public StringProperty player1Score_2 = new SimpleStringProperty("0");
+    
+    IntegerProperty player2Score = new SimpleIntegerProperty(0);
+    public StringProperty player2Score_2 = new SimpleStringProperty("0");
 
 
     public Board() {
         player1Cards = new ArrayList<Card>();
         player2Cards = new ArrayList<Card>();
+        player1Score.addListener(changeListener);
+        player2Score.addListener(changeListener);
     }
 
-    public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
+	public int getPlayer1Score() {
+		return player1Score.get();
+	}
+
+	public int getPlayer2Score() {
+		return player2Score.get();
+	}
+
+	public List<Card> getPlayer1Cards() {
+		return player1Cards;
+	}
+
+	public List<Card> getPlayer2Cards() {
+		return player2Cards;
+	}
+
+	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
         if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
+            GetScorePlayer(1);
         } else {
             player2Cards.add(card);
+            GetScorePlayer(2);
         }
     }
-    
-    public Card RemoveCard(FieldController.PlayerTurn playerTurn, int index){ // Remove a card from the player board
-    	Card removedCard = new Card();
-    	switch(playerTurn){
-    	case player1 :
-    		removedCard = player2Cards.remove(index);
-    		break;
-		case player2 :
-    		removedCard = player1Cards.remove(index);
-    		break;
-		default:
-    		System.out.println("Wrong player number");
-    		break;
-    	}
-    	return removedCard;
-    }
-    
-    public Boolean IsEmpty(FieldController.PlayerTurn playerTurn){
-    	Boolean isEmpty = false;
-    	switch (playerTurn){
-    	case player1 :
-    		if (player1Cards.size() == 0){
-    			isEmpty = true;
-    		}
-    		break;
-    	case player2 :
-    		if (player2Cards.size() == 0){
-    			isEmpty = true;
-    		}
-    		break;
-    	default:
-    		System.out.println("Wrong player number");
-    		break;
-    	}
-    	return isEmpty;
-    }
-    
-    
+	
+	final ChangeListener changeListener = new ChangeListener() {
+        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+        	player1Score_2.set(Integer.toString(getPlayer1Score()));
+        	player2Score_2.set(Integer.toString(getPlayer2Score()));
+        }
+    };
+	
+	public int GetScorePlayer(int player){
+		List<Card> playerboard = new ArrayList<Card>();
+		if(player == 1){
+			playerboard.addAll(player1Cards);
+		}
+		else if(player == 2){
+			playerboard.addAll(player2Cards);
+		}
+		int score = playerboard.size();
+		List<Integer> listingClass = new ArrayList<Integer>();
+		for(int i = 0; i < 6; i++){
+			listingClass.add(i, 0);
+		}
+		for(Card c : playerboard){
+			if(c.GetRace() == "Dryad"){
+				listingClass.set(0, listingClass.get(0) + 1);
+			}
+			if(c.GetRace() == "Elf"){
+				listingClass.set(1, listingClass.get(1) + 1);
+			}
+			if(c.GetRace() == "Gnome"){
+				listingClass.set(2, listingClass.get(2) + 1);
+			}
+			if(c.GetRace() == "Goblin"){
+				listingClass.set(3, listingClass.get(3) + 1);
+			}
+			if(c.GetRace() == "Korrigan"){
+				listingClass.set(4, listingClass.get(4) + 1);
+			}
+			if(c.GetRace() == "Troll"){
+				listingClass.set(5, listingClass.get(5) + 1);
+			}
+		}
+		int mini = listingClass.get(0);
+		for(int i : listingClass){
+			if(i < mini){
+				mini = i;
+			}
+		}
+		score += mini * 3;
+		if(player == 1){
+			player1Score.set(score);
+		}
+		else if(player == 2){
+			player2Score.set(score);
+		}
+		return score;
+	}
+
 
 }
