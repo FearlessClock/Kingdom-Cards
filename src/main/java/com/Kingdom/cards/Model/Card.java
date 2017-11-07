@@ -1,5 +1,7 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Deck;
+
 public class Card {
     String race;
     String name;
@@ -24,7 +26,5 @@ public class Card {
         else return false;
     }
 
-    public void Power(){
-
-    }
+    public void Power(Player player, Deck deck){}
 }

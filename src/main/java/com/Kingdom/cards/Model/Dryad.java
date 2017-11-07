@@ -14,6 +14,7 @@ public class Dryad extends Card{
 		// Need to have the class Kingdom
 		// Opponent Kingdom.remove
 		// Our Kingdom.add
+		System.out.println("I'm a Dryad !!");
 	}
 
 }

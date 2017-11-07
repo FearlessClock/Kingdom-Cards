@@ -14,9 +14,10 @@ public class Goblin extends Card {
 	}
 
 	public void Power(List<Card> opponentHand, List<Card> ourHand){
-		List<Card> tmpHand = new ArrayList<Card>();
+		/*List<Card> tmpHand = new ArrayList<Card>();
 		tmpHand = opponentHand;
 		opponentHand = ourHand;
-		ourHand = tmpHand;
+		ourHand = tmpHand;*/
+		System.out.println("I'm a Goblin !!");
 	}
 }
