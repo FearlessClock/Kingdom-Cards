@@ -26,5 +26,5 @@ public class Card {
         else return false;
     }
 
-    public void Power(Player player, Deck deck){}
+    public void Power(){}
 }

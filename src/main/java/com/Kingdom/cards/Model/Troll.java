@@ -12,5 +12,6 @@ public class Troll extends Card {
 	public void Power(){
 		// Need the class Kingdom
 		// Switch the kingdom
+		System.out.println("I'm a trool ");
 	}
 }

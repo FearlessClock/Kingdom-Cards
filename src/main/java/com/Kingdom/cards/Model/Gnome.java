@@ -12,7 +12,7 @@ public class Gnome extends Card {
 		this.race = "Gnome";
 	}
 
-	public void Power(Player player, Deck deck){
+	public void Power(){
 		/*player.Draw(deck);
 		player.Draw(deck);*/
 		System.out.println("I'm a gnome !!");
