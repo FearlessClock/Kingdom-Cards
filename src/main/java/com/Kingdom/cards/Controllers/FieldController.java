@@ -71,7 +71,7 @@ public class FieldController {
 
     private PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
-    private boolean playerHasPlay = true;
+    private boolean playerHasPlay = false;
 
     //The state of the game, where we are.
     public enum GameState {
@@ -122,8 +122,13 @@ public class FieldController {
         }
 
         playerTurn = FlipACoin();
-        //TODO Make this a function. Needs to make the other players buttons disabled and opacied
-        EndTurn();
+        if(PlayerTurn.player2 == playerTurn){
+            SwapButtons(player1Field.getChildren(), player2Field.getChildren());
+        }
+        else{
+            SwapButtons(player2Field.getChildren(), player1Field.getChildren());
+        }
+
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
        /* //Start game loop
@@ -174,25 +179,29 @@ public class FieldController {
 
     private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
-        playerHasPlay = true;
-        
-        if (playerTurn == PlayerTurn.player1) {
-            //Card playedCard = player1.hand.PlayCard(idInt);
-        	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-            board.PlayCard(playedCard, playerTurn);
-            player1Field.getChildren().remove(button);
-            
-        } else {
-            //Card playedCard = player2.hand.PlayCard(idInt);
-            Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-            board.PlayCard(playedCard, playerTurn);
-            player2Field.getChildren().remove(button);
+
+        if(!playerHasPlay)
+        {
+            if (playerTurn == PlayerTurn.player1) {
+                //Card playedCard = player1.hand.PlayCard(idInt);
+                Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
+                board.PlayCard(playedCard, playerTurn);
+                player1Field.getChildren().remove(button);
+
+            } else {
+                //Card playedCard = player2.hand.PlayCard(idInt);
+                Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
+                board.PlayCard(playedCard, playerTurn);
+                player2Field.getChildren().remove(button);
+            }
         }
+
+        playerHasPlay = true;
         
         UpdateBoard();
     }
     
-    public void UpdateBoard(){
+    private void UpdateBoard(){
     	player1Board.getChildren().clear();
     	player2Board.getChildren().clear();
     	Button b;
@@ -207,6 +216,17 @@ public class FieldController {
             player2Board.getChildren().add(b);
     	}
     }
+    private void SwapButtons(ObservableList<Node> set1, ObservableList<Node> set2)
+    {
+        for (Node b : set1) {
+            b.setDisable(true);
+            b.setOpacity(0.5);
+        }
+        for (Node b : set2) {
+            b.setDisable(false);
+            b.setOpacity(1);
+        }
+    }
 
     public void EndTurn() {
     	if(playerHasPlay){
@@ -216,26 +236,12 @@ public class FieldController {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player2;
-                for (Node b : buttonsP1) {
-                    b.setDisable(true);
-                    b.setOpacity(0.5);
-                }
-                for (Node b : buttonsP2) {
-                    b.setDisable(false);
-                    b.setOpacity(1);
-                }
+                SwapButtons(buttonsP1, buttonsP2);
             } else {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
-                for (Node b : buttonsP1) {
-                    b.setDisable(false);
-                    b.setOpacity(1);
-                }
-                for (Node b : buttonsP2) {
-                    b.setDisable(true);
-                    b.setOpacity(0.5);
-                }
+                SwapButtons(buttonsP2, buttonsP1);
             }
             turnLbl.setText(playerTurn.toString());
             DrawCard(null);
