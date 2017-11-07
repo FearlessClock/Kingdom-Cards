@@ -181,6 +181,7 @@ public class FieldController {
         	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
+            playedCard.Power();
             /*if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
             	DrawCard(null);
@@ -193,6 +194,7 @@ public class FieldController {
             Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player2Field.getChildren().remove(button);
+            playedCard.Power();
             /*if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
             	DrawCard(null);
