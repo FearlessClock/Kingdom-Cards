@@ -162,17 +162,7 @@ public class FieldController {
                 }
             });
             player1Field.getChildren().add(b);
-        }/* else if (!playerHasDrawn && playerTurn == PlayerTurn.playerAI) {
-            Card c = playerAI.Draw(deck);
-            playerHasDrawn = true;
-            Button b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            playerAIField.getChildren().add(b);
-        }*/
+        }
     }
 
     private void SendCard(ActionEvent event) {
@@ -184,12 +174,7 @@ public class FieldController {
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
             
-        } /*else {
-            Card playedCard = playerAI.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-            board.PlayCard(playedCard, playerTurn);
-            playerAIField.getChildren().remove(button);
-        }*/
-        
+        }         
         UpdateBoard();
     }
     
@@ -208,6 +193,45 @@ public class FieldController {
             playerAIBoard.getChildren().add(b);
     	}
     }
+    
+    public void turnOfAI(){
+    	playerHasDrawn = false;
+        playerHasPlay = false;
+        playerTurn = PlayerTurn.playerAI;
+        
+        //Draw Card
+        Card c = playerAI.Draw(deck);
+        playerHasDrawn = true;
+        Button b = new Button(c.GetRace());
+        b.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                SendCard(event);
+            }
+        });
+        playerAIField.getChildren().add(b);
+        //Play Card
+        Card playedCard = playerAI.PlayCard();
+        board.PlayCard(playedCard, playerTurn);
+        
+        //Remove the card from the hand of the AI
+        int playedCardIndex = -1;
+        int nbOfCardInHand = playerAIField.getChildren().size();
+        for (int i=0; i < nbOfCardInHand; i++){
+        	Button buti = (Button) playerAIField.getChildren().get(i);
+        	
+        	if (buti.textProperty().getValue() == playedCard.GetRace()){
+        		playedCardIndex = i;
+        		break;
+        	}
+        }
+        playerAIField.getChildren().remove(playedCardIndex);
+        
+        //Update Board and variables
+        playerHasPlay = true;
+        UpdateBoard();
+        
+        EndTurn();    	
+    }
 
     public void EndTurn() {
     	if(playerHasPlay){
@@ -215,28 +239,18 @@ public class FieldController {
             ObservableList<Node> buttonsP2 = playerAIField.getChildren();
             //IA play
             if (playerTurn == PlayerTurn.player1) {
-                playerHasDrawn = false;
-                playerHasPlay = false;
-                playerTurn = PlayerTurn.playerAI;
+            	
+                for (Node b : buttonsP2) {
+                    b.setDisable(false);
+                    b.setOpacity(1);
+                }
+                for (Node b : buttonsP1) {
+                    b.setDisable(true);
+                    b.setOpacity(0.5);
+                }
                 
-                //Draw Card
-                Card c = playerAI.Draw(deck);
-                playerHasDrawn = true;
-                Button b = new Button(c.GetRace());
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                //Play Card
-                Card playedCard = playerAI.PlayCard();
-                board.PlayCard(playedCard, playerTurn);
-                Integer playedCardIndex = playerAIField.getChildren().indexOf(playedCard);
-                playerAIField.getChildren().remove(playedCardIndex);
-                playerHasPlay = true;
-                UpdateBoard();
-                EndTurn();
-            } 
+                turnOfAI();
+            }
             //Player play
             else {
                 playerHasDrawn = false;
