@@ -181,12 +181,18 @@ public class FieldController {
         	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
-            playedCard.Power();
-            /*if (playedCard.GetRace() == "Gnome"){
+           // playedCard.Power();
+            if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
-            	DrawCard(null);
-            	DrawCard(null);
-            }*/
+            	Card c = player1.Draw(deck);
+        		Button b = new Button(c.GetRace());
+        		b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+        		player1Field.getChildren().add(b);
+            }
             //playedCard.Power(player1, deck);
             
         } else {
@@ -194,12 +200,18 @@ public class FieldController {
             Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player2Field.getChildren().remove(button);
-            playedCard.Power();
-            /*if (playedCard.GetRace() == "Gnome"){
+            //playedCard.Power();
+            if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
-            	DrawCard(null);
-            	DrawCard(null);
-            }*/
+            	Card c = player2.Draw(deck);
+        		Button b = new Button(c.GetRace());
+        		b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+        		player2Field.getChildren().add(b);
+            }
         }
         
         UpdateBoard();
