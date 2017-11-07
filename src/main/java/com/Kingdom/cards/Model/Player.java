@@ -28,7 +28,5 @@ public class Player {
 
     public Card PlayCard(int cardIndex) {
         return hand.PlayCard(cardIndex);
-    }	
+    }
 }
-
-

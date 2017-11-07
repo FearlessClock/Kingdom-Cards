@@ -16,36 +16,36 @@ import java.util.List;
 public class Board {
 
     private List<Card> player1Cards;
-    private List<Card> player2Cards;
+    private List<Card> playerAICards;
     
     IntegerProperty player1Score = new SimpleIntegerProperty(0);
     public StringProperty player1Score_2 = new SimpleStringProperty("0");
     
-    IntegerProperty player2Score = new SimpleIntegerProperty(0);
-    public StringProperty player2Score_2 = new SimpleStringProperty("0");
+    IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
+    public StringProperty playerAIScore_2 = new SimpleStringProperty("0");
 
 
     public Board() {
         player1Cards = new ArrayList<Card>();
-        player2Cards = new ArrayList<Card>();
+        playerAICards = new ArrayList<Card>();
         player1Score.addListener(changeListener);
-        player2Score.addListener(changeListener);
+        playerAIScore.addListener(changeListener);
     }
 
 	public int getPlayer1Score() {
 		return player1Score.get();
 	}
 
-	public int getPlayer2Score() {
-		return player2Score.get();
+	public int getPlayerAIScore() {
+		return playerAIScore.get();
 	}
 
 	public List<Card> getPlayer1Cards() {
 		return player1Cards;
 	}
 
-	public List<Card> getPlayer2Cards() {
-		return player2Cards;
+	public List<Card> getPlayerAICards() {
+		return playerAICards;
 	}
 
 	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
@@ -53,7 +53,7 @@ public class Board {
             player1Cards.add(card);
             GetScorePlayer(1);
         } else {
-            player2Cards.add(card);
+            playerAICards.add(card);
             GetScorePlayer(2);
         }
     }
@@ -61,7 +61,7 @@ public class Board {
 	final ChangeListener changeListener = new ChangeListener() {
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
         	player1Score_2.set(Integer.toString(getPlayer1Score()));
-        	player2Score_2.set(Integer.toString(getPlayer2Score()));
+        	playerAIScore_2.set(Integer.toString(getPlayerAIScore()));
         }
     };
 	
@@ -71,7 +71,7 @@ public class Board {
 			playerboard.addAll(player1Cards);
 		}
 		else if(player == 2){
-			playerboard.addAll(player2Cards);
+			playerboard.addAll(playerAICards);
 		}
 		int score = playerboard.size();
 		List<Integer> listingClass = new ArrayList<Integer>();
@@ -109,7 +109,7 @@ public class Board {
 			player1Score.set(score);
 		}
 		else if(player == 2){
-			player2Score.set(score);
+			playerAIScore.set(score);
 		}
 		return score;
 	}
