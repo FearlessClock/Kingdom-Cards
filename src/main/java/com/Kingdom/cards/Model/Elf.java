@@ -7,15 +7,8 @@ public class Elf extends Card {
 		this.race = "Elf";
 	}
 
-	public void Power() {
-		// Need to have the class Kingdom
-		// Select a card in the kingdom
-		// Use the power
-		System.out.println("I'm an Elf !!");
-	}
-
 	@Override
-	public void Power(Board b) {
+	public void Power(Board b, Hand AIHand, Hand playerHand) {
 		// TODO Auto-generated method stub
 		
 	}

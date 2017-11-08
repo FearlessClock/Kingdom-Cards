@@ -14,7 +14,7 @@ public class Troll extends Card {
 
 
 	@Override
-	public void Power(Board b) {
+	public void Power(Board b, Hand AIHand, Hand playerHand) {
 		List<Card> tmpList = b.getPlayerAICards();
 		b.setPlayerAICards(b.getPlayer1Cards());
 		b.setPlayer1Cards(tmpList);

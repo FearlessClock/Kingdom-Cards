@@ -20,10 +20,10 @@ public class Korrigan extends Card {
 			ourHand.add(opponentHand.get(cardPos));
 			opponentHand.remove(cardPos);
 		}*/
-		System.out.println("I'm a Korrigan !!");
+		
 	}
 	@Override
-	public void Power(Board b) {
+	public void Power(Board b, Hand AIHand, Hand playerHand) {
 		// TODO Auto-generated method stub
 		
 	}

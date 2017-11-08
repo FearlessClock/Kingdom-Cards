@@ -182,15 +182,14 @@ public class FieldController {
                 	break;
             	case "Troll":
             		System.out.println("Troll");
-            		playedCard.Power(board);
+            		playedCard.Power(board, playerAI.hand, player1.hand);
             		break;
-            		
-            	/*case "Goblin": 
+            	
+            	case "Goblin": 
             		System.out.println("Goblin ");
-            		playedCard.Power(player1.hand, playerAI.hand);
-            		break;*/
+            		playedCard.Power(board, playerAI.hand, player1.hand);
+            		break;
             }
-          
         } 
         UpdateBoard();
 	}
@@ -247,7 +246,7 @@ public class FieldController {
             
         	case "Troll":
         		System.out.println("Troll");
-        		playedCard.Power(board);
+        		playedCard.Power(board, playerAI.hand, player1.hand);
         		break;
         }
 		// Remove the card from the hand of the AI

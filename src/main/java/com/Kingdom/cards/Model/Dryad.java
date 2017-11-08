@@ -10,7 +10,7 @@ public class Dryad extends Card {
 	}
 
 	@Override
-	public void Power(Board b) {
+	public void Power(Board b, Hand AIHand, Hand playerHand) {
 	
 		
 	}
