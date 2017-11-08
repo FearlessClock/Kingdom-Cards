@@ -6,10 +6,9 @@ import com.Kingdom.cards.Model.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Goblin extends Card {
 
-	public Goblin(){
+	public Goblin() {
 		super();
 		this.race = "Goblin";
 	}
@@ -18,5 +17,6 @@ public class Goblin extends Card {
 		List<Card> tmpHand = p2.hand.getHand();
 		p2.hand.setHand(p1.hand.getHand());
 		p1.hand.setHand(tmpHand);
+
 	}
 }

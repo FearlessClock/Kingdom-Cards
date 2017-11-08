@@ -6,16 +6,17 @@ public abstract class Card {
     String race;
     private String name;
 
-    public Card() {
-        race = "Human";
-    }
 
-    public String GetRace(){
-        return race;
-    }
+	public Card() {
+		race = "Human";
+	}
 
-    public String GetName() {
-    	return name;
+	public String GetRace() {
+		return race;
+	}
+
+	public String GetName() {
+		return name;
 	}
 
     @Override
@@ -28,4 +29,5 @@ public abstract class Card {
     }
 
     public abstract void power(Board b, Deck d, Player p1, Player p2);
+
 }

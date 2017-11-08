@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Korrigan extends Card {
-	public Korrigan(){
+	public Korrigan() {
 		super();
 		this.race = "Korrigan";
 	}
@@ -17,6 +17,7 @@ public class Korrigan extends Card {
 			int cardPos = (int) (Math.random() * p1.hand.GetNmbrOfCards());
 			p1.hand.AddToHand((p2.hand.getHand().get(cardPos)));
 			p2.hand.getHand().remove(cardPos);
+
 		}
 	}
 }

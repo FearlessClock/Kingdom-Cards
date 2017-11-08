@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Troll extends Card {
 
-	public Troll(){
+	public Troll() {
 		super();
 		this.race = "Troll";
 	}
@@ -16,5 +16,6 @@ public class Troll extends Card {
 		List<Card> cardsP1 = b.getPlayer1Cards();
 		b.setPlayer1Cards(b.getPlayer2Cards());
 		b.setPlayer2Cards(cardsP1);
+
 	}
 }

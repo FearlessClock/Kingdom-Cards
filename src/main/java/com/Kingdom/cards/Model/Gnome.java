@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Gnome extends Card {
 
-	public Gnome(){
+	public Gnome() {
 		super();
 		this.race = "Gnome";
 	}
@@ -15,5 +15,6 @@ public class Gnome extends Card {
 	public void power(Board b, Deck d, Player p1, Player p2) {
 		p1.Draw(d);
 		p1.Draw(d);
+
 	}
 }

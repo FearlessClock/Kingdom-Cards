@@ -16,4 +16,5 @@ public class CardTest {
 
         Assert.assertEquals(card.GetRace(), "Human");
     }
+
 }

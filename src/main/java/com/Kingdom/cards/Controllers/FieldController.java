@@ -16,207 +16,179 @@ import javafx.scene.layout.HBox;
 
 import java.util.Random;
 
-
 public class FieldController {
 
 	/*
-    * Kingdom cards! A card game about a growing population.
-	* Generate a Deck, the deck contains 7 cards of each race.
-	* Each player draws 1 card till both players have 5 cards.
-	* Flip a coin to see who starts
-	* The first player draws a card. He plays a card. Both are obligatory
-	* The players turn then ends.
-	* The game ends when all the cards are played.
-	*
-	* We will be using a sort of State machine to control the turns of each player.
-	*
-	* There are 3 states in the game:
-	* 1) Init, shuffle and first 5 card draw
-	* 2) Gameplay
-	* 3) End game
-	* */
+	 * Kingdom cards! A card game about a growing population. Generate a Deck,
+	 * the deck contains 7 cards of each race. Each player draws 1 card till
+	 * both players have 5 cards. Flip a coin to see who starts The first player
+	 * draws a card. He plays a card. Both are obligatory The players turn then
+	 * ends. The game ends when all the cards are played.
+	 *
+	 * We will be using a sort of State machine to control the turns of each
+	 * player.
+	 *
+	 * There are 3 states in the game: 1) Init, shuffle and first 5 card draw 2)
+	 * Gameplay 3) End game
+	 */
 
-    //The horizontal box
-    @FXML
-    HBox player1Field;
-    @FXML
-    HBox player2Field;
-    
-    @FXML
-    HBox player1Board;
-    @FXML
-    HBox player2Board;
+	// The horizontal box
+	@FXML
+	HBox player1Field;
+	@FXML
+	HBox playerAIField;
 
-    @FXML
-    Label turnLbl;
+	@FXML
+	HBox player1Board;
+	@FXML
+	HBox playerAIBoard;
 
-    //The deck of cards
-    private Deck deck;
+	@FXML
+	Label turnLbl;
 
-    //Board containing all the cards
-    private Board board;
+	@FXML
+	Button btnEndTurn;
 
-    //Player 1
-    private Player player1 = new Player();
-    private AI player2 = new AI();
+	// The deck of cards
+	private Deck deck;
 
-    //Number of cards per player
-    private int nmbrOfCardsInit = 5;
+	// Board containing all the cards
+	private Board board;
 
+	// Player
+	private Player player1 = new Player();
+	private AI playerAI = new AI();
 
-    //Player turn state variable
-    public enum PlayerTurn {
-        player1, player2
-    }
+	// Number of cards per player
+	private int nmbrOfCardsInit = 5;
 
-    private PlayerTurn playerTurn;
-    private boolean playerHasDrawn = false;
-    private boolean playerHasPlay = false;
+	// Player turn state variable
+	public enum PlayerTurn {
+		player1, playerAI
+	}
 
-    //The state of the game, where we are.
-    public enum GameState {
-        init, game, end
-    }
+	private PlayerTurn playerTurn;
+	private boolean playerHasDrawn = false;
+	private boolean playerHasPlay = false;
 
-    private GameState gamestate;
+	// The state of the game, where we are.
+	public enum GameState {
+		init, game, end
+	}
 
-    //Labels showing the number of cards per person
-    @FXML
-    private Label nmbrOfCardsPlayer1;
-    @FXML
-    private Label nmbrOfCardsPlayer2;
+	private GameState gamestate;
 
-    @FXML
-    public void initialize() {
-        gamestate = GameState.init;
-        board = new Board();
-        //Generate the deck of cards
-        deck = new Deck(7);
-        //Shuffle the deck of cards
-        deck.Shuffle();
+	// Labels showing the number of cards per person
+	@FXML
+	private Label nmbrOfCardsPlayer1;
+	@FXML
+	private Label nmbrOfCardsPlayerAI;
 
-        nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
-        nmbrOfCardsPlayer2.textProperty().bind(board.player2Score_2);
+	@FXML
+	public void initialize() {
+		gamestate = GameState.init;
+		board = new Board();
+		// Generate the deck of cards
+		deck = new Deck(7);
+		// Shuffle the deck of cards
+		deck.Shuffle();
 
-        Card c;
-        Button b;
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            c = player1.Draw(deck);
-            b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
-        }
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            c = player2.Draw(deck);
-            b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player2Field.getChildren().add(b);
-        }
+		nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
+		nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScore_2);
 
-        playerTurn = FlipACoin();
-        if(PlayerTurn.player2 == playerTurn){
-            SwapButtons(player1Field.getChildren(), player2Field.getChildren());
-        }
-        else{
-            SwapButtons(player2Field.getChildren(), player1Field.getChildren());
-        }
+		Card c;
+		Button b;
+		for (int i = 0; i < nmbrOfCardsInit; i++) {
+			c = player1.Draw(deck);
+			b = new Button(c.GetRace());
+			b.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					SendCard(event);
+				}
+			});
+			player1Field.getChildren().add(b);
+		}
+		for (int i = 0; i < nmbrOfCardsInit; i++) {
+			c = playerAI.Draw(deck);
+			b = new Button(c.GetRace());
+			b.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					SendCard(event);
+				}
+			});
+			playerAIField.getChildren().add(b);
+		}
 
-        turnLbl.setText(playerTurn.toString());
-        gamestate = GameState.game;
-       /* //Start game loop
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if(gamestate == GameState.game)
-                {
+		playerTurn = FlipACoin();
+		// TODO Make this a function. Needs to make the other players buttons
+		// disabled and opacied
+		EndTurn();
+		turnLbl.setText(playerTurn.toString());
+		gamestate = GameState.game;
+		/*
+		 * //Start game loop new AnimationTimer() {
+		 * 
+		 * @Override public void handle(long now) { if(gamestate ==
+		 * GameState.game) {
+		 * 
+		 * } } }.start();
+		 */
+	}
 
-                }
-            }
-        }.start();*/
-    }
+	private PlayerTurn FlipACoin() {
+		Random rand = new Random();
+		boolean randomVal = rand.nextBoolean();
+		if (randomVal)
+			return PlayerTurn.player1;
+		else
+			return PlayerTurn.playerAI;
+	}
 
-    private PlayerTurn FlipACoin() {
-        Random rand = new Random();
-        boolean randomVal = rand.nextBoolean();
-        if (randomVal)
-            return PlayerTurn.player1;
-        else
-            return PlayerTurn.player2;
-    }
+	public void DrawCard(ActionEvent event) {
+		if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
+			Card c = player1.Draw(deck);
+			playerHasDrawn = true;
 
-    public void DrawCard(ActionEvent event) {
-        if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
-            Card c = player1.Draw(deck);
-            playerHasDrawn = true;
+			Button b = new Button(c.GetRace());
+			b.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					SendCard(event);
+				}
+			});
+			player1Field.getChildren().add(b);
+		}
+	}
 
-            Button b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
-        } else if (!playerHasDrawn && playerTurn == PlayerTurn.player2) {
-            Card c = player2.Draw(deck);
-            playerHasDrawn = true;
-            Button b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player2Field.getChildren().add(b);
-        }
-    }
+	private void SendCard(ActionEvent event) {
+		Button button = (Button) event.getSource();
 
-    private void SendCard(ActionEvent event) {
-        Button button = (Button) event.getSource();
+		if (playerTurn == PlayerTurn.player1) {
+			Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
+			board.PlayCard(playedCard, playerTurn);
+			player1Field.getChildren().remove(button);
 
-        if(!playerHasPlay)
-        {
-            if (playerTurn == PlayerTurn.player1) {
-                //Card playedCard = player1.hand.PlayCard(idInt);
-                Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-                board.PlayCard(playedCard, deck, playerTurn, player1, player2);
-                player1Field.getChildren().remove(button);
+		}
+    playerHasPlay = true;
+		UpdateBoard();
+	}
 
-            } else {
-                //Card playedCard = player2.hand.PlayCard(idInt);
-                Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-                board.PlayCard(playedCard, deck, playerTurn, player1, player2);
-                player2Field.getChildren().remove(button);
-            }
-        }
+	public void UpdateBoard() {
+		player1Board.getChildren().clear();
+		playerAIBoard.getChildren().clear();
+		Button b;
+		for (int i = 0; i < board.getPlayer1Cards().size(); i++) {
+			b = new Button(board.getPlayer1Cards().get(i).GetRace());
+			b.setDisable(true);
+			player1Board.getChildren().add(b);
+		}
+		for (int i = 0; i < board.getPlayerAICards().size(); i++) {
+			b = new Button(board.getPlayerAICards().get(i).GetRace());
+			b.setDisable(true);
+			playerAIBoard.getChildren().add(b);
+		}
+	}
 
-        playerHasPlay = true;
-        
-        UpdateBoard();
-    }
-    
-    private void UpdateBoard(){
-    	player1Board.getChildren().clear();
-    	player2Board.getChildren().clear();
-    	Button b;
-    	for(int i = 0; i < board.getPlayer1Cards().size(); i++){
-    		b = new Button(board.getPlayer1Cards().get(i).GetRace());
-            b.setDisable(true);
-            player1Board.getChildren().add(b);
-    	}
-    	for(int i = 0; i < board.getPlayer2Cards().size(); i++){
-    		b = new Button(board.getPlayer2Cards().get(i).GetRace());
-            b.setDisable(true);
-            player2Board.getChildren().add(b);
-    	}
-    }
-    private void SwapButtons(ObservableList<Node> set1, ObservableList<Node> set2)
+  private void SwapButtons(ObservableList<Node> set1, ObservableList<Node> set2)
     {
         for (Node b : set1) {
             b.setDisable(true);
@@ -228,16 +200,54 @@ public class FieldController {
         }
     }
 
-    public void EndTurn() {
+	public void turnOfAI() {
+		playerHasDrawn = false;
+		playerHasPlay = false;
+		playerTurn = PlayerTurn.playerAI;
+
+		// Draw Card
+		Card c = playerAI.Draw(deck);
+		playerHasDrawn = true;
+		Button b = new Button(c.GetRace());
+		b.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				SendCard(event);
+			}
+		});
+		playerAIField.getChildren().add(b);
+		// Play Card
+		Card playedCard = playerAI.PlayCard();
+		board.PlayCard(playedCard, playerTurn);
+
+		// Remove the card from the hand of the AI
+		int playedCardIndex = -1;
+		int nbOfCardInHand = playerAIField.getChildren().size();
+		for (int i = 0; i < nbOfCardInHand; i++) {
+			Button buti = (Button) playerAIField.getChildren().get(i);
+
+			if (buti.textProperty().getValue() == playedCard.GetRace()) {
+				playedCardIndex = i;
+				break;
+			}
+		}
+		playerAIField.getChildren().remove(playedCardIndex);
+
+		// Update Board and variables
+		playerHasPlay = true;
+		UpdateBoard();
+
+		EndTurn();
+	}
+
+public void EndTurn() {
     	if(playerHasPlay){
             ObservableList<Node> buttonsP1 = player1Field.getChildren();
             ObservableList<Node> buttonsP2 = player2Field.getChildren();
-            if (playerTurn == PlayerTurn.player1) {
-                playerHasDrawn = false;
-                playerHasPlay = false;
-                playerTurn = PlayerTurn.player2;
-                SwapButtons(buttonsP1, buttonsP2);
-            } else {
+        //AI play    
+        if (playerTurn == PlayerTurn.player1) {
+                turnOfAI();
+        //Player play    
+        } else {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
@@ -247,5 +257,4 @@ public class FieldController {
             DrawCard(null);
     	}
     }
-
 }
