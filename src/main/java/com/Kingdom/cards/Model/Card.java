@@ -2,7 +2,7 @@ package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Deck;
 
-public class Card {
+public abstract class Card {
     String race;
     String name;
 
@@ -26,5 +26,5 @@ public class Card {
         else return false;
     }
 
-    public void Power(Hand hand1, Hand hand2){}
+    public abstract void Power(Board b);
 }
