@@ -177,6 +177,8 @@ public class FieldController {
 
         UpdateHands();
         UpdateBoard();
+
+        GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
     }
 
     private void UpdateHands()
