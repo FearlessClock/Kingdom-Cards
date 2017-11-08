@@ -181,43 +181,53 @@ public class FieldController {
         	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player1Field.getChildren().remove(button);
-           // playedCard.Power();
-            if (playedCard.GetRace() == "Gnome"){
-            	System.out.println("Gnome");
-            	for (int i = 0 ; i < 2 ; i++){
-            		Card c = player1.Draw(deck);
-            		Button b = new Button(c.GetRace());
-            		b.setOnAction(new EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent event) {
-                            SendCard(event);
-                        }
-                    });
-            		player1Field.getChildren().add(b);
-            	}
+            switch (playedCard.GetRace())
+            {
+            	case "Gnome":
+            		System.out.println("Gnome");
+                	for (int i = 0 ; i < 2 ; i++){
+                		Card c = player1.Draw(deck);
+                		Button b = new Button(c.GetRace());
+                		b.setOnAction(new EventHandler<ActionEvent>() {
+                            public void handle(ActionEvent event) {
+                                SendCard(event);
+                            }
+                        });
+                		player1Field.getChildren().add(b);
+                	}
+            	case "Goblin": 
+            		System.out.println("Goblin ");
+            		playedCard.Power(player1.hand, player2.hand);
+            		break;
             }
-            //playedCard.Power(player1, deck);
-            
+             
         } else {
             //Card playedCard = player2.hand.PlayCard(idInt);
             Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
             board.PlayCard(playedCard, playerTurn);
             player2Field.getChildren().remove(button);
-            //playedCard.Power();
-            if (playedCard.GetRace() == "Gnome"){
-            	System.out.println("Gnome");
-            	for (int i = 0 ; i < 2 ; i++){
-            		Card c = player2.Draw(deck);
-            		Button b = new Button(c.GetRace());
-            		b.setOnAction(new EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent event) {
-                            SendCard(event);
-                        }
-                    });
-            		player2Field.getChildren().add(b);
-            	}
+            switch (playedCard.GetRace())
+            {
+            	case "Gnome":
+            		System.out.println("Gnome");
+                	for (int i = 0 ; i < 2 ; i++){
+                		Card c = player2.Draw(deck);
+                		Button b = new Button(c.GetRace());
+                		b.setOnAction(new EventHandler<ActionEvent>() {
+                            public void handle(ActionEvent event) {
+                                SendCard(event);
+                            }
+                        });
+                		player2Field.getChildren().add(b);
+                	}
+                	break;
+                
+            	case "Goblin":
+            		System.out.println("Goblin ");
+            		playedCard.Power(player2.hand, player1.hand);
+            		break;
             }
-        }
-        
+        } 
         UpdateBoard();
     }
     

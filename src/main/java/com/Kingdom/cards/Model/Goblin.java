@@ -13,11 +13,10 @@ public class Goblin extends Card {
 		this.race = "Goblin";
 	}
 
-	public void Power(){
-		/*List<Card> tmpHand = new ArrayList<Card>();
+	public void Power(Hand ourHand, Hand opponentHand){
+		Hand tmpHand = new Hand();
 		tmpHand = opponentHand;
 		opponentHand = ourHand;
-		ourHand = tmpHand;*/
-		System.out.println("I'm a Goblin !!");
+		ourHand = tmpHand;
 	}
 }
