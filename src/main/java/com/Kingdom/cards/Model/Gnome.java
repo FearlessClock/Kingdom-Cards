@@ -7,12 +7,12 @@ import java.util.List;
 
 public class Gnome extends Card {
 
-	public Gnome(){
+	public Gnome() {
 		super();
 		this.race = "Gnome";
 	}
 
-	public void Power(Player player, Deck deck, Board board){
+	public void Power(Player player, Deck deck, Board board) {
 		player.Draw(deck);
 		player.Draw(deck);
 	}

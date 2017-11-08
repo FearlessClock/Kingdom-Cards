@@ -11,15 +11,13 @@ import java.util.List;
 
 public class HandTest {
 	@org.junit.Before
-    public void setUp() throws Exception {
-    }
-	
-	@Test
-	public void Draw(){
-		List<Card> hand = new ArrayList<Card>();
-		
-		
+	public void setUp() throws Exception {
 	}
-	
-	
+
+	@Test
+	public void Draw() {
+		List<Card> hand = new ArrayList<Card>();
+
+	}
+
 }
