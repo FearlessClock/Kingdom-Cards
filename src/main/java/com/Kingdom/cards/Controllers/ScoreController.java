@@ -4,14 +4,12 @@ import javafx.fxml.FXML;
 
 public class ScoreController {
 
-    public ScoreController()
-    {
+	public ScoreController() {
 
-    }
+	}
 
-    @FXML
-    public void initialize()
-    {
+	@FXML
+	public void initialize() {
 
-    }
+	}
 }

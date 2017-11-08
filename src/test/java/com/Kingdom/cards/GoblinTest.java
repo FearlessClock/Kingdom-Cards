@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class GoblinTest {
 	@org.junit.Before
-    public void setUp() throws Exception {
-    }
+	public void setUp() throws Exception {
+	}
 
 }
