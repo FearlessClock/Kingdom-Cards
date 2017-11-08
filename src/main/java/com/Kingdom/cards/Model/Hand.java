@@ -21,6 +21,16 @@ public class Hand {
         return nmbrOfCardsProperty.get();
     }
 
+    public List<Card> getHand()
+    {
+        return hand;
+    }
+
+    public void setHand(List<Card> cards)
+    {
+        hand = cards;
+    }
+
     public Hand() {
         
     }
@@ -40,8 +50,14 @@ public class Hand {
         }
         else
         {
-            played = null;
+            //TODO This is not good! Make it never crash
+            ///Quick fix
+            played = hand.get(hand.size()-1);
+            hand.remove(hand.size()-1);
+            return played;
+
         }
         return played;
     }
+
 }

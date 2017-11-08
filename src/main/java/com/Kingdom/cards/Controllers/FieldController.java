@@ -36,12 +36,12 @@ public class FieldController {
 	* 3) End game
 	* */
 
-    //The horizontal box
+    // The horizontal box
     @FXML
     HBox player1Field;
     @FXML
     HBox playerAIField;
-    
+
     @FXML
     HBox player1Board;
     @FXML
@@ -49,42 +49,40 @@ public class FieldController {
 
     @FXML
     Label turnLbl;
-    
+
     @FXML
     Button btnEndTurn;
-
 
     //The deck of cards
     private Deck deck;
 
-    //Board containing all the cards
+    // Board containing all the cards
     private Board board;
 
-    //Player
+    // Player
     private Player player1 = new Player();
     private AI playerAI = new AI();
 
-    //Number of cards per player
+    // Number of cards per player
     private int nmbrOfCardsInit = 5;
 
-
-    //Player turn state variable
+    // Player turn state variable
     public enum PlayerTurn {
         player1, playerAI
     }
 
     private PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
-    private boolean playerHasPlay = true;
+    private boolean playerHasPlay = false;
 
-    //The state of the game, where we are.
+    // The state of the game, where we are.
     public enum GameState {
         init, game, end
     }
 
     private GameState gamestate;
 
-    //Labels showing the number of cards per person
+    // Labels showing the number of cards per person
     @FXML
     private Label nmbrOfCardsPlayer1;
     @FXML
@@ -94,9 +92,9 @@ public class FieldController {
     public void initialize() {
         gamestate = GameState.init;
         board = new Board();
-        //Generate the deck of cards
+        // Generate the deck of cards
         deck = new Deck(7);
-        //Shuffle the deck of cards
+        // Shuffle the deck of cards
         deck.Shuffle();
 
         nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
@@ -126,20 +124,16 @@ public class FieldController {
         }
 
         playerTurn = FlipACoin();
-        //TODO Make this a function. Needs to make the other players buttons disabled and opacied
-        EndTurn();
+
+        GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
+
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
-       /* //Start game loop
-        new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if(gamestate == GameState.game)
-                {
 
-                }
-            }
-        }.start();*/
+        if(playerTurn == PlayerTurn.playerAI)
+        {
+            turnOfAI();
+        }
     }
 
     private PlayerTurn FlipACoin() {
@@ -151,7 +145,7 @@ public class FieldController {
             return PlayerTurn.playerAI;
     }
 
-    public void DrawCard(ActionEvent event) {
+    public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card c = player1.Draw(deck);
             playerHasDrawn = true;
@@ -168,39 +162,99 @@ public class FieldController {
 
     private void SendCard(ActionEvent event) {
         Button button = (Button) event.getSource();
+
+        if (!playerHasPlay) {
+            if (playerTurn == PlayerTurn.player1) {
+                //Card playedCard = player1.hand.PlayCard(idInt);
+                Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
+                board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
+                player1Field.getChildren().remove(button);
+
+            }
+        }
+
         playerHasPlay = true;
-        
-        if (playerTurn == PlayerTurn.player1) {
-        	Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-            board.PlayCard(playedCard, playerTurn);
-            player1Field.getChildren().remove(button);
-            
-        }         
+
+        UpdateHands();
         UpdateBoard();
+
+        GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
     }
-    
-    public void UpdateBoard(){
-    	player1Board.getChildren().clear();
-    	playerAIBoard.getChildren().clear();
-    	Button b;
-    	for(int i = 0; i < board.getPlayer1Cards().size(); i++){
-    		b = new Button(board.getPlayer1Cards().get(i).GetRace());
+
+    private void UpdateHands()
+    {
+        player1Field.getChildren().clear();
+        playerAIField.getChildren().clear();
+        Button b;
+        for (int i = 0; i < player1.hand.getHand().size(); i++) {
+            b = new Button(player1.hand.getHand().get(i).GetRace());
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            b.setDisable(false);
+            player1Field.getChildren().add(b);
+        }
+        for (int i = 0; i < playerAI.hand.getHand().size(); i++) {
+            b = new Button(playerAI.hand.getHand().get(i).GetRace());
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            b.setDisable(false);
+            playerAIField.getChildren().add(b);
+        }
+    }
+
+    private void UpdateBoard() {
+        player1Board.getChildren().clear();
+        playerAIBoard.getChildren().clear();
+        Button b;
+        for (int i = 0; i < board.getPlayer1Cards().size(); i++) {
+            b = new Button(board.getPlayer1Cards().get(i).GetRace());
             b.setDisable(true);
             player1Board.getChildren().add(b);
-    	}
-    	for(int i = 0; i < board.getPlayerAICards().size(); i++){
-    		b = new Button(board.getPlayerAICards().get(i).GetRace());
+        }
+        for (int i = 0; i < board.getPlayerAICards().size(); i++) {
+            b = new Button(board.getPlayerAICards().get(i).GetRace());
             b.setDisable(true);
             playerAIBoard.getChildren().add(b);
-    	}
+        }
     }
-    
-    public void turnOfAI(){
-    	playerHasDrawn = false;
+
+    private void GrayButtons(ObservableList<Node> p1, ObservableList<Node> p2, PlayerTurn pt) {
+        if(pt == PlayerTurn.player1)
+        {
+            for (Node b : p1) {
+                b.setDisable(false);
+                b.setOpacity(1);
+            }
+            for (Node b : p2) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
+            }
+        }
+        else
+        {
+            for (Node b : p2) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
+            }
+            for (Node b : p1) {
+                b.setDisable(true);
+                b.setOpacity(0.5);
+            }
+        }
+    }
+
+    public void turnOfAI() {
+        playerHasDrawn = false;
         playerHasPlay = false;
         playerTurn = PlayerTurn.playerAI;
-        
-        //Draw Card
+
+        // Draw Card
         Card c = playerAI.Draw(deck);
         playerHasDrawn = true;
         Button b = new Button(c.GetRace());
@@ -210,64 +264,47 @@ public class FieldController {
             }
         });
         playerAIField.getChildren().add(b);
-        //Play Card
+        // Play Card
         Card playedCard = playerAI.PlayCard();
-        board.PlayCard(playedCard, playerTurn);
-        
-        //Remove the card from the hand of the AI
+        board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
+
+        // Remove the card from the hand of the AI
         int playedCardIndex = -1;
         int nbOfCardInHand = playerAIField.getChildren().size();
-        for (int i=0; i < nbOfCardInHand; i++){
-        	Button buti = (Button) playerAIField.getChildren().get(i);
-        	
-        	if (buti.textProperty().getValue() == playedCard.GetRace()){
-        		playedCardIndex = i;
-        		break;
-        	}
+        for (int i = 0; i < nbOfCardInHand; i++) {
+            Button buti = (Button) playerAIField.getChildren().get(i);
+
+            if (buti.textProperty().getValue() == playedCard.GetRace()) {
+                playedCardIndex = i;
+                break;
+            }
         }
         playerAIField.getChildren().remove(playedCardIndex);
-        
-        //Update Board and variables
+
+        // Update Board and variables
         playerHasPlay = true;
+        UpdateHands();
         UpdateBoard();
-        
-        EndTurn();    	
+
+        EndTurn();
     }
 
     public void EndTurn() {
-    	if(playerHasPlay){
+        if (playerHasPlay) {
             ObservableList<Node> buttonsP1 = player1Field.getChildren();
             ObservableList<Node> buttonsP2 = playerAIField.getChildren();
-            //IA play
+            //AI play
             if (playerTurn == PlayerTurn.player1) {
-            	
-                for (Node b : buttonsP2) {
-                    b.setDisable(false);
-                    b.setOpacity(1);
-                }
-                for (Node b : buttonsP1) {
-                    b.setDisable(true);
-                    b.setOpacity(0.5);
-                }
-                
                 turnOfAI();
-            }
-            //Player play
-            else {
+                //Player play
+            } else {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
-                for (Node b : buttonsP1) {
-                    b.setDisable(false);
-                    b.setOpacity(1);
-                }
-                for (Node b : buttonsP2) {
-                    b.setDisable(true);
-                    b.setOpacity(0.5);
-                }
+                GrayButtons(buttonsP1, buttonsP2, playerTurn);
             }
             turnLbl.setText(playerTurn.toString());
-            DrawCard(null);
-    	}
+            DrawCard();
+        }
     }
 }

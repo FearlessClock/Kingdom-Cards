@@ -1,5 +1,7 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Deck;
+
 public class Elf extends Card{
 
 
@@ -8,10 +10,11 @@ public class Elf extends Card{
 		this.race = "Elf";
 	}
 
-	public void Power(){
-		// Need to have the class Kingdom
-		// Select a card in the kingdom
-		// Use the power
+	public void power(Board b, Deck d, Player p1, Player p2) {
+        // Need to have the class Kingdom
+        // Select a card in the kingdom
+        // Use the power
+
 	}
 
 }

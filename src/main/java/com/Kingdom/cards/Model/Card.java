@@ -1,30 +1,33 @@
 package com.Kingdom.cards.Model;
 
-public class Card {
+import com.Kingdom.cards.Deck;
+
+public abstract class Card {
     String race;
-    String name;
+    private String name;
 
-    public Card() {
-        race = "Human";
-    }
 
-    public String GetRace(){
-        return race;
-    }
+	public Card() {
+		race = "Human";
+	}
 
-    public String GetName() {
-    	return name;
+	public String GetRace() {
+		return race;
+	}
+
+	public String GetName() {
+		return name;
 	}
 
     @Override
     public boolean equals(Object obj){
         if (obj == null) return false;
         if (obj == this) return true;
-        if(obj.getClass() == this.getClass()) return true;
-        else return false;
+        if(obj.getClass() == this.getClass()) {
+            return true;
+        } else return false;
     }
 
-    public void Power(){
+    public abstract void power(Board b, Deck d, Player p1, Player p2);
 
-    }
 }
