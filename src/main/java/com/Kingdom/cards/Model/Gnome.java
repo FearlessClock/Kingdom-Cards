@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Gnome extends Card {
 
-	public Gnome() {
+	public Gnome(){
 		super();
 		this.race = "Gnome";
 	}

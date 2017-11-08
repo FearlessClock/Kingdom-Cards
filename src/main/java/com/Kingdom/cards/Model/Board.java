@@ -16,15 +16,15 @@ import java.util.List;
 
 public class Board {
 
+    private List<Card> player1Cards;
+    private List<Card> playerAICards;
 
-	private List<Card> player1Cards;
-	private List<Card> playerAICards;
+    IntegerProperty player1Score = new SimpleIntegerProperty(0);
+    public StringProperty player1Score_2 = new SimpleStringProperty("0");
 
-	IntegerProperty player1Score = new SimpleIntegerProperty(0);
-	public StringProperty player1Score_2 = new SimpleStringProperty("0");
+    IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
+    public StringProperty playerAIScore_2 = new SimpleStringProperty("0");
 
-	IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
-	public StringProperty playerAIScore_2 = new SimpleStringProperty("0");
 
 	public Board() {
 		player1Cards = new ArrayList<Card>();
@@ -45,30 +45,31 @@ public class Board {
 		return player1Cards;
 	}
 
+    public void setPlayer1Cards(List<Card> cards)
+    {
+        player1Cards = cards;
+    }
 
-  public void setPlayer1Cards(List<Card> cards)
-	{
-		player1Cards = cards;
-	}
+    public void setPlayerAICards(List<Card> cards)
+    {
+        playerAICards = cards;
+    }
 
-	public void setPlayerAICards(List<Card> cards)
-	{
-		playerAICards = cards;
-	}
-  
-	public List<Card> getPlayerAICards() {
-		return playerAICards;
-	}
+    public List<Card> getPlayerAICards() {
+        return playerAICards;
+    }
 
-	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
-		if (FieldController.PlayerTurn.player1 == playerTurn) {
-			player1Cards.add(card);
-			GetScorePlayer(1);
-		} else {
-			playerAICards.add(card);
-			GetScorePlayer(2);
-		}
-	}
+	public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
+        if (FieldController.PlayerTurn.player1 == playerTurn) {
+            player1Cards.add(card);
+            //card.power(this, d, p1, p2);
+            GetScorePlayer(1);
+        } else {
+            playerAICards.add(card);
+            //card.power(this, d, p2, p1);
+            GetScorePlayer(2);
+        }
+    }
 
 	final ChangeListener changeListener = new ChangeListener() {
 		public void changed(ObservableValue observable, Object oldValue, Object newValue) {

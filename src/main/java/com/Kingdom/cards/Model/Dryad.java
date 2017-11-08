@@ -12,7 +12,6 @@ public class Dryad extends Card {
 
 	public void power(Board b, Deck d, Player p1, Player p2) {
 
-
 	}
 
 

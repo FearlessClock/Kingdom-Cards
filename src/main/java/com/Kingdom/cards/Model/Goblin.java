@@ -17,6 +17,5 @@ public class Goblin extends Card {
 		List<Card> tmpHand = p2.hand.getHand();
 		p2.hand.setHand(p1.hand.getHand());
 		p1.hand.setHand(tmpHand);
-
 	}
 }

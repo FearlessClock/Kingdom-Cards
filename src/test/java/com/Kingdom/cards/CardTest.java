@@ -14,7 +14,7 @@ public class CardTest {
     public void GetCardRace() throws Exception {
         Elf card = new Elf();
 
-        Assert.assertEquals(card.GetRace(), "Human");
+        Assert.assertEquals(card.GetRace(), "Elf");
     }
 
 }

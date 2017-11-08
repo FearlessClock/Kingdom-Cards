@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Korrigan extends Card {
-	public Korrigan() {
+	public Korrigan(){
 		super();
 		this.race = "Korrigan";
 	}
