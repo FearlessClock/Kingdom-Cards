@@ -179,6 +179,11 @@ public class FieldController {
                         });
                 		player1Field.getChildren().add(b);
                 	}
+                	break;
+            	case "Troll":
+            		System.out.println("Troll");
+            		playedCard.Power(board);
+            		break;
             	/*case "Goblin": 
             		System.out.println("Goblin ");
             		playedCard.Power(player1.hand, playerAI.hand);
@@ -206,17 +211,17 @@ public class FieldController {
                 	}
                 	break;
                 
-            	case "Trool":
-            		System.out.println("Trool");
-            	/*case "Goblin":
+            	case "Troll":
+            		System.out.println("Troll");
+            		playedCard.Power(board);
+            		break;
+            	/*case "Goblin"
             		System.out.println("Goblin ");
             		playedCard.Power(playerAI.hand, player1.hand);
             		break;*/
             }
         } 
         UpdateBoard();
-		
-		UpdateBoard();
 	}
 
 	public void UpdateBoard() {

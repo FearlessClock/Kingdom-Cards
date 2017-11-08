@@ -46,6 +46,15 @@ public class Board {
 	public List<Card> getPlayerAICards() {
 		return playerAICards;
 	}
+	public void setPlayer1Cards(List<Card> cards)
+	{
+		player1Cards = cards;
+	}
+
+	public void setPlayerAICards(List<Card> cards)
+	{
+		playerAICards = cards;
+	}
 
 	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
 		if (FieldController.PlayerTurn.player1 == playerTurn) {
