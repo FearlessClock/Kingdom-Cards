@@ -184,42 +184,13 @@ public class FieldController {
             		System.out.println("Troll");
             		playedCard.Power(board);
             		break;
+            		
             	/*case "Goblin": 
             		System.out.println("Goblin ");
             		playedCard.Power(player1.hand, playerAI.hand);
             		break;*/
             }
-             
-        } else {
-            //Card playedCard = player2.hand.PlayCard(idInt);
-            Card playedCard = playerAI.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-            board.PlayCard(playedCard, playerTurn);
-            playerAIField.getChildren().remove(button);
-            switch (playedCard.GetRace())
-            {
-            	case "Gnome":
-            		System.out.println("Gnome");
-                	for (int i = 0 ; i < 2 ; i++){
-                		Card c = playerAI.Draw(deck);
-                		Button b = new Button(c.GetRace());
-                		b.setOnAction(new EventHandler<ActionEvent>() {
-                            public void handle(ActionEvent event) {
-                                SendCard(event);
-                            }
-                        });
-                		playerAIField.getChildren().add(b);
-                	}
-                	break;
-                
-            	case "Troll":
-            		System.out.println("Troll");
-            		playedCard.Power(board);
-            		break;
-            	/*case "Goblin"
-            		System.out.println("Goblin ");
-            		playedCard.Power(playerAI.hand, player1.hand);
-            		break;*/
-            }
+          
         } 
         UpdateBoard();
 	}
@@ -258,7 +229,27 @@ public class FieldController {
 		// Play Card
 		Card playedCard = playerAI.PlayCard();
 		board.PlayCard(playedCard, playerTurn);
-
+		switch (playedCard.GetRace())
+        {
+        	case "Gnome":
+        		System.out.println("Gnome");
+            	for (int i = 0 ; i < 2 ; i++){
+            		Card card = playerAI.Draw(deck);
+            		Button button = new Button(card.GetRace());
+            		b.setOnAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            SendCard(event);
+                        }
+                    });
+            		playerAIField.getChildren().add(button);
+            	}
+            	break;
+            
+        	case "Troll":
+        		System.out.println("Troll");
+        		playedCard.Power(board);
+        		break;
+        }
 		// Remove the card from the hand of the AI
 		int playedCardIndex = -1;
 		int nbOfCardInHand = playerAIField.getChildren().size();
