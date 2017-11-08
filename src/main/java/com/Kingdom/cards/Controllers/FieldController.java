@@ -130,6 +130,10 @@ public class FieldController {
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
 
+        if(playerTurn == PlayerTurn.playerAI)
+        {
+            turnOfAI();
+        }
     }
 
     private PlayerTurn FlipACoin() {
@@ -171,7 +175,35 @@ public class FieldController {
 
         playerHasPlay = true;
 
+        UpdateHands();
         UpdateBoard();
+    }
+
+    private void UpdateHands()
+    {
+        player1Field.getChildren().clear();
+        playerAIField.getChildren().clear();
+        Button b;
+        for (int i = 0; i < player1.hand.getHand().size(); i++) {
+            b = new Button(player1.hand.getHand().get(i).GetRace());
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            b.setDisable(false);
+            player1Field.getChildren().add(b);
+        }
+        for (int i = 0; i < playerAI.hand.getHand().size(); i++) {
+            b = new Button(playerAI.hand.getHand().get(i).GetRace());
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            b.setDisable(false);
+            playerAIField.getChildren().add(b);
+        }
     }
 
     private void UpdateBoard() {
@@ -205,8 +237,8 @@ public class FieldController {
         else
         {
             for (Node b : p2) {
-                b.setDisable(false);
-                b.setOpacity(1);
+                b.setDisable(true);
+                b.setOpacity(0.5);
             }
             for (Node b : p1) {
                 b.setDisable(true);
@@ -249,6 +281,7 @@ public class FieldController {
 
         // Update Board and variables
         playerHasPlay = true;
+        UpdateHands();
         UpdateBoard();
 
         EndTurn();

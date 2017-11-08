@@ -62,11 +62,11 @@ public class Board {
 	public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
         if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
-            //card.power(this, d, p1, p2);
+            card.power(this, d, p1, p2);
             GetScorePlayer(1);
         } else {
             playerAICards.add(card);
-            //card.power(this, d, p2, p1);
+            card.power(this, d, p2, p1);
             GetScorePlayer(2);
         }
     }
