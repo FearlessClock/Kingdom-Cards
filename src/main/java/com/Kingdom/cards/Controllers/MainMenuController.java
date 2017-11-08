@@ -20,7 +20,7 @@ public class MainMenuController {
     private void btnStartCall(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/FieldView.fxml"));
-        Scene scene = new Scene(fieldScene, 600, 600);
+        Scene scene = new Scene(fieldScene, 1920, 1080);
         stage.setScene(scene);
         stage.show();
     }
