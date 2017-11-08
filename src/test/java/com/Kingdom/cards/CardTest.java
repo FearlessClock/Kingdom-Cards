@@ -5,14 +5,14 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CardTest {
-    @org.junit.Before
-    public void setUp() throws Exception {
-    }
+	@org.junit.Before
+	public void setUp() throws Exception {
+	}
 
-    @Test
-    public void GetCardRace() throws Exception {
-        Card card = new Card();
+	@Test
+	public void GetCardRace() throws Exception {
+		Card card = new Card();
 
-        Assert.assertEquals(card.GetRace(), "Human");
-    }
+		Assert.assertEquals(card.GetRace(), "Human");
+	}
 }

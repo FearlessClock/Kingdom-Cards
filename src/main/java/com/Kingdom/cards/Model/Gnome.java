@@ -9,17 +9,25 @@ import java.util.List;
 
 public class Gnome extends Card {
 
-	public Gnome(){
+	public Gnome() {
 		super();
 		this.race = "Gnome";
 	}
 
-	public void Power(Player player, Deck deck){
+	@Override
+	public void Power(Board b) {
+		// TODO Auto-generated method stub
+		
+	}
+
 		/*Card c = player.Draw(deck);
 		Button b = new Button(c.GetRace());
 		player1Field.getChildren().add(b);
+=======
+	public void Power(Player player, Deck deck, Board board) {
+>>>>>>> master
 		player.Draw(deck);
 		player.Draw(deck);
 		System.out.println("I'm a gnome !!");*/
 	}
-}
+

@@ -5,18 +5,23 @@ import com.Kingdom.cards.Model.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Goblin extends Card {
 
-	public Goblin(){
+	public Goblin() {
 		super();
 		this.race = "Goblin";
 	}
 
-	public void Power(Hand ourHand, Hand opponentHand){
-		Hand tmpHand = new Hand();
+	public void Power(List<Card> opponentHand, List<Card> ourHand) {
+		List<Card> tmpHand = new ArrayList<Card>();
 		tmpHand = opponentHand;
 		opponentHand = ourHand;
 		ourHand = tmpHand;
+	}
+
+	@Override
+	public void Power(Board b) {
+		// TODO Auto-generated method stub
+		
 	}
 }
