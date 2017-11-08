@@ -2,6 +2,7 @@ package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Controllers.FieldController;
 
+import com.Kingdom.cards.Deck;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,10 +19,10 @@ public class Board {
     private List<Card> player1Cards;
     private List<Card> player2Cards;
     
-    IntegerProperty player1Score = new SimpleIntegerProperty(0);
+    private IntegerProperty player1Score = new SimpleIntegerProperty(0);
     public StringProperty player1Score_2 = new SimpleStringProperty("0");
     
-    IntegerProperty player2Score = new SimpleIntegerProperty(0);
+    private IntegerProperty player2Score = new SimpleIntegerProperty(0);
     public StringProperty player2Score_2 = new SimpleStringProperty("0");
 
 
@@ -44,16 +45,28 @@ public class Board {
 		return player1Cards;
 	}
 
+	public void setPlayer1Cards(List<Card> cards)
+	{
+		player1Cards = cards;
+	}
+
 	public List<Card> getPlayer2Cards() {
 		return player2Cards;
 	}
 
-	public void PlayCard(Card card, FieldController.PlayerTurn playerTurn) {
+	public void setPlayer2Cards(List<Card> cards)
+	{
+		player2Cards = cards;
+	}
+
+	public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
         if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
+            card.power(this, d, p1, p2);
             GetScorePlayer(1);
         } else {
             player2Cards.add(card);
+            card.power(this, d, p2, p1);
             GetScorePlayer(2);
         }
     }

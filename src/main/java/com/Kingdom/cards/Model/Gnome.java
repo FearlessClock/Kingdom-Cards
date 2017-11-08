@@ -12,8 +12,8 @@ public class Gnome extends Card {
 		this.race = "Gnome";
 	}
 
-	public void Power(Player player, Deck deck, Board board){
-		player.Draw(deck);
-		player.Draw(deck);
+	public void power(Board b, Deck d, Player p1, Player p2) {
+		p1.Draw(d);
+		p1.Draw(d);
 	}
 }

@@ -1,6 +1,6 @@
-Feature: Features of my service
+Feature: Troll Power
 
-Scenario: Calling my service
+Scenario: Basic power play
   Given some cards
   When I play a card
   Then the card goes away

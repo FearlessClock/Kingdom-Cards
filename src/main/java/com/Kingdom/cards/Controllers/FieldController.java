@@ -185,13 +185,13 @@ public class FieldController {
             if (playerTurn == PlayerTurn.player1) {
                 //Card playedCard = player1.hand.PlayCard(idInt);
                 Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-                board.PlayCard(playedCard, playerTurn);
+                board.PlayCard(playedCard, deck, playerTurn, player1, player2);
                 player1Field.getChildren().remove(button);
 
             } else {
                 //Card playedCard = player2.hand.PlayCard(idInt);
                 Card playedCard = player2.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
-                board.PlayCard(playedCard, playerTurn);
+                board.PlayCard(playedCard, deck, playerTurn, player1, player2);
                 player2Field.getChildren().remove(button);
             }
         }
