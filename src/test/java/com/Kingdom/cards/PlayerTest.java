@@ -34,7 +34,7 @@ public class PlayerTest {
 			player.Draw(deck);
 		}
 		int sizeHand = player.SizeHand();
-		Card card1 = player.hand.PlayCard(0); // Get the first card (we will
+		Card card1 = player.hand.playCard(0); // Get the first card (we will
 												// play it for test)
 
 		// Assert.assertEquals(true, player.board.contains(card1)); // Test if

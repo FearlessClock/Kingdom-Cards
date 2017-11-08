@@ -20,6 +20,6 @@ public class AI extends Player {
 	public Card PlayCard() {
 		int nbOfCardsInHand = this.SizeHand();
 		int cardIndex = rand.nextInt(nbOfCardsInHand);
-		return hand.PlayCard(cardIndex);
+		return hand.playCard(cardIndex);
 	}
 }

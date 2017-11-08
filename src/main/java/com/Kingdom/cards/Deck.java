@@ -43,9 +43,13 @@ public class Deck {
 	public Card GetFirstCard() { // return the first card and remove it from the
 									// deck
 		//TODO End game when deck is empty
-		Card card = deck.get(0);
-		deck.remove(0);
-		return card;
+		if(deck.size() > 0)
+		{
+			Card card = deck.get(0);
+			deck.remove(0);
+			return card;
+		}
+		return null;
 	}
 
 	public void Shuffle() { // Shuffle the deck

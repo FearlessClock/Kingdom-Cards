@@ -165,8 +165,7 @@ public class FieldController {
 
         if (!playerHasPlay) {
             if (playerTurn == PlayerTurn.player1) {
-                //Card playedCard = player1.hand.PlayCard(idInt);
-                Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
+                Card playedCard = player1.hand.playCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
                 player1Field.getChildren().remove(button);
             }

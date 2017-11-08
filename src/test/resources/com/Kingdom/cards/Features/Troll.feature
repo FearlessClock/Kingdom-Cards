@@ -1,6 +1,11 @@
-Feature: Features of my service
+Feature: Troll Power
 
-Scenario: Calling my service
-  Given some cards
-  When I play a card
-  Then the card goes away
+  Scenario: Use the Troll power with 3 cards on the board
+    Given A board with 3 cards
+    When I play a Troll card
+    Then The boards are swapped
+
+  Scenario: Use the Troll power with 0 cards on the board
+    Given A board with 0 cards
+    When I play a Troll card
+    Then The boards are swapped

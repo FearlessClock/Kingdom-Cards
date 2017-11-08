@@ -18,7 +18,10 @@ public class Player {
 
 	public Card Draw(Deck deck) {
 		Card c = deck.GetFirstCard();
-		hand.AddToHand(c);
+		if(c != null)
+		{
+			hand.addToHand(c);
+		}
 		return c;
 	}
 
@@ -27,6 +30,6 @@ public class Player {
 	}
 
 	public Card PlayCard(int cardIndex) {
-		return hand.PlayCard(cardIndex);
+		return hand.playCard(cardIndex);
 	}
 }
