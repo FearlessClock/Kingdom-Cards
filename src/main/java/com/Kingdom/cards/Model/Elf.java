@@ -4,8 +4,7 @@ import com.Kingdom.cards.Deck;
 
 public class Elf extends Card{
 
-
-	public Elf(){
+	public Elf() {
 		super();
 		this.race = "Elf";
 	}

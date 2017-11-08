@@ -169,7 +169,6 @@ public class FieldController {
                 Card playedCard = player1.hand.PlayCard(button.getParent().getChildrenUnmodifiable().indexOf(button));
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
                 player1Field.getChildren().remove(button);
-
             }
         }
 

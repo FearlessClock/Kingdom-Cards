@@ -14,5 +14,4 @@ public class Dryad extends Card {
 
 	}
 
-
 }

@@ -29,6 +29,6 @@ hs_err_pid*
 # End of https://www.gitignore.io/api/java
 /target/
 
-.classpath
-.project
-.idea
+/.classpath
+/.project
+/.idea/

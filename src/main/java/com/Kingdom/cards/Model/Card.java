@@ -4,8 +4,7 @@ import com.Kingdom.cards.Deck;
 
 public abstract class Card {
     String race;
-    private String name;
-
+    String name;
 
 	public Card() {
 		race = "Human";
