@@ -21,6 +21,7 @@ public class Hand {
 
     public void setHand(List<Card> cards) {
         hand = cards;
+        nmbrOfCardsProperty.set(hand.size());
     }
 
     public Hand() {

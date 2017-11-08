@@ -47,6 +47,13 @@ public class TrollStep {
         b.PlayCard(new Troll(), d, FieldController.PlayerTurn.player1, p1, AI);
     }
 
+    @When("^AI plays a Troll card$")
+    public void ai_plays_a_Troll_card() throws Throwable {
+        // Write code here that turns the phrase above into concrete actions
+        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.playerAI, p1, AI);
+    }
+
+
     @Then("^The boards are swapped$")
     public void the_boards_are_swapped() throws Throwable {
         // Write code here that turns the phrase above into concrete actions

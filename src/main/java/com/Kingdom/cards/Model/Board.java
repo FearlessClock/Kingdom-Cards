@@ -59,6 +59,7 @@ public class Board {
         return playerAICards;
     }
 
+    //Play the chosen card for the current playerturns player
 	public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
         if (FieldController.PlayerTurn.player1 == playerTurn) {
             player1Cards.add(card);
