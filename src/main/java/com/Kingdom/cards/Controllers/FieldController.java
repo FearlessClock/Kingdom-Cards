@@ -184,14 +184,16 @@ public class FieldController {
            // playedCard.Power();
             if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
-            	Card c = player1.Draw(deck);
-        		Button b = new Button(c.GetRace());
-        		b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-        		player1Field.getChildren().add(b);
+            	for (int i = 0 ; i < 2 ; i++){
+            		Card c = player1.Draw(deck);
+            		Button b = new Button(c.GetRace());
+            		b.setOnAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            SendCard(event);
+                        }
+                    });
+            		player1Field.getChildren().add(b);
+            	}
             }
             //playedCard.Power(player1, deck);
             
@@ -203,14 +205,16 @@ public class FieldController {
             //playedCard.Power();
             if (playedCard.GetRace() == "Gnome"){
             	System.out.println("Gnome");
-            	Card c = player2.Draw(deck);
-        		Button b = new Button(c.GetRace());
-        		b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-        		player2Field.getChildren().add(b);
+            	for (int i = 0 ; i < 2 ; i++){
+            		Card c = player2.Draw(deck);
+            		Button b = new Button(c.GetRace());
+            		b.setOnAction(new EventHandler<ActionEvent>() {
+                        public void handle(ActionEvent event) {
+                            SendCard(event);
+                        }
+                    });
+            		player2Field.getChildren().add(b);
+            	}
             }
         }
         

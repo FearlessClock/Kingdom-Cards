@@ -15,11 +15,11 @@ public class Gnome extends Card {
 	}
 
 	public void Power(Player player, Deck deck){
-		Card c = player.Draw(deck);
+		/*Card c = player.Draw(deck);
 		Button b = new Button(c.GetRace());
 		player1Field.getChildren().add(b);
 		player.Draw(deck);
 		player.Draw(deck);
-		System.out.println("I'm a gnome !!");
+		System.out.println("I'm a gnome !!");*/
 	}
 }
