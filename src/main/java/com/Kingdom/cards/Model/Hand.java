@@ -13,31 +13,46 @@ import java.util.List;
 
 public class Hand {
 
-	List<Card> hand = new ArrayList<Card>();
-	IntegerProperty nmbrOfCardsProperty = new SimpleIntegerProperty(0);
+    List<Card> hand = new ArrayList<Card>();
+    IntegerProperty nmbrOfCardsProperty = new SimpleIntegerProperty(0);
+    
+    public int GetNmbrOfCards()
+    {
+        return nmbrOfCardsProperty.get();
+    }
 
-	public int GetNmbrOfCards() {
-		return nmbrOfCardsProperty.get();
-	}
+    public List<Card> getHand()
+    {
+        return hand;
+    }
 
-	public Hand() {
+    public void setHand(List<Card> cards)
+    {
+        hand = cards;
+    }
 
-	}
+    public Hand() {
+        
+    }
 
-	public void AddToHand(Card card) {
-		hand.add(card);
-		nmbrOfCardsProperty.set(nmbrOfCardsProperty.get() + 1);
-	}
+    public void AddToHand(Card card) {
+        hand.add(card);
+        nmbrOfCardsProperty.set(nmbrOfCardsProperty.get() + 1);
+    }
 
-	public Card PlayCard(int index) {
-		Card played;
-		if (hand.size() > index) {
-			played = hand.get(index);
-			hand.remove(index);
-			nmbrOfCardsProperty.set(nmbrOfCardsProperty.get() - 1);
-		} else {
-			played = null;
-		}
-		return played;
-	}
+    public Card PlayCard(int index) {
+        Card played;
+        if(hand.size() > index)
+        {
+            played = hand.get(index);
+            hand.remove(index);
+            nmbrOfCardsProperty.set(nmbrOfCardsProperty.get() - 1);
+        }
+        else
+        {
+            played = null;
+        }
+        return played;
+    }
+
 }

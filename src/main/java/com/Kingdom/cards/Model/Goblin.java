@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Card;
 
 import java.util.ArrayList;
@@ -12,15 +13,9 @@ public class Goblin extends Card {
 		this.race = "Goblin";
 	}
 
-	public void Power(List<Card> opponentHand, List<Card> ourHand) {
-		List<Card> tmpHand = new ArrayList<Card>();
-		tmpHand = opponentHand;
-		opponentHand = ourHand;
-		ourHand = tmpHand;
-	}
-
-	public void Power(Board b, Hand AIHand, Hand playerHand) {
-		// TODO Auto-generated method stub
-		
+	public void power(Board b, Deck d, Player p1, Player p2) {
+		List<Card> tmpHand = p2.hand.getHand();
+		p2.hand.setHand(p1.hand.getHand());
+		p1.hand.setHand(tmpHand);
 	}
 }
