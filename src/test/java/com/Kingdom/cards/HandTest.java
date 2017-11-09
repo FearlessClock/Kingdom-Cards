@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HandTest {
+
 	@org.junit.Before
 	public void setUp() throws Exception {
 	}
