@@ -32,10 +32,8 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartCall" text="Start a new game" GridPane.rowIndex="2" />
-             <Button fx:id="btnOptions" mnemonicParsing="false" onAction="#btnOptionsCall" text="Options" GridPane.rowIndex="5" />
-             <Button fx:id="btnScore" mnemonicParsing="false" onAction="#btnScoreCall" text="HighScore" GridPane.rowIndex="4" />
-             <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#btnQuitCall" prefHeight="27.0" prefWidth="98.0" text="Quit the game" GridPane.rowIndex="3" />
+            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartCall" prefHeight="26.0" prefWidth="150.0" text="Start a new game" GridPane.rowIndex="4" />
+             <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#btnQuitCall" prefHeight="27.0" prefWidth="150.0" text="Quit the game" GridPane.rowIndex="5" />
             <Label fx:id="text" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" />
          </children>
       </GridPane>
