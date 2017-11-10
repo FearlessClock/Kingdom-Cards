@@ -12,7 +12,6 @@ public class Korrigan extends Card {
 
 	public void power(Board b, Deck d, Player p1, Player p2) {
 		Random rand = new Random();
-		//TODO The hand count doesn't change and so cause crash when getting the second card and taking the last one
 		for (int i = 0 ; i < 2 ; i++){
 			if(p2.hand.getNmbrOfCards() > 0)
 			{
