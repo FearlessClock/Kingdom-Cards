@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,7 +28,7 @@ public class MainMenuController {
 
 	@FXML
 	private void btnQuitCall(ActionEvent event) {
-
+        Platform.exit();
     }
 
     @FXML
