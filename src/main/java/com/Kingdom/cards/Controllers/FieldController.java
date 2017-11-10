@@ -5,15 +5,28 @@ import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Card;
 import com.Kingdom.cards.Model.Player;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -66,6 +79,49 @@ public class FieldController {
     // Number of cards per player
     private int nmbrOfCardsInit = 5;
 
+    @FXML
+    public void keyPressed(KeyEvent keyEvent) throws IOException {
+        Scene par = (((AnchorPane) keyEvent.getSource()).getScene());
+        switch (keyEvent.getCode())
+        {
+            case ESCAPE:
+                int maxWidth = 128;
+                int maxHeight = 128;
+                Window window = ((AnchorPane) keyEvent.getSource()).getScene().getWindow();
+                final Popup popup = new Popup();
+                popup.setX(window.getWidth()/2);
+                popup.setY(window.getHeight()/2);
+
+                Button quit = new Button("Quit");
+                quit.setPrefSize(maxWidth, 64);
+                Button resume = new Button("Resume");
+                resume.setPrefSize(maxWidth, 64);
+
+                quit.setOnAction(new EventHandler<ActionEvent>() {
+                     public void handle(ActionEvent event) {
+                         Platform.exit();
+                     }
+                });
+
+                resume.setOnAction(new EventHandler<ActionEvent>() {
+                     public void handle(ActionEvent event) {
+                         popup.hide();
+                     }
+                 });
+
+                VBox box = new VBox();
+                box.setPrefSize(maxWidth, maxHeight);
+                box.setStyle("-fx-background-image: url('fxml/ingameMenuBackground.png'); " +
+                        "-fx-background-position: center center; " +
+                        "-fx-background-repeat: stretch;");
+                box.getChildren().addAll(resume, quit);
+
+                popup.getContent().add(box);
+                popup.show(window);
+                break;
+        }
+    }
+
     // Player turn state variable
     public enum PlayerTurn {
         player1, playerAI
@@ -90,6 +146,7 @@ public class FieldController {
 
     @FXML
     public void initialize() {
+
         gamestate = GameState.init;
         board = new Board();
         // Generate the deck of cards
