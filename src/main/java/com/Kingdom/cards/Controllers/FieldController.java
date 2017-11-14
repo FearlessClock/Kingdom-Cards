@@ -165,7 +165,7 @@ public class FieldController {
         gamestate = GameState.init;
         board = new Board();
         // Generate the deck of cards
-        deck = new Deck(2);
+        deck = new Deck(7);
         // Shuffle the deck of cards
         deck.Shuffle();
 
