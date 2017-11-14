@@ -11,6 +11,9 @@ public class Goblin extends Card {
 	public Goblin() {
 		super();
 		this.race = "Goblin";
+		this.view.getStyleClass().add("goblin");
+		//this.view.setText(" - Goblin - ");
+		System.out.println("goblin added");
 	}
 
 	public void power(Board b, Deck d, Player p1, Player p2) {

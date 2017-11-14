@@ -104,7 +104,7 @@ public class FieldController {
         Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = player1.Draw(deck);
-            b = new Button(c.GetRace());
+            b = c.GetView();
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -114,7 +114,7 @@ public class FieldController {
         }
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = playerAI.Draw(deck);
-            b = new Button(c.GetRace());
+            b = c.GetView();
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -150,7 +150,8 @@ public class FieldController {
             Card c = player1.Draw(deck);
             playerHasDrawn = true;
 
-            Button b = new Button(c.GetRace());
+            Button b = c.GetView();
+
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -185,7 +186,7 @@ public class FieldController {
         playerAIField.getChildren().clear();
         Button b;
         for (int i = 0; i < player1.hand.getHand().size(); i++) {
-            b = new Button(player1.hand.getHand().get(i).GetRace());
+            b = player1.hand.getHand().get(i).GetView();
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -195,7 +196,7 @@ public class FieldController {
             player1Field.getChildren().add(b);
         }
         for (int i = 0; i < playerAI.hand.getHand().size(); i++) {
-            b = new Button(playerAI.hand.getHand().get(i).GetRace());
+            b = playerAI.hand.getHand().get(i).GetView();
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -211,12 +212,12 @@ public class FieldController {
         playerAIBoard.getChildren().clear();
         Button b;
         for (int i = 0; i < board.getPlayer1Cards().size(); i++) {
-            b = new Button(board.getPlayer1Cards().get(i).GetRace());
+            b = board.getPlayer1Cards().get(i).GetView();
             b.setDisable(true);
             player1Board.getChildren().add(b);
         }
         for (int i = 0; i < board.getPlayerAICards().size(); i++) {
-            b = new Button(board.getPlayerAICards().get(i).GetRace());
+            b = board.getPlayerAICards().get(i).GetView();
             b.setDisable(true);
             playerAIBoard.getChildren().add(b);
         }
@@ -255,7 +256,7 @@ public class FieldController {
         // Draw Card
         Card c = playerAI.Draw(deck);
         playerHasDrawn = true;
-        Button b = new Button(c.GetRace());
+        Button b = c.GetView();
         b.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 SendCard(event);

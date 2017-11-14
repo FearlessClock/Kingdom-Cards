@@ -8,6 +8,9 @@ public class Korrigan extends Card {
 	public Korrigan(){
 		super();
 		this.race = "Korrigan";
+		this.view.getStyleClass().add("korrigan");
+		//this.view.setText(" - Korrigan - ");
+		System.out.println("korrigan added");
 	}
 
 	public void power(Board b, Deck d, Player p1, Player p2) {
