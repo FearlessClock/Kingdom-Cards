@@ -400,13 +400,15 @@ public class FieldController {
                 //Show win screen
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
-                stage.setScene(new Scene(winScene));
+                Scene scene = new Scene(winScene);
+                stage.setScene(scene);
                 stage.show();
             } else {
                 //Show lose screen
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
-                stage.setScene(new Scene(winScene));
+                Scene scene = new Scene(winScene);
+                stage.setScene(scene);
                 stage.show();
             }
         }
