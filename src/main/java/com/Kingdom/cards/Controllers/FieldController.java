@@ -16,10 +16,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
@@ -69,12 +67,29 @@ public class FieldController {
     //The deck of cards
     private Deck deck;
 
+    public Deck GetDeck() {
+        return deck;
+    }
+
     // Board containing all the cards
     private Board board;
 
+    public Board getBoard() {
+        return board;
+    }
+
     // Player
     private Player player1 = new Player();
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
     private AI playerAI = new AI();
+
+    public AI getPlayerAI() {
+        return playerAI;
+    }
 
     // Number of cards per player
     private int nmbrOfCardsInit = 5;
@@ -82,15 +97,14 @@ public class FieldController {
     @FXML
     public void keyPressed(KeyEvent keyEvent) throws IOException {
         Scene par = (((AnchorPane) keyEvent.getSource()).getScene());
-        switch (keyEvent.getCode())
-        {
+        switch (keyEvent.getCode()) {
             case ESCAPE:
                 int maxWidth = 128;
                 int maxHeight = 128;
                 Window window = ((AnchorPane) keyEvent.getSource()).getScene().getWindow();
                 final Popup popup = new Popup();
-                popup.setX(window.getWidth()/2);
-                popup.setY(window.getHeight()/2);
+                popup.setX(window.getWidth() / 2);
+                popup.setY(window.getHeight() / 2);
 
                 Button quit = new Button("Quit");
                 quit.setPrefSize(maxWidth, 64);
@@ -98,16 +112,16 @@ public class FieldController {
                 resume.setPrefSize(maxWidth, 64);
 
                 quit.setOnAction(new EventHandler<ActionEvent>() {
-                     public void handle(ActionEvent event) {
-                         Platform.exit();
-                     }
+                    public void handle(ActionEvent event) {
+                        Platform.exit();
+                    }
                 });
 
                 resume.setOnAction(new EventHandler<ActionEvent>() {
-                     public void handle(ActionEvent event) {
-                         popup.hide();
-                     }
-                 });
+                    public void handle(ActionEvent event) {
+                        popup.hide();
+                    }
+                });
 
                 VBox box = new VBox();
                 box.setPrefSize(maxWidth, maxHeight);
@@ -144,6 +158,7 @@ public class FieldController {
     @FXML
     private Label nmbrOfCardsPlayerAI;
 
+
     @FXML
     public void initialize() {
 
@@ -154,8 +169,12 @@ public class FieldController {
         // Shuffle the deck of cards
         deck.Shuffle();
 
-        nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
-        nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScore_2);
+        if (nmbrOfCardsPlayer1 != null) {
+            nmbrOfCardsPlayer1.textProperty().bind(board.player1ScoreStr);
+        }
+        if (nmbrOfCardsPlayerAI != null) {
+            nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScoreStr);
+        }
 
         Card c;
         Button b;
@@ -187,8 +206,7 @@ public class FieldController {
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
 
-        if(playerTurn == PlayerTurn.playerAI)
-        {
+        if (playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
     }
@@ -236,8 +254,7 @@ public class FieldController {
         GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
     }
 
-    private void UpdateHands()
-    {
+    private void UpdateHands() {
         player1Field.getChildren().clear();
         playerAIField.getChildren().clear();
         Button b;
@@ -280,8 +297,7 @@ public class FieldController {
     }
 
     private void GrayButtons(ObservableList<Node> p1, ObservableList<Node> p2, PlayerTurn pt) {
-        if(pt == PlayerTurn.player1)
-        {
+        if (pt == PlayerTurn.player1) {
             for (Node b : p1) {
                 b.setDisable(false);
                 b.setOpacity(1);
@@ -290,9 +306,7 @@ public class FieldController {
                 b.setDisable(true);
                 b.setOpacity(0.5);
             }
-        }
-        else
-        {
+        } else {
             for (Node b : p2) {
                 b.setDisable(true);
                 b.setOpacity(0.5);
@@ -360,6 +374,34 @@ public class FieldController {
             }
             turnLbl.setText(playerTurn.toString());
             DrawCard();
+            try {
+                CheckEndGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void CheckEndGame() throws IOException {
+        int nmbrOfCardsInDeck = deck.Size();
+        int player1NmbrOfCards = player1.hand.getNmbrOfCards();
+        int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
+
+        if (nmbrOfCardsInDeck == 0 && player1NmbrOfCards == 0 && playerAINmbrOfCards == 0) {
+            //Game is finished, show the end screen for win or lose
+            if (board.getPlayer1Score() > board.getPlayerAIScore()) {
+                //Show win screen
+                Stage stage = (Stage) player1Field.getScene().getWindow();
+                Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
+                stage.setScene(new Scene(winScene));
+                stage.show();
+            } else {
+                //Show lose screen
+                Stage stage = (Stage) player1Field.getScene().getWindow();
+                Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
+                stage.setScene(new Scene(winScene));
+                stage.show();
+            }
         }
     }
 }

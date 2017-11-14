@@ -11,7 +11,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Board {
@@ -20,10 +19,10 @@ public class Board {
     private List<Card> playerAICards;
 
     IntegerProperty player1Score = new SimpleIntegerProperty(0);
-    public StringProperty player1Score_2 = new SimpleStringProperty("0");
+    public StringProperty player1ScoreStr = new SimpleStringProperty("0");
 
     IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
-    public StringProperty playerAIScore_2 = new SimpleStringProperty("0");
+    public StringProperty playerAIScoreStr = new SimpleStringProperty("0");
 
 
 	public Board() {
@@ -74,8 +73,8 @@ public class Board {
 
 	final ChangeListener changeListener = new ChangeListener() {
 		public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-			player1Score_2.set(Integer.toString(getPlayer1Score()));
-			playerAIScore_2.set(Integer.toString(getPlayerAIScore()));
+			player1ScoreStr.set(Integer.toString(getPlayer1Score()));
+			playerAIScoreStr.set(Integer.toString(getPlayerAIScore()));
 		}
 	};
 
