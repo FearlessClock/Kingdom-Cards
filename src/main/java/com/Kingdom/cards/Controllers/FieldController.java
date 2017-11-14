@@ -165,7 +165,7 @@ public class FieldController {
         gamestate = GameState.init;
         board = new Board();
         // Generate the deck of cards
-        deck = new Deck(7);
+        deck = new Deck(2);
         // Shuffle the deck of cards
         deck.Shuffle();
 
@@ -224,14 +224,15 @@ public class FieldController {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card c = player1.Draw(deck);
             playerHasDrawn = true;
-
-            Button b = new Button(c.GetRace());
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
+            if (c != null) {
+                Button b = new Button(c.GetRace());
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                player1Field.getChildren().add(b);
+            }
         }
     }
 
@@ -326,13 +327,16 @@ public class FieldController {
         // Draw Card
         Card c = playerAI.Draw(deck);
         playerHasDrawn = true;
-        Button b = new Button(c.GetRace());
-        b.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                SendCard(event);
-            }
-        });
-        playerAIField.getChildren().add(b);
+        if (c != null) {
+            Button b = new Button(c.GetRace());
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            playerAIField.getChildren().add(b);
+        }
+
         // Play Card
         Card playedCard = playerAI.PlayCard();
         board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
@@ -348,7 +352,10 @@ public class FieldController {
                 break;
             }
         }
-        playerAIField.getChildren().remove(playedCardIndex);
+        if(playedCardIndex >= 0)
+        {
+            playerAIField.getChildren().remove(playedCardIndex);
+        }
 
         // Update Board and variables
         playerHasPlay = true;
@@ -359,7 +366,7 @@ public class FieldController {
     }
 
     public void EndTurn() {
-        if (playerHasPlay) {
+        if (playerHasPlay || player1.hand.getNmbrOfCards() == 0) {
             ObservableList<Node> buttonsP1 = player1Field.getChildren();
             ObservableList<Node> buttonsP2 = playerAIField.getChildren();
             //AI play

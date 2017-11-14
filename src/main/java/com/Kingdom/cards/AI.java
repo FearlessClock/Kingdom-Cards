@@ -18,8 +18,15 @@ public class AI extends Player {
 	}
 
 	public Card PlayCard() {
-		int nbOfCardsInHand = this.SizeHand();
-		int cardIndex = rand.nextInt(nbOfCardsInHand);
-		return hand.playCard(cardIndex);
+		if(this.SizeHand() > 0)
+		{
+			int nbOfCardsInHand = this.SizeHand();
+			int cardIndex = rand.nextInt(nbOfCardsInHand);
+			return hand.playCard(cardIndex);
+		}
+		else
+		{
+			return null;
+		}
 	}
 }

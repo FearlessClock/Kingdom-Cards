@@ -14,8 +14,8 @@ import java.io.IOException;
 
 public class MainMenuController {
 
-	@FXML
-	private Label text;
+    @FXML
+    private Label text;
 
     @FXML
     private void btnStartCall(ActionEvent event) throws IOException {
@@ -26,8 +26,8 @@ public class MainMenuController {
         stage.show();
     }
 
-	@FXML
-	private void btnQuitCall(ActionEvent event) {
+    @FXML
+    private void btnQuitCall(ActionEvent event) throws IOException {
         Platform.exit();
     }
 
@@ -49,12 +49,12 @@ public class MainMenuController {
         stage.show();
     }
 
-	public MainMenuController() {
+    public MainMenuController() {
 
-	}
+    }
 
-	@FXML
-	public void initialize() {
+    @FXML
+    public void initialize() {
 
-	}
+    }
 }

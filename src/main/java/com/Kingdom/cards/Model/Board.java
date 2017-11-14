@@ -25,32 +25,30 @@ public class Board {
     public StringProperty playerAIScoreStr = new SimpleStringProperty("0");
 
 
-	public Board() {
-		player1Cards = new ArrayList<Card>();
-		playerAICards = new ArrayList<Card>();
-		player1Score.addListener(changeListener);
-		playerAIScore.addListener(changeListener);
-	}
+    public Board() {
+        player1Cards = new ArrayList<Card>();
+        playerAICards = new ArrayList<Card>();
+        player1Score.addListener(changeListener);
+        playerAIScore.addListener(changeListener);
+    }
 
-	public int getPlayer1Score() {
-		return player1Score.get();
-	}
+    public int getPlayer1Score() {
+        return player1Score.get();
+    }
 
-	public int getPlayerAIScore() {
-		return playerAIScore.get();
-	}
+    public int getPlayerAIScore() {
+        return playerAIScore.get();
+    }
 
-	public List<Card> getPlayer1Cards() {
-		return player1Cards;
-	}
+    public List<Card> getPlayer1Cards() {
+        return player1Cards;
+    }
 
-    public void setPlayer1Cards(List<Card> cards)
-    {
+    public void setPlayer1Cards(List<Card> cards) {
         player1Cards = cards;
     }
 
-    public void setPlayerAICards(List<Card> cards)
-    {
+    public void setPlayerAICards(List<Card> cards) {
         playerAICards = cards;
     }
 
@@ -59,70 +57,72 @@ public class Board {
     }
 
     //Play the chosen card for the current playerturns player
-	public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
-        if (FieldController.PlayerTurn.player1 == playerTurn) {
-            player1Cards.add(card);
-            card.power(this, d, p1, p2);
-            GetScorePlayer(1);
-        } else {
-            playerAICards.add(card);
-            card.power(this, d, p2, p1);
-            GetScorePlayer(2);
+    public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
+        if (card != null) {
+            if (FieldController.PlayerTurn.player1 == playerTurn) {
+                player1Cards.add(card);
+                card.power(this, d, p1, p2);
+                GetScorePlayer(1);
+            } else {
+                playerAICards.add(card);
+                card.power(this, d, p2, p1);
+                GetScorePlayer(2);
+            }
         }
     }
 
-	final ChangeListener changeListener = new ChangeListener() {
-		public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-			player1ScoreStr.set(Integer.toString(getPlayer1Score()));
-			playerAIScoreStr.set(Integer.toString(getPlayerAIScore()));
-		}
-	};
+    final ChangeListener changeListener = new ChangeListener() {
+        public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+            player1ScoreStr.set(Integer.toString(getPlayer1Score()));
+            playerAIScoreStr.set(Integer.toString(getPlayerAIScore()));
+        }
+    };
 
-	public int GetScorePlayer(int player) {
-		List<Card> playerboard = new ArrayList<Card>();
-		if (player == 1) {
-			playerboard.addAll(player1Cards);
-		} else if (player == 2) {
-			playerboard.addAll(playerAICards);
-		}
-		int score = playerboard.size();
-		List<Integer> listingClass = new ArrayList<Integer>();
-		for (int i = 0; i < 6; i++) {
-			listingClass.add(i, 0);
-		}
-		for (Card c : playerboard) {
-			if (c.GetRace() == "Dryad") {
-				listingClass.set(0, listingClass.get(0) + 1);
-			}
-			if (c.GetRace() == "Elf") {
-				listingClass.set(1, listingClass.get(1) + 1);
-			}
-			if (c.GetRace() == "Gnome") {
-				listingClass.set(2, listingClass.get(2) + 1);
-			}
-			if (c.GetRace() == "Goblin") {
-				listingClass.set(3, listingClass.get(3) + 1);
-			}
-			if (c.GetRace() == "Korrigan") {
-				listingClass.set(4, listingClass.get(4) + 1);
-			}
-			if (c.GetRace() == "Troll") {
-				listingClass.set(5, listingClass.get(5) + 1);
-			}
-		}
-		int mini = listingClass.get(0);
-		for (int i : listingClass) {
-			if (i < mini) {
-				mini = i;
-			}
-		}
-		score += mini * 3;
-		if (player == 1) {
-			player1Score.set(score);
-		} else if (player == 2) {
-			playerAIScore.set(score);
-		}
-		return score;
-	}
+    public int GetScorePlayer(int player) {
+        List<Card> playerboard = new ArrayList<Card>();
+        if (player == 1) {
+            playerboard.addAll(player1Cards);
+        } else if (player == 2) {
+            playerboard.addAll(playerAICards);
+        }
+        int score = playerboard.size();
+        List<Integer> listingClass = new ArrayList<Integer>();
+        for (int i = 0; i < 6; i++) {
+            listingClass.add(i, 0);
+        }
+        for (Card c : playerboard) {
+            if (c.GetRace() == "Dryad") {
+                listingClass.set(0, listingClass.get(0) + 1);
+            }
+            if (c.GetRace() == "Elf") {
+                listingClass.set(1, listingClass.get(1) + 1);
+            }
+            if (c.GetRace() == "Gnome") {
+                listingClass.set(2, listingClass.get(2) + 1);
+            }
+            if (c.GetRace() == "Goblin") {
+                listingClass.set(3, listingClass.get(3) + 1);
+            }
+            if (c.GetRace() == "Korrigan") {
+                listingClass.set(4, listingClass.get(4) + 1);
+            }
+            if (c.GetRace() == "Troll") {
+                listingClass.set(5, listingClass.get(5) + 1);
+            }
+        }
+        int mini = listingClass.get(0);
+        for (int i : listingClass) {
+            if (i < mini) {
+                mini = i;
+            }
+        }
+        score += mini * 3;
+        if (player == 1) {
+            player1Score.set(score);
+        } else if (player == 2) {
+            playerAIScore.set(score);
+        }
+        return score;
+    }
 
 }
