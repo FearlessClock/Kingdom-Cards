@@ -5,15 +5,28 @@ import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Card;
 import com.Kingdom.cards.Model.Player;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
+import java.io.IOException;
 import java.util.Random;
 
 
@@ -56,15 +69,74 @@ public class FieldController {
     //The deck of cards
     private Deck deck;
 
+    public Deck GetDeck() {
+        return deck;
+    }
+
     // Board containing all the cards
     private Board board;
 
+    public Board getBoard() {
+        return board;
+    }
+
     // Player
     private Player player1 = new Player();
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
     private AI playerAI = new AI();
+
+    public AI getPlayerAI() {
+        return playerAI;
+    }
 
     // Number of cards per player
     private int nmbrOfCardsInit = 5;
+
+    @FXML
+    public void keyPressed(KeyEvent keyEvent) throws IOException {
+        Scene par = (((AnchorPane) keyEvent.getSource()).getScene());
+        switch (keyEvent.getCode()) {
+            case ESCAPE:
+                int maxWidth = 128;
+                int maxHeight = 128;
+                Window window = ((AnchorPane) keyEvent.getSource()).getScene().getWindow();
+                final Popup popup = new Popup();
+                popup.setX(window.getWidth() / 2);
+                popup.setY(window.getHeight() / 2);
+
+                Button quit = new Button("Quit");
+                quit.setPrefSize(maxWidth, 64);
+                Button resume = new Button("Resume");
+                resume.setPrefSize(maxWidth, 64);
+
+                quit.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        Platform.exit();
+                    }
+                });
+
+                resume.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        popup.hide();
+                    }
+                });
+
+                VBox box = new VBox();
+                box.setPrefSize(maxWidth, maxHeight);
+                box.setStyle("-fx-background-image: url('fxml/ingameMenuBackground.png'); " +
+                        "-fx-background-position: center center; " +
+                        "-fx-background-repeat: stretch;");
+                box.getChildren().addAll(resume, quit);
+
+                popup.getContent().add(box);
+                popup.show(window);
+                break;
+        }
+    }
 
     // Player turn state variable
     public enum PlayerTurn {
@@ -97,8 +169,12 @@ public class FieldController {
         // Shuffle the deck of cards
         deck.Shuffle();
 
-        nmbrOfCardsPlayer1.textProperty().bind(board.player1Score_2);
-        nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScore_2);
+        if (nmbrOfCardsPlayer1 != null) {
+            nmbrOfCardsPlayer1.textProperty().bind(board.player1ScoreStr);
+        }
+        if (nmbrOfCardsPlayerAI != null) {
+            nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScoreStr);
+        }
 
         Card c;
         Button b;
@@ -130,8 +206,7 @@ public class FieldController {
         turnLbl.setText(playerTurn.toString());
         gamestate = GameState.game;
 
-        if(playerTurn == PlayerTurn.playerAI)
-        {
+        if (playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
     }
@@ -149,15 +224,15 @@ public class FieldController {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card c = player1.Draw(deck);
             playerHasDrawn = true;
-
-            Button b = c.GetView();
-
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
+            if (c != null) {
+                Button b = c.GetView();
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                player1Field.getChildren().add(b);
+            }
         }
     }
 
@@ -180,8 +255,7 @@ public class FieldController {
         GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
     }
 
-    private void UpdateHands()
-    {
+    private void UpdateHands() {
         player1Field.getChildren().clear();
         playerAIField.getChildren().clear();
         Button b;
@@ -224,8 +298,7 @@ public class FieldController {
     }
 
     private void GrayButtons(ObservableList<Node> p1, ObservableList<Node> p2, PlayerTurn pt) {
-        if(pt == PlayerTurn.player1)
-        {
+        if (pt == PlayerTurn.player1) {
             for (Node b : p1) {
                 b.setDisable(false);
                 b.setOpacity(1);
@@ -234,9 +307,7 @@ public class FieldController {
                 b.setDisable(true);
                 b.setOpacity(0.5);
             }
-        }
-        else
-        {
+        } else {
             for (Node b : p2) {
                 b.setDisable(true);
                 b.setOpacity(0.5);
@@ -256,13 +327,16 @@ public class FieldController {
         // Draw Card
         Card c = playerAI.Draw(deck);
         playerHasDrawn = true;
-        Button b = c.GetView();
-        b.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-                SendCard(event);
-            }
-        });
-        playerAIField.getChildren().add(b);
+        if (c != null) {
+            Button b = c.GetView();
+            b.setOnAction(new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent event) {
+                    SendCard(event);
+                }
+            });
+            playerAIField.getChildren().add(b);
+        }
+
         // Play Card
         Card playedCard = playerAI.PlayCard();
         board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
@@ -278,7 +352,10 @@ public class FieldController {
                 break;
             }
         }
-        playerAIField.getChildren().remove(playedCardIndex);
+        if(playedCardIndex >= 0)
+        {
+            playerAIField.getChildren().remove(playedCardIndex);
+        }
 
         // Update Board and variables
         playerHasPlay = true;
@@ -289,7 +366,7 @@ public class FieldController {
     }
 
     public void EndTurn() {
-        if (playerHasPlay) {
+        if (playerHasPlay || player1.hand.getNmbrOfCards() == 0) {
             ObservableList<Node> buttonsP1 = player1Field.getChildren();
             ObservableList<Node> buttonsP2 = playerAIField.getChildren();
             //AI play
@@ -304,6 +381,36 @@ public class FieldController {
             }
             turnLbl.setText(playerTurn.toString());
             DrawCard();
+            try {
+                CheckEndGame();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void CheckEndGame() throws IOException {
+        int nmbrOfCardsInDeck = deck.Size();
+        int player1NmbrOfCards = player1.hand.getNmbrOfCards();
+        int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
+
+        if (nmbrOfCardsInDeck == 0 && player1NmbrOfCards == 0 && playerAINmbrOfCards == 0) {
+            //Game is finished, show the end screen for win or lose
+            if (board.getPlayer1Score() > board.getPlayerAIScore()) {
+                //Show win screen
+                Stage stage = (Stage) player1Field.getScene().getWindow();
+                Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
+                Scene scene = new Scene(winScene);
+                stage.setScene(scene);
+                stage.show();
+            } else {
+                //Show lose screen
+                Stage stage = (Stage) player1Field.getScene().getWindow();
+                Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
+                Scene scene = new Scene(winScene);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
     }
 }

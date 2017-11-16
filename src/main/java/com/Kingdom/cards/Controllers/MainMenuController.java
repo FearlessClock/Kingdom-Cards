@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +14,8 @@ import java.io.IOException;
 
 public class MainMenuController {
 
-	@FXML
-	private Label text;
+    @FXML
+    private Label text;
 
     @FXML
     private void btnStartCall(ActionEvent event) throws IOException {
@@ -27,7 +28,7 @@ public class MainMenuController {
 
 	@FXML
 	private void btnQuitCall(ActionEvent event) {
-
+        Platform.exit();
     }
 
     @FXML
@@ -48,12 +49,12 @@ public class MainMenuController {
         stage.show();
     }
 
-	public MainMenuController() {
+    public MainMenuController() {
 
-	}
+    }
 
-	@FXML
-	public void initialize() {
+    @FXML
+    public void initialize() {
 
-	}
+    }
 }

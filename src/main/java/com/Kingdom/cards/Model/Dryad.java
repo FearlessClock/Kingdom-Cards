@@ -10,7 +10,7 @@ public class Dryad extends Card {
 	public Dryad() {
 		super();
 		this.race = "Dryad";
-		this.view.getStyleClass().add("Dryad");
+		this.view.getStyleClass().add("dryad");
 		this.view.setText("- Dryad -");
 		System.out.println("Dryad added");
 	}
