@@ -402,6 +402,7 @@ public class FieldController {
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
                 Scene scene = new Scene(winScene);
                 stage.setScene(scene);
+                stage.setFullScreen(true);
                 stage.show();
             } else {
                 //Show lose screen
@@ -409,6 +410,7 @@ public class FieldController {
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
                 Scene scene = new Scene(winScene);
                 stage.setScene(scene);
+                stage.setFullScreen(true);
                 stage.show();
             }
         }
