@@ -48,6 +48,7 @@ public class EndGameController {
         Stage stage = (Stage) (n).getScene().getWindow();
         Parent mainMenuScene = FXMLLoader.load(getClass().getResource("/fxml/MainMenuView.fxml"));
         Scene scene = new Scene(mainMenuScene);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.show();
     }

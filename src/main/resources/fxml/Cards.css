@@ -1,0 +1,64 @@
+.goblin{
+        -fx-background-color: red;
+        -fx-background-image: url('myGoblin.png');
+        -fx-background-size: 135px 155px; /*cover, auto;*/
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+
+}
+
+.troll{
+        -fx-background-color: red;
+        -fx-background-image: url('myTroll.png');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+
+}
+
+.gnome{
+        -fx-background-color: red;
+        -fx-background-image: url('myGnome.png');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+
+}
+
+
+.dryad{
+        -fx-background-color: red;
+        -fx-background-image: url('myDryad.png');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+}
+
+.elf{
+        -fx-background-color: red;
+        -fx-background-image: url('myElf.png');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+}
+
+.korrigan{
+        -fx-background-color: red;
+        -fx-background-image: url('myKorrigan.png');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+}
+

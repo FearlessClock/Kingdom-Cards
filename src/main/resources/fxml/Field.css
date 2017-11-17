@@ -1,0 +1,28 @@
+
+.playfield{
+
+
+        -fx-background-image: url('playfield.jpg') no-repeat center center fixed;
+        -fx-background-size: cover;
+}
+
+.mainmenu{
+
+
+        -fx-background-image: url('welcome_menu.jpg') no-repeat center center fixed;
+        -fx-background-size: cover;
+}
+
+.youwin{
+
+
+        -fx-background-image: url('youwin.jpg') no-repeat center center fixed;
+        -fx-background-size: cover;
+}
+
+.youlose{
+
+
+        -fx-background-image: url('youlost.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+}

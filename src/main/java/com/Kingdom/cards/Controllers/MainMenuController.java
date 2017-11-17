@@ -23,6 +23,7 @@ public class MainMenuController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/FieldView.fxml"));
         Scene scene = new Scene(fieldScene);
+        stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
