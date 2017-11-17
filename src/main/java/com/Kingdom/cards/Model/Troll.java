@@ -12,7 +12,7 @@ public class Troll extends Card {
 		this.race = "Troll";
 		this.view.getStyleClass().add("troll");
 		//this.view.setText(" - Troll - ");
-		System.out.println("troll added");
+		
 
 	}
 
