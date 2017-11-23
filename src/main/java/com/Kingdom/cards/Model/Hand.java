@@ -3,6 +3,7 @@ package com.Kingdom.cards.Model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,4 +57,7 @@ public class Hand {
         return played;
     }
 
+    public int selectCard() {
+        return Integer.parseInt((JOptionPane.showInputDialog("Quelle carte prendre ?")));
+    }
 }

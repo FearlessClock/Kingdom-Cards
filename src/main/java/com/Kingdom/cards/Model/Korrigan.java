@@ -18,7 +18,7 @@ public class Korrigan extends Card {
 		for (int i = 0 ; i < 2 ; i++){
 			if(p2.hand.getNmbrOfCards() > 0)
 			{
-				int cardPos = (rand.nextInt(p2.hand.getNmbrOfCards()));
+				int cardPos = p2.hand.selectCard(); // selectionne une carte dans le deck adverse
 				p1.hand.addToHand((p2.hand.getHand().get(cardPos)));
 				p2.hand.removeFromHand(cardPos);
 			}
