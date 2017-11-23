@@ -38,7 +38,7 @@ public class GoblinStep {
     @When("^I play a Goblin card$")
     public void i_play_a_Goblin_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Goblin(), d, FieldController.PlayerTurn.player1, p1, AI);
+        b.PlayCard(new Goblin(), d, FieldController.PlayerTurn.player1, p1, AI, false);
     }
 
     @Then("^I recieve a Hand with (\\d+) card$")

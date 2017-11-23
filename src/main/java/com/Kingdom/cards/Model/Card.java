@@ -33,6 +33,6 @@ public abstract class Card {
         return obj.getClass() == this.getClass();
     }
 
-    public abstract void power(Board b, Deck d, Player p1, Player p2);
+    public abstract void power(Board b, Deck d, Player p1, Player p2, Boolean endTurn);
 
 }

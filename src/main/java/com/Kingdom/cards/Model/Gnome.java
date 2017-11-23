@@ -1,12 +1,6 @@
 package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Deck;
-import com.Kingdom.cards.Model.Card;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-
-import java.util.List;
 
 public class Gnome extends Card {
 
@@ -18,7 +12,7 @@ public class Gnome extends Card {
 		System.out.println("gnome added");
 	}
 
-	public void power(Board b, Deck d, Player p1, Player p2) {
+	public void power(Board b, Deck d, Player p1, Player p2, Boolean endTurn) {
 		p1.Draw(d);
 		p1.Draw(d);
 	}

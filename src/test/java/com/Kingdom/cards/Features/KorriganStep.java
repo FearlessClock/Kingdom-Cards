@@ -39,7 +39,7 @@ public class KorriganStep {
     @When("^I play a Korrigan card$")
     public void i_play_a_Korrigan_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-         b.PlayCard(new Korrigan(), d, FieldController.PlayerTurn.player1, p1, AI);
+         b.PlayCard(new Korrigan(), d, FieldController.PlayerTurn.player1, p1, AI, false);
     }
 
     @Then("^I recieve (\\d+) card$")

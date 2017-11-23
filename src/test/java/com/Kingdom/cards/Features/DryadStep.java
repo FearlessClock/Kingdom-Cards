@@ -43,7 +43,7 @@ public class DryadStep {
     @When("^I play a Dryad card$")
     public void i_play_a_Dryad_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Dryad(), d, FieldController.PlayerTurn.player1, p1, AI);
+        b.PlayCard(new Dryad(), d, FieldController.PlayerTurn.player1, p1, AI, false);
     }
 
     @Then("^My board grew by (\\d+) and enemy srunk by (\\d+)$")

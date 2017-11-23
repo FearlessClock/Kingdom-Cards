@@ -31,7 +31,7 @@ public class GnomeStep {
     @When("^I play a Gnome card$")
     public void i_play_a_Gnome_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Gnome(), d, FieldController.PlayerTurn.player1, p1, AI);
+        b.PlayCard(new Gnome(), d, FieldController.PlayerTurn.player1, p1, AI, false);
     }
 
     @Then("^My hand has (\\d+) more cards$")

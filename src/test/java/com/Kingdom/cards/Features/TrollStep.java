@@ -44,13 +44,13 @@ public class TrollStep {
     @When("^I play a Troll card$")
     public void i_play_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.player1, p1, AI);
+        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.player1, p1, AI, false);
     }
 
     @When("^AI plays a Troll card$")
     public void ai_plays_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.playerAI, p1, AI);
+        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.playerAI, p1, AI, false);
     }
 
 

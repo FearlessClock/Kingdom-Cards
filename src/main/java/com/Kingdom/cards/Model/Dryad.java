@@ -1,9 +1,6 @@
 package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Deck;
-import com.Kingdom.cards.Model.Card;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Dryad extends Card {
 
@@ -15,7 +12,7 @@ public class Dryad extends Card {
 		System.out.println("Dryad added");
 	}
 
-	public void power(Board b, Deck d, Player p1, Player p2) {
+	public void power(Board b, Deck d, Player p1, Player p2, Boolean endTurn) {
 
 	}
 
