@@ -11,46 +11,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DryadStep {
-    Player p1;
-    Player AI;
-    Deck d;
-    Board b;
+    Player player1;
+    Player playerAI;
+    Deck deck;
+    Board board;
     List<Card> p1Cards;
     List<Card> AICards;
 
     int boardSize = 0;
 
-    @Given("^\\[Dryad\\]A board with (\\d+) cards$")
+    @Given("^\\[Dryad\\]A board with (\\deck+) cards$")
     public void dryad_A_board_with_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        d = new Deck(5);
-        p1 = new Player();
-        AI = new Player();
+        deck = new Deck(5);
+        player1 = new Player();
+        playerAI = new Player();
 
-        b = new Board();
+        board = new Board();
 
         p1Cards = new ArrayList<Card>();
         AICards = new ArrayList<Card>();
         for (int i = 0; i < arg1; i++) {
-            p1Cards.add(d.GetFirstCard());
-            AICards.add(d.GetFirstCard());
+            p1Cards.add(deck.GetFirstCard());
+            AICards.add(deck.GetFirstCard());
         }
-        b.setPlayer1Cards(p1Cards);
-        b.setPlayerAICards(AICards);
+        board.setPlayer1Cards(p1Cards);
+        board.setPlayerAICards(AICards);
         boardSize = arg1;
     }
 
     @When("^I play a Dryad card$")
     public void i_play_a_Dryad_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Dryad(), d, FieldController.PlayerTurn.player1, p1, AI);
+        board.PlayCard(new Dryad(), deck, FieldController.PlayerTurn.player1, player1, playerAI);
     }
 
-    @Then("^My board grew by (\\d+) and enemy srunk by (\\d+)$")
+    @Then("^My board grew by (\\deck+) and enemy srunk by (\\deck+)$")
     public void my_board_grew_by_and_enemy_srunk_by(int arg1, int arg2) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        Assert.assertEquals(boardSize+arg1, b.getPlayer1Cards().size());
-        Assert.assertEquals(boardSize-arg2, b.getPlayerAICards().size());
+        Assert.assertEquals(boardSize+arg1, board.getPlayer1Cards().size());
+        Assert.assertEquals(boardSize-arg2, board.getPlayerAICards().size());
     }
 
 

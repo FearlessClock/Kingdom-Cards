@@ -15,50 +15,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrollStep {
-    Player p1;
-    Player AI;
-    Deck d;
-    Board b;
+    Player playerP1;
+    Player playerAI;
+    Deck deck;
+    Board board;
 
     List<Card> p1Cards;
     List<Card> AICards;
 
-    @Given("^A board with (\\d+) cards$")
+    @Given("^A board with (\\deck+) cards$")
     public void a_board_with_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        d = new Deck(5);
-        p1 = new Player();
-        AI = new Player();
+        deck = new Deck(5);
+        playerP1 = new Player();
+        playerAI = new Player();
 
-        b = new Board();
+        board = new Board();
         p1Cards = new ArrayList<Card>();
         AICards = new ArrayList<Card>();
         for (int i = 0; i < arg1; i++) {
-            p1Cards.add(d.GetFirstCard());
-            AICards.add(d.GetFirstCard());
+            p1Cards.add(deck.GetFirstCard());
+            AICards.add(deck.GetFirstCard());
         }
-        b.setPlayer1Cards(p1Cards);
-        b.setPlayerAICards(AICards);
+        board.setPlayer1Cards(p1Cards);
+        board.setPlayerAICards(AICards);
     }
 
     @When("^I play a Troll card$")
     public void i_play_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.player1, p1, AI);
+        board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.player1, playerP1, playerAI);
     }
 
-    @When("^AI plays a Troll card$")
+    @When("^playerAI plays a Troll card$")
     public void ai_plays_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        b.PlayCard(new Troll(), d, FieldController.PlayerTurn.playerAI, p1, AI);
+        board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.playerAI, playerP1, playerAI);
     }
 
 
     @Then("^The boards are swapped$")
     public void the_boards_are_swapped() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        List<Card> AISwappedCards = b.getPlayerAICards();
-        List<Card> P1SwappedCards = b.getPlayer1Cards();
+        List<Card> AISwappedCards = board.getPlayerAICards();
+        List<Card> P1SwappedCards = board.getPlayer1Cards();
         for (int i = 0; i < p1Cards.size(); i++) {
             Assert.assertEquals(p1Cards.get(i).GetRace(), AISwappedCards.get(i).GetRace() );
         }
