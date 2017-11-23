@@ -160,6 +160,7 @@ public class FieldController {
     @FXML
     private Label nmbrOfCardsPlayerAI;
 
+    
     @FXML
     public void initialize() {
         gamestate = GameState.init;
@@ -318,7 +319,9 @@ public class FieldController {
             }
         }
     }
+    public void setInfos(String msg){
 
+    }
     public void turnOfAI() {
         playerHasDrawn = false;
         playerHasPlay = false;

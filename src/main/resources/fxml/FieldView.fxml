@@ -64,5 +64,6 @@
         <Label fx:id="nmbrOfCardsPlayerAI" alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="nmbrOfCardsPlayerAI" textFill="WHITE" GridPane.rowIndex="1" />
         <HBox fx:id="playerAIField" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" />
          <HBox fx:id="player1Board" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+
     </GridPane>
 </AnchorPane>

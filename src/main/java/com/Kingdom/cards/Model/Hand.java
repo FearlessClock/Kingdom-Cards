@@ -58,6 +58,6 @@ public class Hand {
     }
 
     public int selectCard() {
-        return Integer.parseInt((JOptionPane.showInputDialog("Quelle carte prendre ?")));
+        return Integer.parseInt((JOptionPane.showInputDialog(" Choisissez une carte entre 1 et "+getNmbrOfCards())))-1;
     }
 }
