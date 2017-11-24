@@ -137,6 +137,16 @@ public class FieldController {
                 break;
         }
     }
+    
+    @FXML
+    public void MoveScreen(KeyEvent keyEvent) throws IOException {
+    	Window window = ((AnchorPane) keyEvent.getSource()).getScene().getWindow();
+        final Popup popup = new Popup();
+        popup.setX(window.getX() / 2);
+        popup.setY(window.getY() / 2);
+    	
+    }
+    
 
     // Player turn state variable
     public enum PlayerTurn {
