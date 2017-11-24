@@ -12,13 +12,13 @@ import org.junit.Assert;
 
 public class GnomeStep {
 
-    Player player1;
-    Player playerAI;
-    Deck deck;
-    Board board;
+    private Player player1;
+    private Player playerAI;
+    private Deck deck;
+    private Board board;
 
 
-    @Given("^A deck with (\\deck+) cards$")
+    @Given("^A deck with (\\d+) cards$")
     public void a_deck_with_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         deck = new Deck(1);    //Gives me a deck of 6 cards
@@ -37,7 +37,7 @@ public class GnomeStep {
         board.PlayCard(new Gnome(), deck, FieldController.PlayerTurn.player1, player1, playerAI);
     }
 
-    @Then("^My hand has (\\deck+) more cards$")
+    @Then("^My hand has (\\d+) more cards$")
     public void my_hand_has_more_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
 

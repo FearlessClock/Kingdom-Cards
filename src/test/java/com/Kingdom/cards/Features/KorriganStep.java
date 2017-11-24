@@ -11,12 +11,12 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 public class KorriganStep {
-    Player playerP1;
-    Player playerAI;
-    Deck deck;
-    Board board;
+    private Player playerP1;
+    private Player playerAI;
+    private Deck deck;
+    private Board board;
 
-    @Given("^Enemy with only (\\deck+) card$")
+    @Given("^Enemy with only (\\d+) card$")
     public void enemy_with_only_card(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         deck = new Deck(5);
@@ -42,7 +42,7 @@ public class KorriganStep {
          board.PlayCard(new Korrigan(), deck, FieldController.PlayerTurn.player1, playerP1, playerAI);
     }
 
-    @Then("^I recieve (\\deck+) card$")
+    @Then("^I recieve (\\d+) card$")
     public void i_recieve_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
          Assert.assertEquals(5+arg1, playerP1.hand.getNmbrOfCards());

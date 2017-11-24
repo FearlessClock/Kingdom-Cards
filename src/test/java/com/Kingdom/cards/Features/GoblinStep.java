@@ -11,11 +11,11 @@ import cucumber.api.java.en.When;
 import org.junit.Assert;
 
 public class GoblinStep {
-    Player playerP1;
-    Player playerAI;
-    Deck deck;
-    Board board;
-    @Given("^\\[Goblin\\]Enemy with only (\\deck+) card$")
+    private Player playerP1;
+    private Player playerAI;
+    private Deck deck;
+    private Board board;
+    @Given("^\\[Goblin\\]Enemy with only (\\d+) card$")
     public void goblin_Enemy_with_only_card(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         // Write code here that turns the phrase above into concrete actions
@@ -41,7 +41,7 @@ public class GoblinStep {
         board.PlayCard(new Goblin(), deck, FieldController.PlayerTurn.player1, playerP1, playerAI);
     }
 
-    @Then("^I recieve a Hand with (\\deck+) card$")
+    @Then("^I recieve a Hand with (\\d+) card$")
     public void i_recieve_a_Hand_with_card(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         Assert.assertEquals(arg1, playerP1.hand.getNmbrOfCards());

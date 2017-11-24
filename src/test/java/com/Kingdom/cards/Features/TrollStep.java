@@ -15,15 +15,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrollStep {
-    Player playerP1;
-    Player playerAI;
-    Deck deck;
-    Board board;
+    private Player playerP1;
+    private Player playerAI;
+    private Deck deck;
+    private Board board;
 
-    List<Card> p1Cards;
-    List<Card> AICards;
+    private List<Card> p1Cards;
+    private List<Card> AICards;
 
-    @Given("^A board with (\\deck+) cards$")
+    @Given("^A board with (\\d+) cards$")
     public void a_board_with_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         deck = new Deck(5);
@@ -47,7 +47,7 @@ public class TrollStep {
         board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.player1, playerP1, playerAI);
     }
 
-    @When("^playerAI plays a Troll card$")
+    @When("^AI plays a Troll card$")
     public void ai_plays_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.playerAI, playerP1, playerAI);
