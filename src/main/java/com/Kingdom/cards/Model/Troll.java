@@ -2,7 +2,7 @@ package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Card;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Troll extends Card {

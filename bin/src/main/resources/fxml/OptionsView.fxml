@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="857.0" prefWidth="1595.0" styleClass="mainmenu" stylesheets="@Field.css" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.MainMenuController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.OptionsController">
    <children>
-      <GridPane layoutY="4.0" prefHeight="857.0" prefWidth="1602.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutY="4.0" prefHeight="359.0" prefWidth="409.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -25,8 +25,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="btnStart" mnemonicParsing="false" onAction="#btnStartCall" prefHeight="26.0" prefWidth="150.0" text="Start a new game" GridPane.rowIndex="4" />
-             <Button fx:id="btnQuit" mnemonicParsing="false" onAction="#btnQuitCall" prefHeight="27.0" prefWidth="150.0" text="Quit the game" GridPane.rowIndex="5" />
+            <Button fx:id="btnDraw" mnemonicParsing="false" text="Draw card" GridPane.rowIndex="2" />
             <Label fx:id="text" prefHeight="17.0" prefWidth="85.0" GridPane.rowIndex="3" />
          </children>
       </GridPane>

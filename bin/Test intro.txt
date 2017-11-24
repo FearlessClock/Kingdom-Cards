@@ -1,0 +1,11 @@
+﻿Pour rapidement expliquer ce que vous devez faire.
+Clique sur le class pour lequel vous voulez créer des test.
+Appuie sur Alt-entrer pour avoir une menu contextual
+Clique sur Create test
+Choisi les parametres suivant
+-Testing library: JUnit 4
+-Generate: Choisi setUp/@Before
+Puis clique sur Ok
+Dans le java class qui vient de se creer, appuie sur Alt-Insert
+Selection Test method
+Pour tester vos methodes, clique droit sur le methode et choisi run "name of method"
