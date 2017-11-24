@@ -4,8 +4,8 @@
         -fx-background-size: 135px 155px; /*cover, auto;*/
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
-        -fx-min-width: 128px;
+        -fx-min-height: 110px;
+        -fx-min-width: 110px;
 
 }
 
@@ -15,8 +15,8 @@
         -fx-background-size: 135px 155px;
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
-        -fx-min-width: 128px;
+        -fx-min-height: 110px;
+        -fx-min-width: 110px;
 
 }
 
@@ -26,7 +26,7 @@
         -fx-background-size: 135px 155px;
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
+        -fx-min-height: 105px;
         -fx-min-width: 128px;
 
 }
@@ -38,7 +38,7 @@
         -fx-background-size: 135px 155px;
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
+        -fx-min-height: 105px;
         -fx-min-width: 128px;
 }
 
@@ -48,7 +48,7 @@
         -fx-background-size: 135px 155px;
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
+        -fx-min-height: 105px;
         -fx-min-width: 128px;
 }
 
@@ -58,7 +58,7 @@
         -fx-background-size: 135px 155px;
         -fx-background-repeat: no-repeat;
         -fx-background-position: center;
-        -fx-min-height: 150px;
+        -fx-min-height: 105px;
         -fx-min-width: 128px;
 }
 
