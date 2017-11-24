@@ -10,10 +10,6 @@ public class Troll extends Card {
 	public Troll(){
 		super();
 		this.race = "Troll";
-		this.view.getStyleClass().add("troll");
-		//this.view.setText(" - Troll - ");
-		
-
 	}
 
 	public void power(Board b, Deck d, Player p1, Player p2) {

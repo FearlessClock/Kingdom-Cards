@@ -12,9 +12,6 @@ public class Elf extends Card{
 	public Elf() {
 		super();
 		this.race = "Elf";
-		this.view.getStyleClass().add("elf");
-		this.view.setText(" - Elf - ");
-		System.out.println("Elf added");
 
 	}
 

@@ -5,29 +5,26 @@ import javafx.scene.control.Button;
 
 public abstract class Card {
     protected String race;
-    protected String name;
-    protected Button view;
 
-	public Card() {
-		race = "Human"; // default race
-		view=new Button();
-		view.setMinWidth(150);
-	    view.setMinHeight(150);
-	}
+    public Card() {
+        race = "Human"; // default race
+    }
 
-	public String GetRace() {
-		return race;
-	}
+    public String GetRace() {
+        return race;
+    }
 
-	public String GetName() {
-		return name;
-	}
-    public Button GetView(){
-	    return view;
+    public Button GetView() {
+
+        Button view = new Button();
+        view.setMinWidth(150);
+        view.setMinHeight(150);
+        view.getStyleClass().add(race.toLowerCase());
+        return view;
     }
 
     @Override
-    public boolean equals(Object obj){
+    public boolean equals(Object obj) {
         if (obj == null) return false;
         if (obj == this) return true;
         return obj.getClass() == this.getClass();
