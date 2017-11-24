@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Card;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class Troll extends Card {
 		this.race = "Troll";
 	}
 
-	public void power(Board b, Deck d, Player p1, Player p2) {
+	public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
 		List<Card> cardsP1 = b.getPlayerAICards();
 		b.setPlayerAICards(b.getPlayer1Cards());
 		b.setPlayer1Cards(cardsP1);

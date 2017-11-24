@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 
 import java.util.Random;
@@ -10,7 +11,7 @@ public class Korrigan extends Card {
 		this.race = "Korrigan";
 	}
 
-	public void power(Board b, Deck d, Player p1, Player p2) {
+	public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
 		Random rand = new Random();
 		for (int i = 0 ; i < 2 ; i++){
 			if(p2.hand.getNmbrOfCards() > 0)

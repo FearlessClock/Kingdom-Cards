@@ -1,5 +1,6 @@
 package com.Kingdom.cards.Model;
 
+import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Card;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ public class Gnome extends Card {
 		this.race = "Gnome";
 	}
 
-	public void power(Board b, Deck d, Player p1, Player p2) {
+	public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
 		p1.Draw(d);
 		p1.Draw(d);
 	}

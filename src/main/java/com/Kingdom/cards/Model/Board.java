@@ -57,14 +57,14 @@ public class Board {
     }
 
     //Play the chosen card for the current playerturns player
-    public void PlayCard(Card card, Deck d, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
+    public void PlayCard(Card card, Deck deck, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
         if (card != null) {
             if (FieldController.PlayerTurn.player1 == playerTurn) {
-            	card.power(this, d, p1, p2);
+            	card.power(this, deck, p1, p2, playerTurn);
                 player1Cards.add(card);
                 GetScorePlayer(1);
             } else { 
-                card.power(this, d, p2, p1);
+                card.power(this, deck, p2, p1, playerTurn);
                 playerAICards.add(card);
                 GetScorePlayer(2);
             }
