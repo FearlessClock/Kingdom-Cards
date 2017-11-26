@@ -5,6 +5,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="youwin" stylesheets="@Field.css" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.EndGameController">
    <children>
-      <Button layoutX="184.0" layoutY="350.0" mnemonicParsing="false" onAction="#OnQuit" prefHeight="43.0" prefWidth="116.0" style="-fx-background-color: White;" text="Main Menu" />
+      <Button layoutX="184.0" layoutY="350.0" mnemonicParsing="false" onAction="#OnQuit" prefHeight="43.0" prefWidth="116.0" styleClass="btnMenu" />
    </children>
 </AnchorPane>
