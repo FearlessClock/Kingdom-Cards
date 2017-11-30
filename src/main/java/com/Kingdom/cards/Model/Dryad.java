@@ -25,6 +25,7 @@ import javax.swing.text.AsyncBoxView.ChildState;
 public class Dryad extends Card{
 
 	JFrame frame;
+	Card chosenCard;
 	
 	public Dryad() {
 		super();
@@ -34,7 +35,7 @@ public class Dryad extends Card{
 	public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
 		if (playerTurn.equals(FieldController.PlayerTurn.player1)) {
 			frame = new JFrame("Dryad Power");
-			frame.setSize(1920, 1080);
+			frame.setSize(1620, 780);
 			frame.setLocationByPlatform(true);
 		    frame.setLocationRelativeTo(null);
 		    frame.setVisible(true);
@@ -46,27 +47,22 @@ public class Dryad extends Card{
 		    frame.setLayout(gridL);
 		    
 		    JButton jB = new JButton("card");
-		    /*frame.getContentPane().add(new JButton("1"));
-		    frame.getContentPane().add(new JButton("2"));
-		    frame.getContentPane().add(new JButton("3"));
-		    frame.getContentPane().add(new JButton("4"));
-		    frame.getContentPane().add(new JButton("5"));*/
-		    
-		    
-		    for (int i = 0; i < p2.hand.getHand().size(); i++) {
-		    	jB = p2.hand.getHand().get(i).GetViewJ();
+		   
+		    for (int i = 0; i < b.getPlayerAICards().size(); i++) {
+		    	jB = b.getPlayerAICards().get(i).GetViewJ();
 	            jB.addActionListener(this);
-	            //jB.setDisabledSelectedIcon(false);
+	            
 	            frame.getContentPane().add(jB);
 	        }
+  
 		    frame.setVisible(true);
-		    //JButton button = new JButton("Card");
 		    
-		    //frame.add(button);
-		    
-		    
-	        
+		    /*while (chosenCard == null){
+		    	
+		    }*/
+			b.addPlayer1Card(chosenCard);
 			
+
 			
 		}else if (playerTurn.equals(FieldController.PlayerTurn.playerAI)) {
 			
@@ -80,7 +76,30 @@ public class Dryad extends Card{
 		JButton button = (JButton) e.getSource();
 		
 		System.out.println(button.getText());
-		this.dispose();
+		switch (button.getText()){
+		case "Troll":
+			chosenCard = new Troll();
+			break;
+		case "Korrigan":
+			chosenCard = new Korrigan();
+			break;
+		case "Goblin":
+			chosenCard = new Goblin();
+			break;
+		case "Elf":
+			chosenCard = new Elf();
+			break;
+		case "Dryad":
+			chosenCard = new Dryad();
+			break;
+		case "Gnome":
+			chosenCard = new Gnome();
+			break;
+		default:
+			break;
+		}
+		
+		frame.dispose();
 		
 	}
 	

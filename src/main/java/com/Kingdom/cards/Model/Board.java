@@ -55,6 +55,10 @@ public class Board {
     public List<Card> getPlayerAICards() {
         return playerAICards;
     }
+    
+    public void addPlayer1Card(Card card){
+    	player1Cards.add(card);
+    }
 
     //Play the chosen card for the current playerturns player
     public void PlayCard(Card card, Deck deck, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {

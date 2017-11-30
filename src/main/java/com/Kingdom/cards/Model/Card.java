@@ -34,7 +34,7 @@ public abstract class Card extends JFrame implements ActionListener{
     
     public JButton GetViewJ() {
 
-        JButton view = new JButton(race.toLowerCase());
+        JButton view = new JButton(race);
         //view.setSize(10, 10);
         
         
