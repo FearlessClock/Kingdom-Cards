@@ -165,7 +165,7 @@ public class FieldController {
         gamestate = GameState.init;
         board = new Board();
         // Generate the deck of cards
-        deck = new Deck(7);
+        deck = new Deck(1);
         // Shuffle the deck of cards
         deck.Shuffle();
 
@@ -180,23 +180,29 @@ public class FieldController {
         Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = player1.Draw(deck);
-            b = c.GetView();
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
+            if(c != null)
+            {
+                b = c.GetView();
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                player1Field.getChildren().add(b);
+            }
         }
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = playerAI.Draw(deck);
-            b = c.GetView();
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            playerAIField.getChildren().add(b);
+            if(c != null)
+            {
+                b = c.GetView();
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                playerAIField.getChildren().add(b);
+            }
         }
 
         playerTurn = FlipACoin();
@@ -401,17 +407,23 @@ public class FieldController {
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
                 Scene scene = new Scene(winScene);
-                stage.setScene(scene);
-                stage.setFullScreen(true);
-                stage.show();
+                if(stage != null)
+                {
+                    stage.setScene(scene);
+                    stage.setFullScreen(true);
+                    stage.show();
+                }
             } else {
                 //Show lose screen
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
                 Scene scene = new Scene(winScene);
-                stage.setScene(scene);
-                stage.setFullScreen(true);
-                stage.show();
+                if(stage != null)
+                {
+                    stage.setScene(scene);
+                    stage.setFullScreen(true);
+                    stage.show();
+                }
             }
         }
     }
