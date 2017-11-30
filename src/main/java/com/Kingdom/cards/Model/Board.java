@@ -24,6 +24,7 @@ public class Board {
     IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
     public StringProperty playerAIScoreStr = new SimpleStringProperty("0");
 
+    public StringProperty player1Name = new SimpleStringProperty(" Pseudo player 1");
 
     public Board() {
         player1Cards = new ArrayList<Card>();
@@ -124,5 +125,6 @@ public class Board {
         }
         return score;
     }
+
 
 }

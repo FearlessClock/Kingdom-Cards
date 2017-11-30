@@ -21,6 +21,8 @@ public class Main extends Application {
         Logger logger = LogManager.getRootLogger();
         logger.trace("Configuration File Defined To Be :: " + System.getProperty("log4j.configurationFile"));
         Application.launch(args);
+
+
     }
 
 
@@ -32,4 +34,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
+
 }

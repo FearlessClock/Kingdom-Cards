@@ -55,10 +55,16 @@
             <Font size="18.0" />
          </font></Label>
       <Label alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="Board" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="13">
-         <font>
+
+        <font>
             <Font size="18.0" />
          </font></Label>
-         <Button fx:id="btnEndTurn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EndTurn" prefWidth="87.0" text="End turn" GridPane.rowIndex="8" />
+        <Label id="labelPlayer1" alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text=" -- player -- " textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="14">
+
+            <font>
+                <Font size="18.0" />
+            </font></Label>
+        <Button fx:id="btnEndTurn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EndTurn" prefWidth="87.0" text="End turn" GridPane.rowIndex="8" />
          <Button disable="true" mnemonicParsing="false" onAction="#DrawCard" opacity="0.0" text="Deck" GridPane.rowIndex="2" />
         <Label fx:id="nmbrOfCardsPlayerAI" alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="nmbrOfCardsPlayerAI" textFill="WHITE" GridPane.rowIndex="1" />
         <HBox fx:id="playerAIField" stylesheets="@Cards.css" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" />

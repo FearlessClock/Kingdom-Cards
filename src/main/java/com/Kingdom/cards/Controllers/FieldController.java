@@ -56,6 +56,9 @@ public class FieldController {
     HBox playerAIField;
 
     @FXML
+    Label labelPlayer1;
+
+    @FXML
     HBox player1Board;
     @FXML
     HBox playerAIBoard;
@@ -176,6 +179,9 @@ public class FieldController {
             nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScoreStr);
         }
 
+        if (labelPlayer1 != null) {
+            labelPlayer1.textProperty().bind(board.player1Name);
+        }
         Card c;
         Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
