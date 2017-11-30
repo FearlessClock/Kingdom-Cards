@@ -26,3 +26,51 @@
         -fx-background-image: url('youlost.png') no-repeat center center fixed;
         -fx-background-size: cover;
 }
+
+.btnStart{
+
+
+        -fx-background-image: url('btnStart.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
+
+.btnQuit{
+
+
+        -fx-background-image: url('btnQuit.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
+
+.btnEndTurn{
+
+
+        -fx-background-image: url('btnEndTurn.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
+
+.btnMenu{
+
+
+        -fx-background-image: url('btnMenu.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
+
+.iconeAI{
+
+
+        -fx-background-image: url('iconeAI.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
+
+.iconePlayer{
+
+
+        -fx-background-image: url('iconePlayer.png') no-repeat center center fixed;
+        -fx-background-size: cover;
+        -fx-background-color:transparent;
+}
