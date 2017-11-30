@@ -400,7 +400,7 @@ public class FieldController {
         int player1NmbrOfCards = player1.hand.getNmbrOfCards();
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
-        if (nmbrOfCardsInDeck == 0 && player1NmbrOfCards == 0 && playerAINmbrOfCards == 0) {
+        if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0)) {
             //Game is finished, show the end screen for win or lose
             if (board.getPlayer1Score() > board.getPlayerAIScore()) {
                 //Show win screen

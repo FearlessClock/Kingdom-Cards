@@ -21,7 +21,7 @@ public class ElfStep {
     @Given("^\\[Elf\\]A board with (\\d+) cards$")
     public void elf_A_board_with_cards(int arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-// Write code here that turns the phrase above into concrete actions
+        // Write code here that turns the phrase above into concrete actions
         deck = new Deck(5);
         player1 = new Player();
         playerAI = new Player();
