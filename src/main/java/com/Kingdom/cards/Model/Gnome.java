@@ -20,4 +20,10 @@ public class Gnome extends Card {
 		p1.Draw(d);
 		p1.Draw(d);
 	}
+
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

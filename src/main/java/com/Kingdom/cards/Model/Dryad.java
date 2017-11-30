@@ -22,8 +22,10 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.text.AsyncBoxView.ChildState;
 
-public class Dryad extends Card {
+public class Dryad extends Card{
 
+	JFrame frame;
+	
 	public Dryad() {
 		super();
 		this.race = "Dryad";
@@ -31,9 +33,8 @@ public class Dryad extends Card {
 
 	public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
 		if (playerTurn.equals(FieldController.PlayerTurn.player1)) {
-			final JFrame frame = new JFrame("Dryad Power");
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setSize(300, 300);
+			frame = new JFrame("Dryad Power");
+			frame.setSize(1920, 1080);
 			frame.setLocationByPlatform(true);
 		    frame.setLocationRelativeTo(null);
 		    frame.setVisible(true);
@@ -44,21 +45,26 @@ public class Dryad extends Card {
 		    gridL.setHgap(5);
 		    frame.setLayout(gridL);
 		    
-		    
-		    frame.getContentPane().add(new JButton("1"));
+		    JButton jB = new JButton("card");
+		    /*frame.getContentPane().add(new JButton("1"));
 		    frame.getContentPane().add(new JButton("2"));
 		    frame.getContentPane().add(new JButton("3"));
 		    frame.getContentPane().add(new JButton("4"));
-		    frame.getContentPane().add(new JButton("5"));
-		    frame.setVisible(true);
+		    frame.getContentPane().add(new JButton("5"));*/
 		    
+		    
+		    for (int i = 0; i < p2.hand.getHand().size(); i++) {
+		    	jB = p2.hand.getHand().get(i).GetViewJ();
+	            jB.addActionListener(this);
+	            //jB.setDisabledSelectedIcon(false);
+	            frame.getContentPane().add(jB);
+	        }
+		    frame.setVisible(true);
 		    //JButton button = new JButton("Card");
 		    
 		    //frame.add(button);
 		    
 		    
-
-		    //frame.dispose();
 	        
 			
 			
@@ -66,10 +72,16 @@ public class Dryad extends Card {
 			
 			
 			
-		}
+		}        
+	}
+
+	@Override
+	public void actionPerformed(java.awt.event.ActionEvent e) {
+		JButton button = (JButton) e.getSource();
 		
+		System.out.println(button.getText());
+		this.dispose();
 		
-        
 	}
 	
 }

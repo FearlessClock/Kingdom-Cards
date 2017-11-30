@@ -3,6 +3,7 @@ package com.Kingdom.cards.Model;
 import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 
+import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Random;
 
@@ -45,5 +46,11 @@ public class Elf extends Card {
             }
         }
     }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

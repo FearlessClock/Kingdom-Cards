@@ -3,6 +3,7 @@ package com.Kingdom.cards.Model;
 import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 
+import java.awt.event.ActionEvent;
 import java.util.Random;
 
 public class Korrigan extends Card {
@@ -21,5 +22,11 @@ public class Korrigan extends Card {
 				p2.hand.removeFromHand(cardPos);
 			}
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
