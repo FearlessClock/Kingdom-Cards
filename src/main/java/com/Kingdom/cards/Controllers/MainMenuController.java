@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 public class MainMenuController {
@@ -22,7 +23,9 @@ public class MainMenuController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/FieldView.fxml"));
         Scene scene = new Scene(fieldScene);
+        stage.setFullScreen(true);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
     }
 
@@ -37,6 +40,7 @@ public class MainMenuController {
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/OptionsView.fxml"));
         Scene scene = new Scene(fieldScene);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
     }
 
@@ -46,6 +50,7 @@ public class MainMenuController {
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/ScoreView.fxml"));
         Scene scene = new Scene(fieldScene);
         stage.setScene(scene);
+        stage.setFullScreen(true);
         stage.show();
     }
 

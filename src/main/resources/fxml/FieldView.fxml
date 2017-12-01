@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,59 +10,54 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane onKeyPressed="#keyPressed" stylesheets="@Cards.css" xmlns="http://javafx.com/javafx/8.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.FieldController">
-   <ImageView>
-      <image>
-         <Image url="@red_dragon_by_sandara-d6hpycs.jpg" />
-      </image>
-   </ImageView>
-    <GridPane layoutY="2.0" prefHeight="597.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane onKeyPressed="#keyPressed" styleClass="playfield" stylesheets="@Field.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.Kingdom.cards.Controllers.FieldController">
+    <GridPane alignment="TOP_CENTER" layoutY="14.0" prefHeight="1181.0" prefWidth="2024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-         <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="87.0" prefWidth="113.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1001.0" minWidth="63.0" prefWidth="63.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1793.0" minWidth="100.0" prefWidth="1793.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="394.0" minWidth="120.0" prefWidth="122.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1904.0" minWidth="100.0" prefWidth="1902.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="57.0" valignment="CENTER" />
-         <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="50.0" valignment="CENTER" />
-         <RowConstraints maxHeight="145.0" minHeight="16.0" prefHeight="44.0" valignment="CENTER" />
-         <RowConstraints maxHeight="168.0" minHeight="15.0" prefHeight="57.0" valignment="CENTER" />
+         <RowConstraints maxHeight="91.1703109741211" minHeight="80.0" prefHeight="71.0" valignment="CENTER" />
+            <RowConstraints maxHeight="91.1703109741211" minHeight="80.0" prefHeight="81.0" valignment="CENTER" />
+         <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="44.0" valignment="CENTER" />
+         <RowConstraints maxHeight="145.0" minHeight="7.0" prefHeight="28.0" valignment="CENTER" />
+         <RowConstraints maxHeight="168.0" minHeight="15.0" prefHeight="28.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="35.0" valignment="CENTER" />
          <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
          <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
          <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="81.81646728515625" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="20.18353271484375" valignment="CENTER" />
          <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
          <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
-         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
-         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
-         <RowConstraints maxHeight="183.0" minHeight="5.0" prefHeight="51.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="64.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="56.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="77.0" valignment="CENTER" />
+         <RowConstraints maxHeight="183.0" minHeight="10.0" prefHeight="86.0" valignment="CENTER" />
+         <RowConstraints maxHeight="267.0" minHeight="10.0" prefHeight="145.0" valignment="CENTER" />
+         <RowConstraints maxHeight="232.0" minHeight="80.0" prefHeight="31.0" valignment="CENTER" />
+         <RowConstraints maxHeight="213.0" minHeight="80.0" prefHeight="91.0" valignment="BOTTOM" vgrow="ALWAYS" />
         </rowConstraints>
-        <Label fx:id="turnLbl" prefHeight="17.0" prefWidth="85.0" text="turnLbl" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="8">
+        <Label fx:id="turnLbl" prefHeight="52.0" prefWidth="124.0" styleClass="iconePlayer" textFill="WHITE" GridPane.rowIndex="18">
          <font>
             <Font size="18.0" />
          </font></Label>
-        <HBox fx:id="playerAIBoard" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Label fx:id="nmbrOfCardsPlayer1" prefHeight="8.0" prefWidth="85.0" text="nmbrOfCardsPlayer1" textFill="WHITE" GridPane.rowIndex="8">
+        <HBox fx:id="playerAIBoard" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@Cards.css" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+        <Label fx:id="nmbrOfCardsPlayer1" prefHeight="8.0" prefWidth="85.0" text="nmbrOfCardsPlayer1" textFill="WHITE" GridPane.rowIndex="17">
          <font>
             <Font size="18.0" />
          </font></Label>
-      <Label alignment="CENTER" prefHeight="41.0" prefWidth="83.0" text="Board" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <HBox fx:id="player1Field" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@Cards.css" GridPane.columnIndex="1" GridPane.rowIndex="17" GridPane.valignment="CENTER" />
+         <Label prefHeight="45.0" prefWidth="108.0" styleClass="iconeAI" textFill="WHITE" GridPane.rowIndex="1">
          <font>
             <Font size="18.0" />
          </font></Label>
-        <HBox fx:id="player1Field" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="8" GridPane.valignment="CENTER" />
-         <Label prefHeight="17.0" prefWidth="85.0" text="AI" textFill="WHITE" GridPane.columnIndex="1">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-      <Label alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="Board" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="6">
-         <font>
-            <Font size="18.0" />
-         </font></Label>
-         <Button fx:id="btnEndTurn" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EndTurn" prefWidth="87.0" text="End turn" GridPane.rowIndex="5" />
-         <Button disable="true" mnemonicParsing="false" onAction="#DrawCard" opacity="0.0" text="Deck" GridPane.rowIndex="2" />
-        <Label fx:id="nmbrOfCardsPlayerAI" alignment="CENTER" prefHeight="17.0" prefWidth="85.0" text="nmbrOfCardsPlayerAI" textFill="WHITE" GridPane.rowIndex="1" />
-        <HBox fx:id="playerAIField" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" />
-         <HBox fx:id="player1Board" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-
+         <Button fx:id="btnEndTurn" defaultButton="true" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EndTurn" prefHeight="61.0" prefWidth="160.0" styleClass="btnEndTurn" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="19" GridPane.valignment="CENTER">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+        <Label fx:id="nmbrOfCardsPlayerAI" alignment="TOP_CENTER" prefHeight="17.0" prefWidth="85.0" text="nmbrOfCardsPlayerAI" textFill="WHITE" GridPane.rowIndex="2" />
+        <HBox fx:id="playerAIField" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@Cards.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <HBox fx:id="player1Board" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" stylesheets="@Cards.css" GridPane.columnIndex="1" GridPane.rowIndex="14" />
     </GridPane>
 </AnchorPane>

@@ -28,6 +28,7 @@ public class Main extends Application {
         mainMenuScene = FXMLLoader.load(getClass().getResource("/fxml/MainMenuView.fxml"));
         Scene scene = new Scene(mainMenuScene);
         primaryStage.setTitle("Kingdom Cards");
+        primaryStage.setFullScreen(true);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

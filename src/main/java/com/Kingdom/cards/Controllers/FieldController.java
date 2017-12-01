@@ -137,6 +137,16 @@ public class FieldController {
                 break;
         }
     }
+    
+    @FXML
+    public void MoveScreen(KeyEvent keyEvent) throws IOException {
+    	Window window = ((AnchorPane) keyEvent.getSource()).getScene().getWindow();
+        final Popup popup = new Popup();
+        popup.setX(window.getX() / 2);
+        popup.setY(window.getY() / 2);
+    	
+    }
+    
 
     // Player turn state variable
     public enum PlayerTurn {
@@ -181,23 +191,29 @@ public class FieldController {
         Button b;
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = player1.Draw(deck);
-            b = c.GetView();
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            player1Field.getChildren().add(b);
+            if(c != null)
+            {
+                b = c.GetView();
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                player1Field.getChildren().add(b);
+            }
         }
         for (int i = 0; i < nmbrOfCardsInit; i++) {
             c = playerAI.Draw(deck);
-            b = c.GetView();
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
-            playerAIField.getChildren().add(b);
+            if(c != null)
+            {
+                b = c.GetView();
+                b.setOnAction(new EventHandler<ActionEvent>() {
+                    public void handle(ActionEvent event) {
+                        SendCard(event);
+                    }
+                });
+                playerAIField.getChildren().add(b);
+            }
         }
 
         playerTurn = FlipACoin();
@@ -397,22 +413,30 @@ public class FieldController {
         int player1NmbrOfCards = player1.hand.getNmbrOfCards();
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
-        if (nmbrOfCardsInDeck == 0 && player1NmbrOfCards == 0 && playerAINmbrOfCards == 0) {
+        if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0)) {
             //Game is finished, show the end screen for win or lose
             if (board.getPlayer1Score() > board.getPlayerAIScore()) {
                 //Show win screen
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/WinView.fxml"));
                 Scene scene = new Scene(winScene);
-                stage.setScene(scene);
-                stage.show();
+                if(stage != null)
+                {
+                    stage.setScene(scene);
+                    stage.setFullScreen(true);
+                    stage.show();
+                }
             } else {
                 //Show lose screen
                 Stage stage = (Stage) player1Field.getScene().getWindow();
                 Parent winScene = FXMLLoader.load(getClass().getResource("/fxml/EndView.fxml"));
                 Scene scene = new Scene(winScene);
-                stage.setScene(scene);
-                stage.show();
+                if(stage != null)
+                {
+                    stage.setScene(scene);
+                    stage.setFullScreen(true);
+                    stage.show();
+                }
             }
         }
     }
