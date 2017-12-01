@@ -128,22 +128,22 @@ public class Board {
             listingClass.add(i, 0);
         }
         for (Card c : playerboard) {
-            if (c.GetRace() == "Dryad") {
+            if ("Dryad".equals(c.GetRace())) {
                 listingClass.set(0, listingClass.get(0) + 1);
             }
-            if (c.GetRace() == "Elf") {
+            if ("Elf".equals(c.GetRace())) {
                 listingClass.set(1, listingClass.get(1) + 1);
             }
-            if (c.GetRace() == "Gnome") {
+            if ("Gnome".equals(c.GetRace())) {
                 listingClass.set(2, listingClass.get(2) + 1);
             }
-            if (c.GetRace() == "Goblin") {
+            if ("Goblin".equals(c.GetRace())) {
                 listingClass.set(3, listingClass.get(3) + 1);
             }
-            if (c.GetRace() == "Korrigan") {
+            if ("Korrigan".equals(c.GetRace())) {
                 listingClass.set(4, listingClass.get(4) + 1);
             }
-            if (c.GetRace() == "Troll") {
+            if ("Troll".equals(c.GetRace())) {
                 listingClass.set(5, listingClass.get(5) + 1);
             }
         }
