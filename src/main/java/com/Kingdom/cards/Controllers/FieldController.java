@@ -164,68 +164,7 @@ public class FieldController {
 
     private GameState gamestate;
 
-    // Labels showing the number of cards per person
-    @FXML
-    private Label nmbrOfCardsPlayer1;
-    @FXML
-    private Label nmbrOfCardsPlayerAI;
 
-    @FXML
-    public void initialize() {
-        gamestate = GameState.init;
-        board = new Board();
-        // Generate the deck of cards
-        deck = new Deck(7);
-        // Shuffle the deck of cards
-        deck.Shuffle();
-
-        if (nmbrOfCardsPlayer1 != null) {
-            nmbrOfCardsPlayer1.textProperty().bind(board.player1ScoreStr);
-        }
-        if (nmbrOfCardsPlayerAI != null) {
-            nmbrOfCardsPlayerAI.textProperty().bind(board.playerAIScoreStr);
-        }
-
-        Card c;
-        Button b;
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            c = player1.Draw(deck);
-            if(c != null)
-            {
-                b = c.GetView();
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                player1Field.getChildren().add(b);
-            }
-        }
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            c = playerAI.Draw(deck);
-            if(c != null)
-            {
-                b = c.GetView();
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                playerAIField.getChildren().add(b);
-            }
-        }
-
-        playerTurn = FlipACoin();
-
-        GrayButtons(player1Field.getChildren(), playerAIField.getChildren(), playerTurn);
-
-        turnLbl.setText(playerTurn.toString());
-        gamestate = GameState.game;
-
-        if (playerTurn == PlayerTurn.playerAI) {
-            turnOfAI();
-        }
-    }
 
     private PlayerTurn FlipACoin() {
         Random rand = new Random();
