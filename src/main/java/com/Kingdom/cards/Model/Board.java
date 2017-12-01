@@ -56,8 +56,41 @@ public class Board {
         return playerAICards;
     }
     
-    public void addPlayer1Card(Card card){
-    	player1Cards.add(card);
+    public void addCard(Card card, FieldController.PlayerTurn playerTurn){
+    	 if (FieldController.PlayerTurn.player1 == playerTurn){
+    		 player1Cards.add(card);
+    	 }
+    	 else{
+    		 playerAICards.add(card);
+    	 }
+    }
+    
+    public void removeCard(Card card, FieldController.PlayerTurn playerTurn){
+    	if (FieldController.PlayerTurn.player1 == playerTurn){
+    		for (int i = 0; i < getPlayerAICards().size(); i++){
+    			if (playerAICards.get(i).GetRace() == card.GetRace()){
+    				playerAICards.remove(i);
+    			}
+    		}	
+	   	 }
+	   	 else{	
+	   		for (int i = 0; i < getPlayerAICards().size(); i++){
+    			if (player1Cards.get(i).GetRace() == card.GetRace()){
+    				player1Cards.remove(i);
+    			}
+    		}	
+    	 }
+    }
+    
+    public Card getCard(Integer index, FieldController.PlayerTurn playerTurn){
+    	Card card;
+    	if (FieldController.PlayerTurn.player1 == playerTurn){
+    		card = playerAICards.get(index);
+	   	 }
+	   	 else{	
+	   		card = player1Cards.get(index);
+    	 }
+    	return card;
     }
 
     //Play the chosen card for the current playerturns player
