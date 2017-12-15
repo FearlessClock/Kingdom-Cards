@@ -2,6 +2,7 @@ package com.Kingdom.cards.Features;
 import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.*;
+import com.Kingdom.cards.PlayerTurn;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -43,7 +44,7 @@ public class DryadStep {
     @When("^I play a Dryad card$")
     public void i_play_a_Dryad_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        board.PlayCard(new Dryad(), deck, FieldController.PlayerTurn.player1, player1, playerAI);
+        board.PlayCard(new Dryad(), deck, PlayerTurn.player1, player1, playerAI);
     }
 
     @Then("^My board grew by (\\d+) and enemy srunk by (\\d+)$")

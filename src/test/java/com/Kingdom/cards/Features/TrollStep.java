@@ -6,6 +6,7 @@ import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Card;
 import com.Kingdom.cards.Model.Player;
 import com.Kingdom.cards.Model.Troll;
+import com.Kingdom.cards.PlayerTurn;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -44,13 +45,13 @@ public class TrollStep {
     @When("^I play a Troll card$")
     public void i_play_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.player1, playerP1, playerAI);
+        board.PlayCard(new Troll(), deck, PlayerTurn.player1, playerP1, playerAI);
     }
 
     @When("^AI plays a Troll card$")
     public void ai_plays_a_Troll_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        board.PlayCard(new Troll(), deck, FieldController.PlayerTurn.playerAI, playerP1, playerAI);
+        board.PlayCard(new Troll(), deck, PlayerTurn.playerAI, playerP1, playerAI);
     }
 
 

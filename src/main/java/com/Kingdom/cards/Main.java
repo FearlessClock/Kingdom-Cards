@@ -1,5 +1,6 @@
 package com.Kingdom.cards;
 
+import com.Kingdom.cards.Controllers.MainMenuController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +26,8 @@ public class Main extends Application {
 
 
     public void start(Stage primaryStage) throws Exception {
-        mainMenuScene = FXMLLoader.load(getClass().getResource("/fxml/MainMenuView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainMenuView.fxml"));
+        mainMenuScene = loader.load();
         Scene scene = new Scene(mainMenuScene);
         primaryStage.setTitle("Kingdom Cards");
         primaryStage.setFullScreen(true);
