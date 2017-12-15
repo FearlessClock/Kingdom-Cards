@@ -3,6 +3,7 @@ package com.Kingdom.cards.Model;
 import com.Kingdom.cards.Controllers.FieldController;
 
 import com.Kingdom.cards.Deck;
+import com.Kingdom.cards.PlayerTurn;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,10 +19,10 @@ public class Board {
     private List<Card> player1Cards;
     private List<Card> playerAICards;
 
-    IntegerProperty player1Score = new SimpleIntegerProperty(0);
+    private IntegerProperty player1Score = new SimpleIntegerProperty(0);
     public StringProperty player1ScoreStr = new SimpleStringProperty("0");
 
-    IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
+    private IntegerProperty playerAIScore = new SimpleIntegerProperty(0);
     public StringProperty playerAIScoreStr = new SimpleStringProperty("0");
 
 
@@ -57,9 +58,9 @@ public class Board {
     }
 
     //Play the chosen card for the current playerturns player
-    public void PlayCard(Card card, Deck deck, FieldController.PlayerTurn playerTurn, Player p1, Player p2) {
+    public void PlayCard(Card card, Deck deck, PlayerTurn playerTurn, Player p1, Player p2) {
         if (card != null) {
-            if (FieldController.PlayerTurn.player1 == playerTurn) {
+            if (PlayerTurn.player1 == playerTurn) {
             	card.power(this, deck, p1, p2, playerTurn);
                 player1Cards.add(card);
                 GetScorePlayer(1);
@@ -71,14 +72,14 @@ public class Board {
         }
     }
 
-    final ChangeListener changeListener = new ChangeListener() {
+    private final ChangeListener changeListener = new ChangeListener() {
         public void changed(ObservableValue observable, Object oldValue, Object newValue) {
             player1ScoreStr.set(Integer.toString(getPlayer1Score()));
             playerAIScoreStr.set(Integer.toString(getPlayerAIScore()));
         }
     };
 
-    public int GetScorePlayer(int player) {
+    private int GetScorePlayer(int player) {
         List<Card> playerboard = new ArrayList<Card>();
         if (player == 1) {
             playerboard.addAll(player1Cards);
@@ -91,22 +92,22 @@ public class Board {
             listingClass.add(i, 0);
         }
         for (Card c : playerboard) {
-            if (c.GetRace() == "Dryad") {
+            if ("Dryad".equals(c.GetRace())) {
                 listingClass.set(0, listingClass.get(0) + 1);
             }
-            if (c.GetRace() == "Elf") {
+            if ("Elf".equals(c.GetRace())) {
                 listingClass.set(1, listingClass.get(1) + 1);
             }
-            if (c.GetRace() == "Gnome") {
+            if ("Gnome".equals(c.GetRace())) {
                 listingClass.set(2, listingClass.get(2) + 1);
             }
-            if (c.GetRace() == "Goblin") {
+            if ("Goblin".equals(c.GetRace())) {
                 listingClass.set(3, listingClass.get(3) + 1);
             }
-            if (c.GetRace() == "Korrigan") {
+            if ("Korrigan".equals(c.GetRace())) {
                 listingClass.set(4, listingClass.get(4) + 1);
             }
-            if (c.GetRace() == "Troll") {
+            if ("Troll".equals(c.GetRace())) {
                 listingClass.set(5, listingClass.get(5) + 1);
             }
         }

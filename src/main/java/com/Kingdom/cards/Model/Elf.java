@@ -2,6 +2,7 @@ package com.Kingdom.cards.Model;
 
 import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
+import com.Kingdom.cards.PlayerTurn;
 
 import java.util.List;
 import java.util.Random;
@@ -15,9 +16,9 @@ public class Elf extends Card {
 
     }
 
-    public void power(Board b, Deck d, Player p1, Player p2, FieldController.PlayerTurn playerTurn) {
+    public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
         List<Card> cards;
-        if (playerTurn.equals(FieldController.PlayerTurn.player1)) {
+        if (playerTurn.equals(PlayerTurn.player1)) {
             cards = b.getPlayerAICards();
             if (cards.size() > 0) {
                 Random rand = new Random();
@@ -30,7 +31,7 @@ public class Elf extends Card {
                     cards.remove(randVal);
                 }
             }
-        } else if (playerTurn.equals(FieldController.PlayerTurn.playerAI)) {
+        } else if (playerTurn.equals(PlayerTurn.playerAI)) {
             cards = b.getPlayer1Cards();
             if (cards.size() > 0) {
                 Random rand = new Random();

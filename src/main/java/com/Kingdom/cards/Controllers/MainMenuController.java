@@ -14,52 +14,16 @@ import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 public class MainMenuController {
+    public MainMenuController() {
 
-    @FXML
-    private Label text;
+    }
 
-    @FXML
-    private void btnStartCall(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+    public void LaunchGame(Stage stage) throws IOException {
         Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/FieldView.fxml"));
         Scene scene = new Scene(fieldScene);
         stage.setFullScreen(true);
         stage.setScene(scene);
         stage.setFullScreen(true);
         stage.show();
-    }
-
-	@FXML
-	private void btnQuitCall(ActionEvent event) {
-        Platform.exit();
-    }
-
-    @FXML
-    private void btnOptionsCall(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/OptionsView.fxml"));
-        Scene scene = new Scene(fieldScene);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.show();
-    }
-
-    @FXML
-    private void btnScoreCall(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Parent fieldScene = FXMLLoader.load(getClass().getResource("/fxml/ScoreView.fxml"));
-        Scene scene = new Scene(fieldScene);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.show();
-    }
-
-    public MainMenuController() {
-
-    }
-
-    @FXML
-    public void initialize() {
-
     }
 }
