@@ -33,37 +33,10 @@ public class FieldController {
     * */
     private FieldView fieldView;
 
-    public FieldController(FieldView fieldView) {
-        this.fieldView = fieldView;
-        gamestate = GameState.init;
-        board = new Board();
-        // Generate the deck of cards
-        deck = new Deck(7);
-        // Shuffle the deck of cards
-        deck.Shuffle();
-
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            player1.Draw(deck);
-        }
-
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            playerAI.Draw(deck);
-        }
-
-        playerTurn = FlipACoin();
-
-        gamestate = GameState.game;
-
-        if (playerTurn == PlayerTurn.playerAI) {
-            turnOfAI();
-        }
-
-    }
-
     //The deck of cards
     private Deck deck;
 
-    public Deck GetDeck() {
+    public Deck getDeck() {
         return deck;
     }
 
@@ -107,11 +80,42 @@ public class FieldController {
             return PlayerTurn.playerAI;
     }
 
+
+    public FieldController(FieldView fieldView) {
+        this.fieldView = fieldView;
+        gamestate = GameState.init;
+        board = new Board();
+        // Generate the deck of cards
+        deck = new Deck(7);
+        // Shuffle the deck of cards
+        deck.Shuffle();
+
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
+            player1.Draw(deck);
+        }
+
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
+            playerAI.Draw(deck);
+        }
+
+        playerTurn = FlipACoin();
+
+        gamestate = GameState.game;
+
+        if (playerTurn == PlayerTurn.playerAI) {
+            turnOfAI();
+        }
+
+    }
+
     public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
-            Card card = player1.Draw(deck);
+            Card card = player1.Draw(getDeck());
             playerHasDrawn = true;
-            fieldView.AddCardToBoard(card, playerTurn);
+            if(fieldView != null)
+            {
+                fieldView.AddCardToBoard(card, playerTurn);
+            }
         }
     }
 
@@ -131,11 +135,17 @@ public class FieldController {
     }
 
     private void UpdateHands() {
-        fieldView.UpdateHands(player1.hand, playerAI.hand);
+        if(fieldView != null)
+        {
+            fieldView.UpdateHands(player1.hand, playerAI.hand);
+        }
     }
 
     private void UpdateBoard() {
-        fieldView.UpdateBoard(board);
+        if(fieldView != null)
+        {
+            fieldView.UpdateBoard(board);
+        }
     }
 
 
@@ -145,19 +155,21 @@ public class FieldController {
         playerTurn = PlayerTurn.playerAI;
 
         // Draw Card
-        Card c = playerAI.Draw(deck);
+        Card c = playerAI.Draw(getDeck());
         playerHasDrawn = true;
-        fieldView.AddCardToBoard(c, PlayerTurn.playerAI);
+        if(fieldView != null)
+        {
+            fieldView.AddCardToBoard(c, PlayerTurn.playerAI);
+        }
 
         // Play Card
         Card playedCard = playerAI.PlayCard();
-        board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
+        board.PlayCard(playedCard, getDeck(), playerTurn, player1, playerAI);
 
-        // Remove the card from the hand of the AI
-        int playedCardIndex = -1;
-        int nbOfCardInHand = playerAI.hand.getHand().size();
-
-        fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
+        if(fieldView != null)
+        {
+            fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
+        }
 
         // Update Board and variables
         playerHasPlay = true;
@@ -178,7 +190,11 @@ public class FieldController {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
-                fieldView.GrayButtons(playerTurn);
+
+                if(fieldView != null)
+                {
+                    fieldView.GrayButtons(playerTurn);
+                }
             }
 
             DrawCard();
@@ -187,7 +203,7 @@ public class FieldController {
     }
 
     private void CheckEndGame() {
-        int nmbrOfCardsInDeck = deck.Size();
+        int nmbrOfCardsInDeck = getDeck().Size();
         int player1NmbrOfCards = player1.hand.getNmbrOfCards();
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
@@ -196,7 +212,11 @@ public class FieldController {
             boolean playerWin;
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
             try {
-                fieldView.ShowEndScreen(playerWin);
+
+                if(fieldView != null)
+                {
+                    fieldView.ShowEndScreen(playerWin);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
