@@ -1,18 +1,20 @@
 package com.Kingdom.cards;
 
+import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Model.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class AITest {
-	AI playerAI;
+	FieldController fieldController;
+	Player playerAI;
 	Deck deck;
-
 	@Before
 	public void setUp() throws Exception {
-		playerAI = new AI();
-		deck = new Deck(8);
+		fieldController = new FieldController(null, null);
+		deck = fieldController.getDeck();
+		playerAI = fieldController.getPlayerAI();
 	}
 
 	@Test
@@ -31,34 +33,17 @@ public class AITest {
 	@Test
 	public void PlayCard() {
 		for (int i = 0; i < 5; i++) { // Draw 5 cards in hand of playerAI
-			playerAI.Draw(deck);
+			playerAI.Draw(fieldController.getDeck());
 		}
 		int sizeHand = playerAI.SizeHand();
-		Card card1 = playerAI.PlayCard(); // Get the first card (we will play it
+		Card card1 = playerAI.PlayCard(0); // Get the first card (we will play it
 											// for test)
-
-		// Assert.assertEquals(true, playerAI.board.contains(card1)); // Test if
+		fieldController.getBoard().getPlayerAICards().add(card1);
+		Assert.assertEquals(true, fieldController.getBoard().getPlayerAICards().contains(card1)); // Test if
 		// card1 is place on board
 		Assert.assertEquals(sizeHand - 1, playerAI.SizeHand()); // Test if size
 																// of hand
 																// decrease
-		// Assert.assertEquals(sizeBoard + 1, playerAI.SizeBoard()); // Test if
-		// size of board increase
-	}
-
-	@Test
-	public void ScoreBoard() {
-		while (!deck.IsEmpty()) {
-			playerAI.Draw(deck);
 		}
-		playerAI.PlayCard(); // Play 1 card => score = 1
-		// Assert.assertEquals(1, playerAI.ScoreBoard()); // Score after 1 card
-		// play
-
-		// play one of each card => 1 (current) + 5 (number of cards) + 3 (bonus
-		// point)
-
-		// Assert.assertEquals(9, playerAI.ScoreBoard());
-	}
 
 }

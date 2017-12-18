@@ -6,9 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class CardTest {
-    @org.junit.Before
-    public void setUp() throws Exception {
-    }
 
     @Test
     public void GetCardRace() throws Exception {
@@ -16,5 +13,6 @@ public class CardTest {
 
         Assert.assertEquals(card.GetRace(), "Elf");
     }
+
 
 }
