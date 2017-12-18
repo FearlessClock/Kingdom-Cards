@@ -15,3 +15,10 @@ Feature: Game loop
   Scenario: The playerAI holds enough cards
     Given A controller initialised
     Then The playerAI holds 5 cards
+
+
+  Scenario: Play the end of the playerAI turn
+    Given A controller initialised
+    Given playerHasPlayed true and player turn
+    When End the turn
+    Then playerTurn is player, playerHasPlayed false, playerHasDrawn false

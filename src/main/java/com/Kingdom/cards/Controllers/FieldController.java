@@ -64,7 +64,7 @@ public class FieldController {
     private int nmbrOfCardsInit = 5;
 
     public PlayerTurn playerTurn;
-    private boolean playerHasDrawn = false;
+    public boolean playerHasDrawn = false;
     public boolean playerHasPlay = false;
 
 
@@ -81,7 +81,7 @@ public class FieldController {
     }
 
 
-    public FieldController(FieldView fieldView) {
+    public FieldController(FieldView fieldView, PlayerTurn playerTurn) {
         this.fieldView = fieldView;
         gamestate = GameState.init;
         board = new Board();
@@ -98,7 +98,14 @@ public class FieldController {
             playerAI.Draw(deck);
         }
 
-        playerTurn = FlipACoin();
+        if(playerTurn != null)
+        {
+            this.playerTurn = playerTurn;//FlipACoin();
+        }
+        else
+        {
+            this.playerTurn = FlipACoin();
+        }
 
         gamestate = GameState.game;
 
