@@ -109,7 +109,7 @@ public class FieldController {
 
         gamestate = GameState.game;
 
-        if (playerTurn == PlayerTurn.playerAI) {
+        if (this.playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
 
