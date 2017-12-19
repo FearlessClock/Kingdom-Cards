@@ -34,7 +34,7 @@ public class Dryad extends Card {
 
 	public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
 		if (playerTurn.equals(PlayerTurn.player1)) {
-			stage.initModality(Modality.APPLICATION_MODAL);
+			//stage.initModality(Modality.APPLICATION_MODAL);
 
 			VBox root = new VBox(b.getPlayerAICards().size() + 10);
 			Label modalityLabel = new Label("Choose a card");
@@ -45,7 +45,6 @@ public class Dryad extends Card {
 				card = new Button(b.getPlayerAICards().get(i).GetRace());
 				root.getChildren().add(card);
 				card.setOnAction(e -> actionPerformed(e, b, playerTurn));
-				// card.setOnAction(e -> System.out.println(card.getText()));
 			}
 
 			Scene scene = new Scene(root, 1900, 1000);
@@ -68,8 +67,9 @@ public class Dryad extends Card {
 	public void actionPerformed(ActionEvent e, Board b, PlayerTurn playerTurn) {
 		
 		
-		String race = card.getText();
-		System.out.println(card.getText());
+		Button button = (Button) e.getSource();
+		String race = button.getText();
+		System.out.println(race);
 		
 		if ("Troll".equals(race)) {
 			chosenCard = new Troll();
