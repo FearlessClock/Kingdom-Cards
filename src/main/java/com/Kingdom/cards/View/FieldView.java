@@ -64,7 +64,7 @@ public class FieldView {
 
     @FXML
     public void initialize() {
-        fieldController = new FieldController(this);
+        fieldController = new FieldController(this, null);
         if (nmbrOfCardsPlayer1 != null) {
             nmbrOfCardsPlayer1.textProperty().bind(fieldController.getBoard().player1ScoreStr);
         }
