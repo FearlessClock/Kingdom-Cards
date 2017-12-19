@@ -19,8 +19,8 @@ public abstract class Card {
     public Button GetView() {
 
         Button view = new Button();
-        view.setMinWidth(150);
-        view.setMinHeight(150);
+        view.setMinWidth(50);
+        view.setMinHeight(50);
         view.getStyleClass().add(race.toLowerCase());
         view.getStylesheets().add("@Cards.css");
         return view;
