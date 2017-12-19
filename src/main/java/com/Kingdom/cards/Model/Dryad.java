@@ -39,14 +39,14 @@ public class Dryad extends Card {
 			Label modalityLabel = new Label("Choose a card");
 			root.getChildren().add(modalityLabel);
 
-			
+
 			for (int i = 0; i < b.getPlayerAICards().size(); i++) {
 				card = new Button(b.getPlayerAICards().get(i).GetRace());
 				root.getChildren().add(card);
 				card.setOnAction(e -> actionPerformed(e, b, playerTurn));
 			}
 
-			Scene scene = new Scene(root, 1900, 1000);
+			Scene scene = new Scene(root, 300, 600);
 			stage.setScene(scene);
 			stage.show();
 
@@ -96,7 +96,6 @@ public class Dryad extends Card {
 			b.addCard(chosenCard, playerTurn);
 			b.removeCard(chosenCard, playerTurn);
 		}
-		
 		stage.close();
 	}
 

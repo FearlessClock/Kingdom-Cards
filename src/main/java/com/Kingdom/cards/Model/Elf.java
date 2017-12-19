@@ -34,7 +34,7 @@ public class Elf extends Card {
 			Label modalityLabel = new Label("Choose a card");
 			root.getChildren().add(modalityLabel);
 
-			
+
 			for (int i = 0; i < b.getPlayer1Cards().size(); i++) {
 				if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace())){
 					card = new Button(b.getPlayer1Cards().get(i).GetRace());
