@@ -6,27 +6,42 @@ import com.Kingdom.cards.Model.Player;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AI extends Player {
+public class AI extends Player
+{
 
     // Arguments
     private Random rand;
     private List<Card> boardCards;
     private List<Card> boardCardsOpp;
 
+    // Get
+    public List<Card> getBoardCards()
+    {
+        return boardCards;
+    }
+
+    public List<Card> getBoardCardsOpp()
+    {
+        return boardCardsOpp;
+    }
+
     // Constructor
-    public AI(List<Card> boardCards, List<Card> boardCardsOpp) {
+    public AI()
+    {
         rand = new Random();
         this.pseudo = "";
         hand = new Hand();
-        this.boardCards = boardCards;
-        this.boardCardsOpp = boardCardsOpp;
+        this.boardCards = new ArrayList<Card>();
+        this.boardCardsOpp = new ArrayList<Card>();
     }
 
     // Functions
-    public Card PlayCard() {
+    public Card PlayCard()
+    {
         if (this.SizeHand() > 0)// Play only if there is cards on his hand
         {
             // Prepared to play a random card if there is no other possibility or better thing
@@ -36,20 +51,29 @@ public class AI extends Player {
             // Watch his hand
             List<Card> lCardsInhand = this.hand.getHand();
             int index = -1;
-            for (Card card : lCardsInhand) {
+            for (Card card : lCardsInhand)
+            {
                 index++;
-                if ("Troll".equals(card.GetRace().toString())) {
+                if ("Troll".equals(card.GetRace().toString()))
+                {
                     // If the opponent have more cards on his field
-                    if (boardCards.size() < boardCardsOpp.size()) {
+                    if (boardCards.size() < boardCardsOpp.size())
+                    {
                         cardIndex = index;// Select the Troll card to switch fields
-                        break;
                     }
                 }
             }
             return hand.playCard(cardIndex);// Play the selected card
-        } else// Play no one card
+        } else// Play no card
         {
             return null;
         }
     }
+
+    public void SetFields(List<Card> boardCards, List<Card> boardCardsOpp)
+    {
+        this.boardCards = boardCards;
+        this.boardCardsOpp = boardCardsOpp;
+    }
+
 }

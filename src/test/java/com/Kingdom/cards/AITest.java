@@ -1,6 +1,10 @@
 package com.Kingdom.cards;
 
 import com.Kingdom.cards.Model.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +15,7 @@ public class AITest {
 
     @Before
     public void setUp() throws Exception {
-        playerAI = new AI(null, null);
+        playerAI = new AI();
         deck = new Deck(8);
     }
 
@@ -40,8 +44,6 @@ public class AITest {
         // Assert.assertEquals(true, playerAI.board.contains(card1)); // Test if
         // card1 is place on board
         Assert.assertEquals(sizeHand - 1, playerAI.SizeHand()); // Test if size of hand decrease
-        // Assert.assertEquals(sizeBoard + 1, playerAI.SizeBoard());
-        // Test if size of board increase
     }
 
     @Test
@@ -57,6 +59,20 @@ public class AITest {
         // point)
 
         // Assert.assertEquals(9, playerAI.ScoreBoard());
+    }
+    
+    @Test
+    public void SetFields()
+    {
+        List<Card> boardCards = new ArrayList<Card>();
+        boardCards.add(new Gnome());
+        List<Card> boardCardsOpp = new ArrayList<Card>();
+        boardCards.add(new Elf());   
+        
+        playerAI.SetFields(boardCards, boardCardsOpp);
+        
+        Assert.assertEquals("Gnome", playerAI.getBoardCards().get(0).GetRace().toString());
+        Assert.assertEquals("Elf", playerAI.getBoardCardsOpp().get(0).GetRace().toString());
     }
 
 }
