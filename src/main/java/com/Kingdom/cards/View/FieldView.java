@@ -75,30 +75,30 @@ public class FieldView {
         Card c;
         Button b;
         //Get the cards in have and put them on the screen
-        Hand hand = fieldController.getPlayer1().hand;
-        for (Card card : hand.getHand()) {
-            if (card != null) {
-                b = card.GetView();
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                player1Field.getChildren().add(b);
-            }
-        }
-        hand = fieldController.getPlayerAI().hand;
-        for (Card card : hand.getHand()) {
-            if (card != null) {
-                b = card.GetView();
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                playerAIField.getChildren().add(b);
-            }
-        }
+//        Hand hand = fieldController.getPlayer1().hand;
+//        for (Card card : hand.getHand()) {
+//            if (card != null) {
+//                b = card.GetView();
+//                b.setOnAction(new EventHandler<ActionEvent>() {
+//                    public void handle(ActionEvent event) {
+//                        SendCard(event);
+//                    }
+//                });
+//                player1Field.getChildren().add(b);
+//            }
+//        }
+//        hand = fieldController.getPlayerAI().hand;
+//        for (Card card : hand.getHand()) {
+//            if (card != null) {
+//                b = card.GetView();
+//                b.setOnAction(new EventHandler<ActionEvent>() {
+//                    public void handle(ActionEvent event) {
+//                        SendCard(event);
+//                    }
+//                });
+//                playerAIField.getChildren().add(b);
+//            }
+//        }
 
         GrayButtons(fieldController.playerTurn);
 

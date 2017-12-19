@@ -33,32 +33,7 @@ public class FieldController {
     * */
     private FieldView fieldView;
 
-    public FieldController(FieldView fieldView) {
-        this.fieldView = fieldView;
-        gamestate = GameState.init;
-        board = new Board();
-        // Generate the deck of cards
-        deck = new Deck(7);
-        // Shuffle the deck of cards
-        deck.Shuffle();
 
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            player1.Draw(deck);
-        }
-
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
-            playerAI.Draw(deck);
-        }
-
-        playerTurn = FlipACoin();
-
-        gamestate = GameState.game;
-
-        if (playerTurn == PlayerTurn.playerAI) {
-            turnOfAI();
-        }
-
-    }
 
     //The deck of cards
     private Deck deck;
@@ -97,6 +72,34 @@ public class FieldController {
 
     private GameState gamestate;
 
+    public FieldController(FieldView fieldView) {
+        this.fieldView = fieldView;
+        gamestate = GameState.init;
+        board = new Board();
+        // Generate the deck of cards
+        deck = new Deck(7);
+        // Shuffle the deck of cards
+        deck.Shuffle();
+
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
+            player1.Draw(deck);
+        }
+
+        for (int i = 0; i < nmbrOfCardsInit; i++) {
+            playerAI.Draw(deck);
+        }
+
+        playerTurn = FlipACoin();
+
+        gamestate = GameState.game;
+
+        if (playerTurn == PlayerTurn.playerAI) {
+            turnOfAI();
+        }
+
+        UpdateBoard();
+        UpdateHands();
+    }
 
     private PlayerTurn FlipACoin() {
         Random rand = new Random();
