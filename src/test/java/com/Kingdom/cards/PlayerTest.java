@@ -22,10 +22,8 @@ public class PlayerTest {
 
 		player.Draw(deck); // draw card
 
-		Assert.assertEquals(sizeDeck - 1, deck.Size()); // test if card remove
-														// from deck
-		Assert.assertEquals(sizeHand + 1, player.SizeHand()); // test if card
-																// add to hand
+		Assert.assertEquals(sizeDeck - 1, deck.Size()); // test if card remove from deck
+		Assert.assertEquals(sizeHand + 1, player.SizeHand()); // test if card add to hand
 	}
 
 	@Test
@@ -34,15 +32,12 @@ public class PlayerTest {
 			player.Draw(deck);
 		}
 		int sizeHand = player.SizeHand();
-		Card card1 = player.hand.playCard(0); // Get the first card (we will
-												// play it for test)
+		Card card1 = player.hand.playCard(0); // Get the first card (we will play it for test)
 
 		// Assert.assertEquals(true, player.board.contains(card1)); // Test if
 		// card1 is place on board
-		Assert.assertEquals(sizeHand - 1, player.SizeHand()); // Test if size of
-																// hand decrease
-		// Assert.assertEquals(sizeBoard + 1, player.SizeBoard()); // Test if
-		// size of board increase
+		Assert.assertEquals(sizeHand - 1, player.SizeHand()); // Test if size of hand decrease
+		// Assert.assertEquals(sizeBoard + 1, player.SizeBoard()); // Test if size of board increase
 	}
 
 	@Test
@@ -51,11 +46,9 @@ public class PlayerTest {
 			player.Draw(deck);
 		}
 		player.PlayCard(0); // Play 1 card => score = 1
-		// Assert.assertEquals(1, player.ScoreBoard()); // Score after 1 card
-		// play
+		// Assert.assertEquals(1, player.ScoreBoard()); // Score after 1 card played
 
-		// play one of each card => 1 (current) + 5 (number of cards) + 3 (bonus
-		// point)
+		// play one of each card => 1 (current) + 5 (number of cards) + 3 (bonus point)
 
 		// Assert.assertEquals(9, player.ScoreBoard());
 	}
