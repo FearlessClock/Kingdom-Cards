@@ -5,18 +5,24 @@ import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
 import javafx.scene.control.Button;
 
-public abstract class Card {
+public abstract class Card
+{
     protected String race;
 
-    public Card() {
-        race = "Human"; // default race
+    // Constructor
+    public Card()
+    {
+        race = "Human"; // Default race
     }
 
-    public String GetRace() {
+    // Get
+    public String GetRace()
+    {
         return race;
     }
 
-    public Button GetView() {
+    public Button GetView()
+    {
 
         Button view = new Button();
         view.setMinWidth(50);
@@ -26,12 +32,16 @@ public abstract class Card {
         return view;
     }
 
+    // Override
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
+    public boolean equals(Object obj)
+    {
+        if (obj == null)
+        {
             return false;
         }
-        if (obj == this) {
+        if (obj == this)
+        {
             return true;
         }
         return obj.getClass() == this.getClass();
