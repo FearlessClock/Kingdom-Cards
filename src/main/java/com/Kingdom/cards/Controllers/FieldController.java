@@ -12,7 +12,6 @@ import com.Kingdom.cards.View.FieldView;
 import java.io.IOException;
 import java.util.Random;
 
-
 public class FieldController {
 
     /*
@@ -47,14 +46,14 @@ public class FieldController {
         return board;
     }
 
-    // Player
+    // Player1 object containing all the player data
     private Player player1 = new Player();
 
     public Player getPlayer1() {
         return player1;
     }
 
-    private AI playerAI = new AI();
+    private AI playerAI = new AI();//AI(board.getPlayerAICards(), board.getPlayer1Cards());
 
     public AI getPlayerAI() {
         return playerAI;
@@ -62,14 +61,13 @@ public class FieldController {
 
     // Number of cards per player
     private int nmbrOfCardsInit = 5;
+    private int nmbrOfCardsPerRace = 7;
 
     public PlayerTurn playerTurn;
     public boolean playerHasDrawn = false;
     public boolean playerHasPlay = false;
 
-
     private GameState gamestate;
-
 
     private PlayerTurn FlipACoin() {
         Random rand = new Random();
@@ -80,6 +78,7 @@ public class FieldController {
             return PlayerTurn.playerAI;
     }
 
+    //Draw a card from the deck and add it to the player hand
 
     public FieldController(FieldView fieldView, PlayerTurn playerTurn) {
         this.fieldView = fieldView;
@@ -109,12 +108,15 @@ public class FieldController {
 
         gamestate = GameState.game;
 
+        UpdateHands();
+        UpdateBoard();
+
         if (this.playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
 
     }
-
+    //Draw a card from the deck and add it to the player hand
     public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card card = player1.Draw(getDeck());
@@ -126,6 +128,7 @@ public class FieldController {
         }
     }
 
+    //Send a card to the playing field and activate the power
     public void SendCard(int index) {
         if (!playerHasPlay) {
             if (playerTurn == PlayerTurn.player1) {
@@ -133,7 +136,6 @@ public class FieldController {
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
             }
         }
-
         playerHasPlay = true;
 
         UpdateHands();
@@ -155,8 +157,10 @@ public class FieldController {
         }
     }
 
-
     private void turnOfAI() {
+        //Get fields cards
+        playerAI.SetFields(board.getPlayerAICards(), board.getPlayer1Cards());
+
         playerHasDrawn = false;
         playerHasPlay = false;
         playerTurn = PlayerTurn.playerAI;
@@ -175,6 +179,7 @@ public class FieldController {
 
         if(fieldView != null)
         {
+            // Remove the card from the hand of the AI
             fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
         }
 
@@ -186,13 +191,13 @@ public class FieldController {
         EndTurn();
     }
 
-    //Callback for the end turn button
+    // Callback for the end turn button
     public void EndTurn() {
         if (playerHasPlay || player1.hand.getNmbrOfCards() == 0) {
-            //AI play
+            // AI play
             if (playerTurn == PlayerTurn.player1) {
                 turnOfAI();
-                //Player play
+                // Player play
             } else {
                 playerHasDrawn = false;
                 playerHasPlay = false;
@@ -215,7 +220,7 @@ public class FieldController {
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
         if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0)) {
-            //Game is finished, show the end screen for win or lose
+            // Game is finished, show the end screen for win or lose
             boolean playerWin;
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
             try {
