@@ -12,7 +12,8 @@ import com.Kingdom.cards.View.FieldView;
 import java.io.IOException;
 import java.util.Random;
 
-public class FieldController {
+public class FieldController
+{
 
     /*
      * Kingdom cards! A card game about a growing population. Generate a Deck, the deck contains 7 cards of each race. Each plyer draws 1 card till both players have 5 cards. Flip a coin to see who starts The first player draws a card. He plays a card. Both are obligatory The players turn then ends. The game ends when all the cards are played.
@@ -32,11 +33,13 @@ public class FieldController {
         // Shuffle the deck of cards
         deck.Shuffle();
 
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
+        for (int i = 0; i < nmbrOfCardsInit; i++)
+        {
             player1.Draw(deck);
         }
 
-        for (int i = 0; i < nmbrOfCardsInit; i++) {
+        for (int i = 0; i < nmbrOfCardsInit; i++)
+        {
             playerAI.Draw(deck);
         }
 
@@ -44,7 +47,8 @@ public class FieldController {
 
         gamestate = GameState.game;
 
-        if (playerTurn == PlayerTurn.playerAI) {
+        if (playerTurn == PlayerTurn.playerAI)
+        {
             turnOfAI();
         }
 
@@ -71,7 +75,7 @@ public class FieldController {
         return player1;
     }
 
-    private AI playerAI = new AI();//AI(board.getPlayerAICards(), board.getPlayer1Cards());
+    private AI playerAI = new AI();// AI(board.getPlayerAICards(), board.getPlayer1Cards());
 
     public AI getPlayerAI() {
         return playerAI;
@@ -96,7 +100,8 @@ public class FieldController {
     }
 
     public void DrawCard() {
-        if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
+        if (!playerHasDrawn && playerTurn == PlayerTurn.player1)
+        {
             Card card = player1.Draw(deck);
             playerHasDrawn = true;
             fieldView.AddCardToBoard(card, playerTurn);
@@ -104,8 +109,10 @@ public class FieldController {
     }
 
     public void SendCard(int index) {
-        if (!playerHasPlay) {
-            if (playerTurn == PlayerTurn.player1) {
+        if (!playerHasPlay)
+        {
+            if (playerTurn == PlayerTurn.player1)
+            {
                 Card playedCard = player1.hand.playCard(index);
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
             }
@@ -126,9 +133,9 @@ public class FieldController {
     }
 
     private void turnOfAI() {
-        //Get fields cards
+        // Get fields cards
         playerAI.SetFields(board.getPlayerAICards(), board.getPlayer1Cards());
-        
+
         playerHasDrawn = false;
         playerHasPlay = false;
         playerTurn = PlayerTurn.playerAI;
@@ -158,12 +165,15 @@ public class FieldController {
 
     // Callback for the end turn button
     public void EndTurn() {
-        if (playerHasPlay || player1.hand.getNmbrOfCards() == 0) {
+        if (playerHasPlay || player1.hand.getNmbrOfCards() == 0)
+        {
             // AI play
-            if (playerTurn == PlayerTurn.player1) {
+            if (playerTurn == PlayerTurn.player1)
+            {
                 turnOfAI();
                 // Player play
-            } else {
+            } else
+            {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
@@ -180,13 +190,16 @@ public class FieldController {
         int player1NmbrOfCards = player1.hand.getNmbrOfCards();
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
-        if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0)) {
+        if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0))
+        {
             // Game is finished, show the end screen for win or lose
             boolean playerWin;
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
-            try {
+            try
+            {
                 fieldView.ShowEndScreen(playerWin);
-            } catch (IOException e) {
+            } catch (IOException e)
+            {
                 e.printStackTrace();
             }
         }

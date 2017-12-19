@@ -78,7 +78,7 @@ public class FieldView {
         Hand hand = fieldController.getPlayer1().hand;
         for (Card card : hand.getHand()) {
             if (card != null) {
-                b = card.GetView();
+                b = card.GetView(false);
                 b.setOnAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent event) {
                         SendCard(event);
@@ -90,7 +90,7 @@ public class FieldView {
         hand = fieldController.getPlayerAI().hand;
         for (Card card : hand.getHand()) {
             if (card != null) {
-                b = card.GetView();
+                b = card.GetView(true);
                 b.setOnAction(new EventHandler<ActionEvent>() {
                     public void handle(ActionEvent event) {
                         SendCard(event);
@@ -152,7 +152,7 @@ public class FieldView {
         switch (playerTurn) {
             case player1:
                 if (card != null) {
-                    Button b = card.GetView();
+                    Button b = card.GetView(false);
                     b.setOnAction(new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent event) {
                             SendCard(event);
@@ -163,7 +163,7 @@ public class FieldView {
                 break;
             case playerAI:
                 if (card != null) {
-                    Button b = card.GetView();
+                    Button b = card.GetView(false);
                     b.setOnAction(new EventHandler<ActionEvent>() {
                         public void handle(ActionEvent event) {
                             SendCard(event);
@@ -182,7 +182,7 @@ public class FieldView {
         playerAIField.getChildren().clear();
         Button b;
         for (int i = 0; i < player1Hand.getHand().size(); i++) {
-            b = player1Hand.getHand().get(i).GetView();
+            b = player1Hand.getHand().get(i).GetView(false);
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -192,7 +192,7 @@ public class FieldView {
             player1Field.getChildren().add(b);
         }
         for (int i = 0; i < playerAIHand.getHand().size(); i++) {
-            b = playerAIHand.getHand().get(i).GetView();
+            b = playerAIHand.getHand().get(i).GetView(true);
             b.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
                     SendCard(event);
@@ -209,12 +209,12 @@ public class FieldView {
         playerAIBoard.getChildren().clear();
         Button b;
         for (int i = 0; i < board.getPlayer1Cards().size(); i++) {
-            b = board.getPlayer1Cards().get(i).GetView();
+            b = board.getPlayer1Cards().get(i).GetView(false);
             b.setDisable(true);
             player1Board.getChildren().add(b);
         }
         for (int i = 0; i < board.getPlayerAICards().size(); i++) {
-            b = board.getPlayerAICards().get(i).GetView();
+            b = board.getPlayerAICards().get(i).GetView(false);
             b.setDisable(true);
             playerAIBoard.getChildren().add(b);
         }

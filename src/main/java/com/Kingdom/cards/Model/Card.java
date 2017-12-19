@@ -10,32 +10,30 @@ public abstract class Card
     protected String race;
 
     // Constructor
-    public Card()
-    {
+    public Card() {
         race = "Human"; // Default race
     }
 
     // Get
-    public String GetRace()
-    {
+    public String GetRace() {
         return race;
     }
 
-    public Button GetView()
-    {
-
+    public Button GetView(Boolean isAI) {
         Button view = new Button();
         view.setMinWidth(50);
         view.setMinHeight(50);
         view.getStyleClass().add(race.toLowerCase());
+        if(isAI){
+            view.getStyleClass().add("verso");
+        }
         view.getStylesheets().add("@Cards.css");
         return view;
     }
 
     // Override
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (obj == null)
         {
             return false;

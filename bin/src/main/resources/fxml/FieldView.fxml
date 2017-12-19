@@ -42,7 +42,7 @@
             <Font size="18.0" />
          </font></Label>
         <HBox fx:id="playerAIBoard" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-        <Label fx:id="nmbrOfCardsPlayer1" prefHeight="8.0" prefWidth="85.0" text="nmbrOfCardsPlayer1" textFill="WHITE" GridPane.rowIndex="8">
+        <Label fx:id="nmbrOfCardsPlayer1" prefHeight="17.0" prefWidth="85.0" text="nmbrOfCardsPlayer1" textFill="WHITE" GridPane.rowIndex="8">
          <font>
             <Font size="18.0" />
          </font></Label>
