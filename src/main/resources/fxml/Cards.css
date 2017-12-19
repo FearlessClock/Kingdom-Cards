@@ -62,3 +62,12 @@
         -fx-min-width: 128px;
 }
 
+.verso{
+        -fx-background-color: red;
+        -fx-background-image: url('myVerso');
+        -fx-background-size: 135px 155px;
+        -fx-background-repeat: no-repeat;
+        -fx-background-position: center;
+        -fx-min-height: 150px;
+        -fx-min-width: 128px;
+}
