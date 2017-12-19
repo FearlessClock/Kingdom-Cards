@@ -212,7 +212,6 @@ public class FieldView {
 
     @FXML
     public void EndTurn(ActionEvent actionEvent) {
-        turnLbl.setText(fieldController.playerTurn.toString());
         fieldController.EndTurn();
     }
 
