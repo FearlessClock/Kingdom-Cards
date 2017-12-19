@@ -1,9 +1,8 @@
 package com.Kingdom.cards.Model;
 
-import com.Kingdom.cards.Controllers.FieldController;
-
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
+import com.Kingdom.cards.View.FieldView;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -90,14 +89,14 @@ public class Board {
 
     
     //Play the chosen card for the current playerturns player
-    public void PlayCard(Card card, Deck deck, PlayerTurn playerTurn, Player p1, Player p2) {
+    public void PlayCard(Card card, Deck deck, PlayerTurn playerTurn, Player p1, Player p2, FieldView fieldView) {
         if (card != null) {
             if (PlayerTurn.player1 == playerTurn) {
-            	card.power(this, deck, p1, p2, playerTurn);
+            	card.power(this, deck, p1, p2, playerTurn, fieldView);
                 player1Cards.add(card);
                 GetScorePlayer(1);
             } else { 
-                card.power(this, deck, p2, p1, playerTurn);
+                card.power(this, deck, p2, p1, playerTurn, fieldView);
                 playerAICards.add(card);
                 GetScorePlayer(2);
             }

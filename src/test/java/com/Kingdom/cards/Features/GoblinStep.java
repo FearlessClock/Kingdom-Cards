@@ -1,6 +1,5 @@
 package com.Kingdom.cards.Features;
 
-import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Board;
 import com.Kingdom.cards.Model.Goblin;
@@ -39,7 +38,7 @@ public class GoblinStep {
     @When("^I play a Goblin card$")
     public void i_play_a_Goblin_card() throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        board.PlayCard(new Goblin(), deck, PlayerTurn.player1, playerP1, playerAI);
+        board.PlayCard(new Goblin(), deck, PlayerTurn.player1, playerP1, playerAI, null);
     }
 
     @Then("^I recieve a Hand with (\\d+) card$")

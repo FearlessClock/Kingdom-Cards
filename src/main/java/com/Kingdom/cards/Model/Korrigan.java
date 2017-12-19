@@ -1,8 +1,8 @@
 package com.Kingdom.cards.Model;
 
-import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
+import com.Kingdom.cards.View.FieldView;
 
 import java.util.Random;
 
@@ -14,7 +14,7 @@ public class Korrigan extends Card
         this.race = "Korrigan";
     }
 
-    public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn)
+    public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView)
     {
         Random rand = new Random();
         //Take 2 cards

@@ -1,9 +1,8 @@
 package com.Kingdom.cards.View;
 
 import com.Kingdom.cards.Controllers.FieldController;
-import com.Kingdom.cards.Model.Board;
-import com.Kingdom.cards.Model.Card;
-import com.Kingdom.cards.Model.Hand;
+import com.Kingdom.cards.Deck;
+import com.Kingdom.cards.Model.*;
 import com.Kingdom.cards.PlayerTurn;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -19,11 +18,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
+import java.util.Random;
 
 public class FieldView {
 
@@ -34,6 +35,8 @@ public class FieldView {
     @FXML
     private Label nmbrOfCardsPlayerAI;
 
+    //Stage to make pop ups on
+    Stage popupStage = new Stage();
 
     // The horizontal box
     @FXML
@@ -279,6 +282,121 @@ public class FieldView {
                 popup.show(window);
                 break;
         }
+    }
+
+    public void PopupPowerForDryad(Board b, PlayerTurn playerTurn) {
+        Button card;
+        // If it's the human player whom play
+        if (playerTurn.equals(PlayerTurn.player1)) {
+            if (b.getPlayerAICards().size() > 0)// Check if there is cards in the opponent field
+            {
+                VBox root = new VBox(b.getPlayerAICards().size() + 10);// Create a new VBox
+                Label modalityLabel = new Label("Choose a card");//Create a new label to display what the player have to do
+                root.getChildren().add(modalityLabel);
+
+                // For every cards in the opponent's field
+                for (int i = 0; i < b.getPlayerAICards().size(); i++) {
+                    card = new Button(b.getPlayerAICards().get(i).GetRace());// Create a button for each card in the opponent's field
+                    root.getChildren().add(card);// Add card to the VBox
+                    card.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
+                }
+                // Create the new scene and display it
+                Scene scene = new Scene(root, 500, 500);
+                popupStage.setScene(scene);
+                popupStage.show();
+            }
+        }
+    }
+
+    public void pickACard(ActionEvent e, Board b, PlayerTurn playerTurn) {
+
+        Card chosenCard = null;
+        Button button = (Button) e.getSource();
+        String race = button.getText();// Get the race of the button the player clicked on
+
+        // Cases depending on the card clicked
+        if ("Troll".equals(race)) {
+            chosenCard = new Troll();
+        } else if ("Korrigan".equals(race)) {
+            chosenCard = new Korrigan();
+        } else if ("Goblin".equals(race)) {
+            chosenCard = new Goblin();
+        } else if ("Elf".equals(race)) {
+            chosenCard = new Elf();
+        } else if ("Dryad".equals(race)) {
+            chosenCard = new Dryad();
+        } else if ("Gnome".equals(race)) {
+            chosenCard = new Gnome();
+        }
+
+        if (chosenCard != null) {
+            // Add the card chosen to the player's field and remove it from the AI field
+            b.addCard(chosenCard, playerTurn);
+            b.removeCard(chosenCard, playerTurn);
+        }
+        // Close the stage
+        popupStage.close();
+    }
+
+    // Functions
+    public void PopupPowerForElf(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView) {
+        Button card;
+        // If it's the human player whom play
+        if (playerTurn.equals(PlayerTurn.player1)) {
+            if (b.getPlayer1Cards().size() > 0)// Check if there is cards in the player field
+            {
+                popupStage.initModality(Modality.APPLICATION_MODAL);
+
+                VBox root = new VBox(b.getPlayer1Cards().size() + 10);// Create a new VBox
+                Label modalityLabel = new Label("Choose a card");// Create a new label to display what the player have to do
+                root.getChildren().add(modalityLabel);// Add the label to the VBox
+
+                // For every cards in the player's field
+                for (int i = 0; i < b.getPlayer1Cards().size(); i++) {
+                    if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace()))// Check if the card isn't an elf
+                    {
+                        card = new Button(b.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
+                        root.getChildren().add(card);// Add card to the VBox
+                        card.setOnAction(e -> playAPower(e, b, d, p1, p2, playerTurn));// When clicked
+                    }
+                }
+                // Create the new scene and display it
+                Scene scene = new Scene(root, 500, 500);
+                popupStage.setScene(scene);
+                popupStage.show();
+            }
+
+        }
+    }
+
+    public void playAPower(ActionEvent e, Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
+        // See the button click
+        Card chosenCard = null;
+        Button button = (Button) e.getSource();
+        String race = button.getText();// Get the race of the clicked button
+
+        // Create a card depending of the button clicked
+        if ("Troll".equals(race)) {
+            chosenCard = new Troll();
+        } else if ("Korrigan".equals(race)) {
+            chosenCard = new Korrigan();
+        } else if ("Goblin".equals(race)) {
+            chosenCard = new Goblin();
+        } else if ("Elf".equals(race)) {
+            chosenCard = new Elf();
+        } else if ("Dryad".equals(race)) {
+            chosenCard = new Dryad();
+        } else if ("Gnome".equals(race)) {
+            chosenCard = new Gnome();
+        }
+
+        if (chosenCard != null) {
+            // Play the function to activate the poser of the card
+            chosenCard.power(b, d, p1, p2, playerTurn, null);
+        }
+
+        // Close the stage
+        popupStage.close();
     }
 }
 

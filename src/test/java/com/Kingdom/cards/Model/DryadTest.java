@@ -18,7 +18,7 @@ public class DryadTest {
     public void power() throws Exception {
         Dryad dryad = new Dryad();
         FieldController fieldController = new FieldController(null, PlayerTurn.player1);
-        dryad.power(fieldController.getBoard(), fieldController.getDeck(), fieldController.getPlayer1(), fieldController.getPlayerAI(), fieldController.playerTurn);
+        dryad.power(fieldController.getBoard(), fieldController.getDeck(), fieldController.getPlayer1(), fieldController.getPlayerAI(), fieldController.playerTurn, null);
         Assert.assertEquals("Dryad", dryad.GetRace());  //This isn't correct
     }
 

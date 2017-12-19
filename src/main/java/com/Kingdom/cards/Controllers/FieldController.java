@@ -135,7 +135,7 @@ public class FieldController {
             if (playerTurn == PlayerTurn.player1)
             {
                 Card playedCard = player1.hand.playCard(index);
-                board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
+                board.PlayCard(playedCard, deck, playerTurn, player1, playerAI, fieldView);
             }
         }
         playerHasPlay = true;
@@ -177,7 +177,7 @@ public class FieldController {
 
         // Play Card
         Card playedCard = playerAI.PlayCard();
-        board.PlayCard(playedCard, getDeck(), playerTurn, player1, playerAI);
+        board.PlayCard(playedCard, getDeck(), playerTurn, player1, playerAI, fieldView);
 
         if(fieldView != null)
         {

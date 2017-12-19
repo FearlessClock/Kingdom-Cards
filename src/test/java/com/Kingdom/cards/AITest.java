@@ -37,19 +37,6 @@ public class AITest {
     }
 
     @Test
-    public void SetFields() {
-        List<Card> boardCards = new ArrayList<Card>();
-        boardCards.add(new Gnome());
-        List<Card> boardCardsOpp = new ArrayList<Card>();
-        boardCards.add(new Elf());
-
-        playerAI.SetFields(boardCards, boardCardsOpp);
-
-        Assert.assertEquals("Gnome", playerAI.getBoardCards().get(0).GetRace().toString());
-        Assert.assertEquals("Elf", playerAI.getBoardCardsOpp().get(0).GetRace().toString());
-    }
-
-    @Test
     public void PlayCard() {
         for (int i = 0; i < 5; i++) { // Draw 5 cards in hand of playerAI
             playerAI.Draw(fieldController.getDeck());

@@ -6,10 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Field;
-
-import static org.junit.Assert.*;
-
 public class ElfTest {
     FieldController fieldController;
     @Before
@@ -21,7 +17,7 @@ public class ElfTest {
     public void power() throws Exception {
         Elf elf = new Elf();
         int boardSize = fieldController.getBoard().getPlayer1Cards().size();
-        elf.power(fieldController.getBoard(), fieldController.getDeck(), fieldController.getPlayer1(), fieldController.getPlayerAI(), PlayerTurn.player1);
+        elf.power(fieldController.getBoard(), fieldController.getDeck(), fieldController.getPlayer1(), fieldController.getPlayerAI(), PlayerTurn.player1, null);
         Assert.assertEquals(boardSize, fieldController.getBoard().getPlayer1Cards().size());
     }
 

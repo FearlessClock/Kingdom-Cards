@@ -1,8 +1,8 @@
 package com.Kingdom.cards.Model;
 
-import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
+import com.Kingdom.cards.View.FieldView;
 import javafx.scene.control.Button;
 
 public abstract class Card
@@ -45,6 +45,6 @@ public abstract class Card
         return obj.getClass() == this.getClass();
     }
 
-    public abstract void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn);
+    public abstract void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView);
 
 }
