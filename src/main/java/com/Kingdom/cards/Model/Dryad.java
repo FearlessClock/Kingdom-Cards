@@ -23,6 +23,7 @@ public class Dryad extends Card {
 
 	Card chosenCard;
 	Stage stage = new Stage();
+	Button card;
 
 	public Dryad() {
 		super();
@@ -37,7 +38,7 @@ public class Dryad extends Card {
 			Label modalityLabel = new Label("Choose a card");
 			root.getChildren().add(modalityLabel);
 
-			Button card;
+			
 			for (int i = 0; i < b.getPlayerAICards().size(); i++) {
 				card = new Button(b.getPlayerAICards().get(i).GetRace());
 				root.getChildren().add(card);
@@ -59,27 +60,40 @@ public class Dryad extends Card {
 
 	public void actionPerformed(ActionEvent e, Board b, PlayerTurn playerTurn) {
 		
-		System.out.println(button.getText());
-		String race = button.getText();
+		
+		String race = card.getText();
+		System.out.println(card.getText());
+		
 		if ("Troll".equals(race)) {
 			chosenCard = new Troll();
-		} else if ("Korrigan".equals(race)) {
+		} 
+		
+		else if ("Korrigan".equals(race)) {
 			chosenCard = new Korrigan();
-		} else if ("Goblin".equals(race)) {
+		}
+		
+		else if ("Goblin".equals(race)) {
 			chosenCard = new Goblin();
-		} else if ("Elf".equals(race)) {
+		} 
+		else if ("Elf".equals(race)) {
 			chosenCard = new Elf();
-		} else if ("Dryad".equals(race)) {
+		} 
+		
+		else if ("Dryad".equals(race)) {
 			chosenCard = new Dryad();
+		}
+		
+		else if ("Gnome".equals(race)){
 			chosenCard = new Gnome();
 		}
 		
+		System.out.println(chosenCard.GetRace());
 		if (chosenCard != null) {
 			b.addCard(chosenCard, playerTurn);
 			b.removeCard(chosenCard, playerTurn);
 		}
 		
-		stage.close();
+		//stage.close();
 	}
 
 }
