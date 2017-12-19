@@ -24,7 +24,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="KingdomCards" target="1.5" />
+      <module name="KingdomCards" target="1.8" />
       <module name="tdsp-Log4J" target="1.5" />
     </bytecodeTargetLevel>
   </component>

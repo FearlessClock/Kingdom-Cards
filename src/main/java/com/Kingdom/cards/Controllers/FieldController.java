@@ -15,15 +15,72 @@ import java.util.Random;
 public class FieldController {
 
     /*
-     * Kingdom cards! A card game about a growing population. Generate a Deck, the deck contains 7 cards of each race. Each plyer draws 1 card till both players have 5 cards. Flip a coin to see who starts The first player draws a card. He plays a card. Both are obligatory The players turn then ends. The game ends when all the cards are played.
-     *
-     * We will be using a sort of State machine to control the turns of each player.
-     *
-     * There are 3 states in the game: 1) Init, shuffle and first 5 card draw 2) Gameplay 3) End game
-     */
+    * Kingdom cards! A card game about a growing population.
+    * Generate a Deck, the deck contains 7 cards of each race.
+    * Each plyer draws 1 card till both players have 5 cards.
+    * Flip a coin to see who starts
+    * The first player draws a card. He plays a card. Both are obligatory
+    * The players turn then ends.
+    * The game ends when all the cards are played.
+    *
+    * We will be using a sort of State machine to control the turns of each player.
+    *
+    * There are 3 states in the game:
+    * 1) Init, shuffle and first 5 card draw
+    * 2) Gameplay
+    * 3) End game
+    * */
     private FieldView fieldView;
 
-    public FieldController(FieldView fieldView) {
+    //The deck of cards
+    private Deck deck;
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    // Board containing all the cards
+    private Board board;
+
+    public Board getBoard() {
+        return board;
+    }
+
+    // Player1 object containing all the player data
+    private Player player1 = new Player();
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    private AI playerAI = new AI();//AI(board.getPlayerAICards(), board.getPlayer1Cards());
+
+    public AI getPlayerAI() {
+        return playerAI;
+    }
+
+    // Number of cards per player
+    private int nmbrOfCardsInit = 5;
+    private int nmbrOfCardsPerRace = 7;
+
+    public PlayerTurn playerTurn;
+    public boolean playerHasDrawn = false;
+    public boolean playerHasPlay = false;
+
+    private GameState gamestate;
+
+    private PlayerTurn FlipACoin() {
+        Random rand = new Random();
+        boolean randomVal = rand.nextBoolean();
+        if (randomVal)
+            return PlayerTurn.player1;
+        else
+            return PlayerTurn.playerAI;
+    }
+
+    //Draw a card from the deck and add it to the player hand
+
+    public FieldController(FieldView fieldView, PlayerTurn playerTurn) {
         this.fieldView = fieldView;
         gamestate = GameState.init;
         board = new Board();
@@ -40,69 +97,38 @@ public class FieldController {
             playerAI.Draw(deck);
         }
 
-        playerTurn = FlipACoin();
+        if(playerTurn != null)
+        {
+            this.playerTurn = playerTurn;//FlipACoin();
+        }
+        else
+        {
+            this.playerTurn = FlipACoin();
+        }
 
         gamestate = GameState.game;
 
-        if (playerTurn == PlayerTurn.playerAI) {
+        UpdateHands();
+        UpdateBoard();
+
+        if (this.playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
 
     }
-
-    // The deck of cards
-    private Deck deck;
-
-    public Deck GetDeck() {
-        return deck;
-    }
-
-    // Board containing all the cards
-    private Board board;
-
-    public Board getBoard() {
-        return board;
-    }
-
-    // Player
-    private Player player1 = new Player();
-
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    private AI playerAI = new AI();//AI(board.getPlayerAICards(), board.getPlayer1Cards());
-
-    public AI getPlayerAI() {
-        return playerAI;
-    }
-
-    // Number of cards per player
-    private int nmbrOfCardsInit = 5;
-
-    public PlayerTurn playerTurn;
-    private boolean playerHasDrawn = false;
-    public boolean playerHasPlay = false;
-
-    private GameState gamestate;
-
-    private PlayerTurn FlipACoin() {
-        Random rand = new Random();
-        boolean randomVal = rand.nextBoolean();
-        if (randomVal)
-            return PlayerTurn.player1;
-        else
-            return PlayerTurn.playerAI;
-    }
-
+    //Draw a card from the deck and add it to the player hand
     public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
-            Card card = player1.Draw(deck);
+            Card card = player1.Draw(getDeck());
             playerHasDrawn = true;
-            fieldView.AddCardToBoard(card, playerTurn);
+            if(fieldView != null)
+            {
+                fieldView.AddCardToBoard(card, playerTurn);
+            }
         }
     }
 
+    //Send a card to the playing field and activate the power
     public void SendCard(int index) {
         if (!playerHasPlay) {
             if (playerTurn == PlayerTurn.player1) {
@@ -118,35 +144,44 @@ public class FieldController {
     }
 
     private void UpdateHands() {
-        fieldView.UpdateHands(player1.hand, playerAI.hand);
+        if(fieldView != null)
+        {
+            fieldView.UpdateHands(player1.hand, playerAI.hand);
+        }
     }
 
     private void UpdateBoard() {
-        fieldView.UpdateBoard(board);
+        if(fieldView != null)
+        {
+            fieldView.UpdateBoard(board);
+        }
     }
 
     private void turnOfAI() {
         //Get fields cards
         playerAI.SetFields(board.getPlayerAICards(), board.getPlayer1Cards());
-        
+
         playerHasDrawn = false;
         playerHasPlay = false;
         playerTurn = PlayerTurn.playerAI;
 
         // Draw Card
-        Card c = playerAI.Draw(deck);
+        Card c = playerAI.Draw(getDeck());
         playerHasDrawn = true;
-        fieldView.AddCardToBoard(c, PlayerTurn.playerAI);
+        if(fieldView != null)
+        {
+            fieldView.AddCardToBoard(c, PlayerTurn.playerAI);
+        }
 
         // Play Card
         Card playedCard = playerAI.PlayCard();
-        board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
+        board.PlayCard(playedCard, getDeck(), playerTurn, player1, playerAI);
 
-        // Remove the card from the hand of the AI
-        int playedCardIndex = -1;
-        int nbOfCardInHand = playerAI.hand.getHand().size();
-
-        fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
+        if(fieldView != null)
+        {
+            // Remove the card from the hand of the AI
+            fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
+        }
 
         // Update Board and variables
         playerHasPlay = true;
@@ -167,7 +202,11 @@ public class FieldController {
                 playerHasDrawn = false;
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
-                fieldView.GrayButtons(playerTurn);
+
+                if(fieldView != null)
+                {
+                    fieldView.GrayButtons(playerTurn);
+                }
             }
 
             DrawCard();
@@ -176,7 +215,7 @@ public class FieldController {
     }
 
     private void CheckEndGame() {
-        int nmbrOfCardsInDeck = deck.Size();
+        int nmbrOfCardsInDeck = getDeck().Size();
         int player1NmbrOfCards = player1.hand.getNmbrOfCards();
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
@@ -185,7 +224,11 @@ public class FieldController {
             boolean playerWin;
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
             try {
-                fieldView.ShowEndScreen(playerWin);
+
+                if(fieldView != null)
+                {
+                    fieldView.ShowEndScreen(playerWin);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

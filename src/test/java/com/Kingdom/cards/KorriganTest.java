@@ -13,4 +13,9 @@ public class KorriganTest
     {
     }
 
+	@Test
+	public void GetRace() throws Exception{
+		Korrigan kor = new Korrigan();
+		Assert.assertEquals("Korrigan", kor.GetRace());
+	}
 }
