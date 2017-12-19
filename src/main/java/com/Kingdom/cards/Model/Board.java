@@ -56,7 +56,39 @@ public class Board {
     public List<Card> getPlayerAICards() {
         return playerAICards;
     }
+    
+    public void addCard(Card card, PlayerTurn playerTurn){
+    	if (card != null) {
+            if (PlayerTurn.player1 == playerTurn) {
+            	player1Cards.add(card);
+            } else { 
+            	playerAICards.add(card);
+            }
+        }
+    }
+    
+    public void removeCard(Card card, PlayerTurn playerTurn){
+    	if (card != null) {
+            if (PlayerTurn.player1 == playerTurn) {
+            	playerAICards.remove(card);
+            } else { 
+            	player1Cards.remove(card);
+            }
+        }
+    }
+    
+    public Card getCard(int index, PlayerTurn playerTurn){
+    	Card chosenCard;
+    	if (PlayerTurn.player1 == playerTurn) {
+        	chosenCard = playerAICards.get(index);
+        } else { 
+        	chosenCard = player1Cards.get(index);
+        }
+    	
+    	return chosenCard;
+    }
 
+    
     //Play the chosen card for the current playerturns player
     public void PlayCard(Card card, Deck deck, PlayerTurn playerTurn, Player p1, Player p2) {
         if (card != null) {

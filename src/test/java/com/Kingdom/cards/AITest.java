@@ -2,13 +2,20 @@ package com.Kingdom.cards;
 
 import com.Kingdom.cards.Controllers.FieldController;
 import com.Kingdom.cards.Model.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AITest {
 	FieldController fieldController;
-	Player playerAI;
+	AI playerAI;
 	Deck deck;
 	@Before
 	public void setUp() throws Exception {
@@ -30,6 +37,19 @@ public class AITest {
 																// add to hand
 	}
 
+    @Test
+    public void SetFields()
+    {
+        List<Card> boardCards = new ArrayList<Card>();
+        boardCards.add(new Gnome());
+        List<Card> boardCardsOpp = new ArrayList<Card>();
+        boardCards.add(new Elf());
+
+        playerAI.SetFields(boardCards, boardCardsOpp);
+
+        Assert.assertEquals("Gnome", playerAI.getBoardCards().get(0).GetRace().toString());
+        Assert.assertEquals("Elf", playerAI.getBoardCardsOpp().get(0).GetRace().toString());
+    }
 	@Test
 	public void PlayCard() {
 		for (int i = 0; i < 5; i++) { // Draw 5 cards in hand of playerAI

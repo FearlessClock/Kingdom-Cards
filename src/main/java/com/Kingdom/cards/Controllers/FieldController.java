@@ -12,7 +12,6 @@ import com.Kingdom.cards.View.FieldView;
 import java.io.IOException;
 import java.util.Random;
 
-
 public class FieldController {
 
     /*
@@ -54,7 +53,7 @@ public class FieldController {
         return player1;
     }
 
-    private AI playerAI = new AI();
+    private AI playerAI = new AI();//AI(board.getPlayerAICards(), board.getPlayer1Cards());
 
     public AI getPlayerAI() {
         return playerAI;
@@ -67,9 +66,7 @@ public class FieldController {
     public boolean playerHasDrawn = false;
     public boolean playerHasPlay = false;
 
-
     private GameState gamestate;
-
 
     private PlayerTurn FlipACoin() {
         Random rand = new Random();
@@ -109,7 +106,7 @@ public class FieldController {
 
         gamestate = GameState.game;
 
-        if (playerTurn == PlayerTurn.playerAI) {
+        if (this.playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
 
@@ -133,7 +130,6 @@ public class FieldController {
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
             }
         }
-
         playerHasPlay = true;
 
         UpdateHands();
@@ -155,8 +151,10 @@ public class FieldController {
         }
     }
 
-
     private void turnOfAI() {
+        //Get fields cards
+        playerAI.SetFields(board.getPlayerAICards(), board.getPlayer1Cards());
+
         playerHasDrawn = false;
         playerHasPlay = false;
         playerTurn = PlayerTurn.playerAI;
@@ -186,13 +184,13 @@ public class FieldController {
         EndTurn();
     }
 
-    //Callback for the end turn button
+    // Callback for the end turn button
     public void EndTurn() {
         if (playerHasPlay || player1.hand.getNmbrOfCards() == 0) {
-            //AI play
+            // AI play
             if (playerTurn == PlayerTurn.player1) {
                 turnOfAI();
-                //Player play
+                // Player play
             } else {
                 playerHasDrawn = false;
                 playerHasPlay = false;
@@ -215,7 +213,7 @@ public class FieldController {
         int playerAINmbrOfCards = playerAI.hand.getNmbrOfCards();
 
         if (nmbrOfCardsInDeck == 0 && (player1NmbrOfCards == 0 || playerAINmbrOfCards == 0)) {
-            //Game is finished, show the end screen for win or lose
+            // Game is finished, show the end screen for win or lose
             boolean playerWin;
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
             try {
