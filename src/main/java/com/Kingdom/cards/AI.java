@@ -19,19 +19,16 @@ public class AI extends Player
     private List<Card> boardCardsOpp;
 
     // Get
-    public List<Card> getBoardCards()
-    {
+    public List<Card> getBoardCards() {
         return boardCards;
     }
 
-    public List<Card> getBoardCardsOpp()
-    {
+    public List<Card> getBoardCardsOpp() {
         return boardCardsOpp;
     }
 
     // Constructor
-    public AI()
-    {
+    public AI() {
         rand = new Random();
         this.pseudo = "";
         hand = new Hand();
@@ -40,8 +37,7 @@ public class AI extends Player
     }
 
     // Functions
-    public Card PlayCard()
-    {
+    public Card PlayCard() {
         if (this.SizeHand() > 0)// Play only if there is cards on his hand
         {
             // Prepared to play a random card if there is no other possibility or better thing
@@ -70,8 +66,7 @@ public class AI extends Player
         }
     }
 
-    public void SetFields(List<Card> boardCards, List<Card> boardCardsOpp)
-    {
+    public void SetFields(List<Card> boardCards, List<Card> boardCardsOpp) {
         this.boardCards = boardCards;
         this.boardCardsOpp = boardCardsOpp;
     }

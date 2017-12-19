@@ -9,13 +9,15 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainMenuView {
+public class MainMenuView
+{
     private MainMenuController mainMenuController = new MainMenuController();
 
     @FXML
     public void initialize() {
 
     }
+
     @FXML
     private void btnStartCall(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

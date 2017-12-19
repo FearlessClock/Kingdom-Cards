@@ -6,7 +6,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hand {
+public class Hand
+{
 
     List<Card> hand = new ArrayList<Card>();
     IntegerProperty nmbrOfCardsProperty = new SimpleIntegerProperty(0);
@@ -42,12 +43,14 @@ public class Hand {
 
     public Card playCard(int index) {
         Card played;
-        if (hand.size() > index) {
+        if (hand.size() > index)
+        {
             played = hand.get(index);
             removeFromHand(index);
-        } else {
-            //TODO This is not good! Make it never crash
-            ///Quick fix
+        } else
+        {
+            // TODO This is not good! Make it never crash
+            /// Quick fix
             played = hand.get(hand.size() - 1);
             hand.remove(hand.size() - 1);
             return played;

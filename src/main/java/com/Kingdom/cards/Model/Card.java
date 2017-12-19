@@ -24,7 +24,8 @@ public abstract class Card
         view.setMinWidth(50);
         view.setMinHeight(50);
         view.getStyleClass().add(race.toLowerCase());
-        if(isAI){
+        if (isAI)
+        {
             view.getStyleClass().add("verso");
         }
         view.getStylesheets().add("@Cards.css");

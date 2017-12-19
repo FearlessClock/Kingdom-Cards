@@ -6,8 +6,8 @@ import com.Kingdom.cards.View.FieldView;
 
 import java.util.Random;
 
-public class Dryad extends Card {
-
+public class Dryad extends Card
+{
 
     public Dryad() {
         super();
@@ -15,11 +15,13 @@ public class Dryad extends Card {
     }
 
     public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView) {
-        if (fieldView != null && playerTurn.equals(PlayerTurn.player1)) {
+        if (fieldView != null && playerTurn.equals(PlayerTurn.player1))
+        {
             fieldView.PopupPowerForDryad(b, playerTurn);
         }
         // If it's the AI turn
-        else if (playerTurn.equals(PlayerTurn.playerAI)) {
+        else if (playerTurn.equals(PlayerTurn.playerAI))
+        {
             if (b.getPlayer1Cards().size() > 0)// Check if there is cards in the opponent field
             {
                 Random rand = new Random();

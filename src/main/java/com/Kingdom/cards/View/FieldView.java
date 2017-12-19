@@ -28,7 +28,6 @@ import java.util.Random;
 
 public class FieldView
 {
-
     private FieldController fieldController;
     // Labels showing the number of cards per person
     @FXML
@@ -366,7 +365,7 @@ public class FieldView
             b.addCard(chosenCard, playerTurn);
             b.removeCard(chosenCard, playerTurn);
         }
-        
+
         UpdateBoard(fieldController.getBoard());
         UpdateHands(fieldController.getPlayer1().hand, fieldController.getPlayerAI().hand);
         // Close the stage
