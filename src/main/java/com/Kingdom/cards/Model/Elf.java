@@ -8,6 +8,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
 
@@ -46,7 +48,17 @@ public class Elf extends Card {
 			stage.show();
         	
         } else if (playerTurn.equals(PlayerTurn.playerAI)) {
-            
+        	if (b.getPlayerAICards().size() > 0) {
+                Random rand = new Random();
+                int randVal;
+                do{
+                	randVal = rand.nextInt(b.getPlayer1Cards().size());
+                }while("Elf".equals(b.getCard(randVal, playerTurn).GetRace()));
+                
+                
+                b.addCard(b.getCard(randVal, playerTurn), playerTurn);
+                b.removeCard(b.getCard(randVal, playerTurn), playerTurn);
+                }
         }
     }
     
