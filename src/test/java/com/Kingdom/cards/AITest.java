@@ -39,11 +39,9 @@ public class AITest {
 
         // Assert.assertEquals(true, playerAI.board.contains(card1)); // Test if
         // card1 is place on board
-        Assert.assertEquals(sizeHand - 1, playerAI.SizeHand()); // Test if size
-                                                                // of hand
-                                                                // decrease
-        // Assert.assertEquals(sizeBoard + 1, playerAI.SizeBoard()); // Test if
-        // size of board increase
+        Assert.assertEquals(sizeHand - 1, playerAI.SizeHand()); // Test if size of hand decrease
+        // Assert.assertEquals(sizeBoard + 1, playerAI.SizeBoard());
+        // Test if size of board increase
     }
 
     @Test
