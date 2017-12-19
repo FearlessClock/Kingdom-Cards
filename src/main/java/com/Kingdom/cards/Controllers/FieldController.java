@@ -31,6 +31,8 @@ public class FieldController {
     * 2) Gameplay
     * 3) End game
     * */
+
+    //The view part of the MVC build
     private FieldView fieldView;
 
 
@@ -49,13 +51,14 @@ public class FieldController {
         return board;
     }
 
-    // Player
+    // Player1 object containing all the player data
     private Player player1 = new Player();
 
     public Player getPlayer1() {
         return player1;
     }
 
+    //PlayerAI object containing all the AI information
     private AI playerAI = new AI();
 
     public AI getPlayerAI() {
@@ -64,21 +67,19 @@ public class FieldController {
 
     // Number of cards per player
     private int nmbrOfCardsInit = 5;
+    private int nmbrOfCardsPerRace = 7;
 
     public PlayerTurn playerTurn;
     private boolean playerHasDrawn = false;
     public boolean playerHasPlay = false;
 
-
-    private GameState gamestate;
-
     public FieldController(FieldView fieldView) {
+
         this.fieldView = fieldView;
-        gamestate = GameState.init;
+
         board = new Board();
-        // Generate the deck of cards
-        deck = new Deck(7);
-        // Shuffle the deck of cards
+
+        deck = new Deck(nmbrOfCardsPerRace);
         deck.Shuffle();
 
         for (int i = 0; i < nmbrOfCardsInit; i++) {
@@ -89,18 +90,18 @@ public class FieldController {
             playerAI.Draw(deck);
         }
 
+        //Choose which player starts
         playerTurn = FlipACoin();
 
-        gamestate = GameState.game;
+        UpdateBoard();
+        UpdateHands();
 
         if (playerTurn == PlayerTurn.playerAI) {
             turnOfAI();
         }
-
-        UpdateBoard();
-        UpdateHands();
     }
 
+    //Flip a coin to choose which player starts the game
     private PlayerTurn FlipACoin() {
         Random rand = new Random();
         boolean randomVal = rand.nextBoolean();
@@ -110,6 +111,7 @@ public class FieldController {
             return PlayerTurn.playerAI;
     }
 
+    //Draw a card from the deck and add it to the player hand
     public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card card = player1.Draw(deck);
@@ -118,6 +120,7 @@ public class FieldController {
         }
     }
 
+    //Send a card to the playing field and activate the power
     public void SendCard(int index) {
         if (!playerHasPlay) {
             if (playerTurn == PlayerTurn.player1) {
@@ -157,9 +160,6 @@ public class FieldController {
         board.PlayCard(playedCard, deck, playerTurn, player1, playerAI);
 
         // Remove the card from the hand of the AI
-        int playedCardIndex = -1;
-        int nbOfCardInHand = playerAI.hand.getHand().size();
-
         fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
 
         // Update Board and variables
