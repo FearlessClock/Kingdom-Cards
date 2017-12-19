@@ -21,38 +21,65 @@ import com.Kingdom.cards.PlayerTurn;
 
 public class Dryad extends Card {
 
-	private ActionEvent event;
+	Card chosenCard;
+	Stage stage = new Stage();
+
 	public Dryad() {
 		super();
 		this.race = "Dryad";
 	}
 
 	public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
-		if (playerTurn.equals(PlayerTurn.player1)){
-			Stage stage = new Stage();
-	        stage.initModality(Modality.APPLICATION_MODAL);
-	        
-	        VBox root = new VBox(b.getPlayerAICards().size() + 10);
-	        Label modalityLabel = new Label("Choose a card");
-	        root.getChildren().add(modalityLabel);
-	        
-	        Button card;
-	        for (int i = 0; i < b.getPlayerAICards().size(); i++){
-	        	card = new Button(b.getPlayerAICards().get(i).GetRace());
-	        	root.getChildren().add(card);
-	        }
-	        
-	        //closeButton.setOnAction(e -> stage.close());
-	        Scene scene = new Scene(root, 1900, 1000);
-	        stage.setScene(scene);
-	        stage.show();
-	       
-	        
+		if (playerTurn.equals(PlayerTurn.player1)) {
+			stage.initModality(Modality.APPLICATION_MODAL);
+
+			VBox root = new VBox(b.getPlayerAICards().size() + 10);
+			Label modalityLabel = new Label("Choose a card");
+			root.getChildren().add(modalityLabel);
+
+			Button card;
+			for (int i = 0; i < b.getPlayerAICards().size(); i++) {
+				card = new Button(b.getPlayerAICards().get(i).GetRace());
+				root.getChildren().add(card);
+				card.setOnAction(e -> actionPerformed(e, b, playerTurn));
+				// card.setOnAction(e -> System.out.println(card.getText()));
+			}
+
+			root.autosize();
+			Scene scene = new Scene(root, 1900, 1000);
+			stage.setScene(scene);
+			stage.show();
+
+		}
+
+		else if (playerTurn.equals(PlayerTurn.playerAI)) {
+
+		}
+	}
+
+	public void actionPerformed(ActionEvent e, Board b, PlayerTurn playerTurn) {
+		
+		System.out.println(button.getText());
+		String race = button.getText();
+		if ("Troll".equals(race)) {
+			chosenCard = new Troll();
+		} else if ("Korrigan".equals(race)) {
+			chosenCard = new Korrigan();
+		} else if ("Goblin".equals(race)) {
+			chosenCard = new Goblin();
+		} else if ("Elf".equals(race)) {
+			chosenCard = new Elf();
+		} else if ("Dryad".equals(race)) {
+			chosenCard = new Dryad();
+			chosenCard = new Gnome();
 		}
 		
-        else if (playerTurn.equals(PlayerTurn.playerAI)) {
-        	
-        }
+		if (chosenCard != null) {
+			b.addCard(chosenCard, playerTurn);
+			b.removeCard(chosenCard, playerTurn);
+		}
+		
+		stage.close();
 	}
 
 }
