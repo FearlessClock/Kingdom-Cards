@@ -25,7 +25,7 @@ public class Elf extends Card
 
     public void power(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView) {
         if (fieldView != null && playerTurn.equals(PlayerTurn.player1)) {
-            fieldView.PopupPowerForDryad(b, playerTurn);
+            fieldView.PopupPowerForElf(b, d, p1, p2, playerTurn);
         }
         // If it's the AI turn
         else if (playerTurn.equals(PlayerTurn.playerAI)) {

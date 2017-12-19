@@ -334,21 +334,22 @@ public class FieldView {
             b.addCard(chosenCard, playerTurn);
             b.removeCard(chosenCard, playerTurn);
         }
+
+        UpdateBoard(fieldController.getBoard());
+        UpdateHands(fieldController.getPlayer1().hand, fieldController.getPlayerAI().hand);
         // Close the stage
         popupStage.close();
     }
 
     // Functions
-    public void PopupPowerForElf(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn, FieldView fieldView) {
+    public void PopupPowerForElf(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
         Button card;
         // If it's the human player whom play
         if (playerTurn.equals(PlayerTurn.player1)) {
             if (b.getPlayer1Cards().size() > 0)// Check if there is cards in the player field
             {
-                popupStage.initModality(Modality.APPLICATION_MODAL);
-
                 VBox root = new VBox(b.getPlayer1Cards().size() + 10);// Create a new VBox
-                Label modalityLabel = new Label("Choose a card");// Create a new label to display what the player have to do
+                Label modalityLabel = new Label("Choose a card");// Create a new label to display what the player has to do
                 root.getChildren().add(modalityLabel);// Add the label to the VBox
 
                 // For every cards in the player's field
@@ -395,6 +396,8 @@ public class FieldView {
             chosenCard.power(b, d, p1, p2, playerTurn, null);
         }
 
+        UpdateBoard(fieldController.getBoard());
+        UpdateHands(fieldController.getPlayer1().hand, fieldController.getPlayerAI().hand);
         // Close the stage
         popupStage.close();
     }
