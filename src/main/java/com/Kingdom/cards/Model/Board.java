@@ -76,6 +76,17 @@ public class Board {
             }
         }
     }
+    
+    public Card getCard(int index, PlayerTurn playerTurn){
+    	Card chosenCard;
+    	if (PlayerTurn.player1 == playerTurn) {
+        	chosenCard = playerAICards.get(index);
+        } else { 
+        	chosenCard = player1Cards.get(index);
+        }
+    	
+    	return chosenCard;
+    }
 
     
     //Play the chosen card for the current playerturns player

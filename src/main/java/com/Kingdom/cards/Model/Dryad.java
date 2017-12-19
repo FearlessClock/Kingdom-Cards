@@ -1,5 +1,7 @@
 package com.Kingdom.cards.Model;
 
+import java.util.Random;
+
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.Model.Card;
 
@@ -46,7 +48,6 @@ public class Dryad extends Card {
 				// card.setOnAction(e -> System.out.println(card.getText()));
 			}
 
-			root.autosize();
 			Scene scene = new Scene(root, 1900, 1000);
 			stage.setScene(scene);
 			stage.show();
@@ -54,8 +55,14 @@ public class Dryad extends Card {
 		}
 
 		else if (playerTurn.equals(PlayerTurn.playerAI)) {
-
-		}
+            if (b.getPlayer1Cards().size() > 0) {
+                Random rand = new Random();
+                int randVal = rand.nextInt(b.getPlayer1Cards().size());
+                
+                b.addCard(b.getCard(randVal, playerTurn), playerTurn);
+                b.removeCard(b.getCard(randVal, playerTurn), playerTurn);
+                }
+        }
 	}
 
 	public void actionPerformed(ActionEvent e, Board b, PlayerTurn playerTurn) {
@@ -93,7 +100,7 @@ public class Dryad extends Card {
 			b.removeCard(chosenCard, playerTurn);
 		}
 		
-		//stage.close();
+		stage.close();
 	}
 
 }
