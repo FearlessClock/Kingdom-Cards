@@ -1,7 +1,5 @@
 package com.Kingdom.cards.Model;
 
-import com.Kingdom.cards.Controllers.FieldController;
-
 import javafx.event.ActionEvent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,9 +10,6 @@ import javafx.stage.Stage;
 
 import com.Kingdom.cards.Deck;
 import com.Kingdom.cards.PlayerTurn;
-
-import java.util.List;
-import java.util.Random;
 
 
 public class Elf extends Card {
@@ -39,9 +34,11 @@ public class Elf extends Card {
 
 			
 			for (int i = 0; i < b.getPlayer1Cards().size(); i++) {
-				card = new Button(b.getPlayer1Cards().get(i).GetRace());
-				root.getChildren().add(card);
-				card.setOnAction(e -> actionPerformed(e, b, d, p1, p2, playerTurn));
+				if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace())){
+					card = new Button(b.getPlayer1Cards().get(i).GetRace());
+					root.getChildren().add(card);
+					card.setOnAction(e -> actionPerformed(e, b, d, p1, p2, playerTurn));
+				}
 			}
 
 			Scene scene = new Scene(root, 1900, 1000);
@@ -55,8 +52,8 @@ public class Elf extends Card {
     
     public void actionPerformed(ActionEvent e, Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
 		
-		String race = card.getText();
-		System.out.println(card.getText());
+    	Button button = (Button) e.getSource();
+		String race = button.getText();
 		
 		if ("Troll".equals(race)) {
 			chosenCard = new Troll();
@@ -69,6 +66,7 @@ public class Elf extends Card {
 		else if ("Goblin".equals(race)) {
 			chosenCard = new Goblin();
 		} 
+		
 		else if ("Elf".equals(race)) {
 			chosenCard = new Elf();
 		} 
