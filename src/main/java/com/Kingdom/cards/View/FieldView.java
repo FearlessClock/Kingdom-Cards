@@ -64,7 +64,7 @@ public class FieldView {
 
     @FXML
     public void initialize() {
-        fieldController = new FieldController(this);
+        fieldController = new FieldController(this, null);
         if (nmbrOfCardsPlayer1 != null) {
             nmbrOfCardsPlayer1.textProperty().bind(fieldController.getBoard().player1ScoreStr);
         }
@@ -72,33 +72,6 @@ public class FieldView {
             nmbrOfCardsPlayerAI.textProperty().bind(fieldController.getBoard().playerAIScoreStr);
         }
 
-        Card c;
-        Button b;
-        //Get the cards in have and put them on the screen
-        Hand hand = fieldController.getPlayer1().hand;
-        for (Card card : hand.getHand()) {
-            if (card != null) {
-                b = card.GetView(false);
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                player1Field.getChildren().add(b);
-            }
-        }
-        hand = fieldController.getPlayerAI().hand;
-        for (Card card : hand.getHand()) {
-            if (card != null) {
-                b = card.GetView(true);
-                b.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        SendCard(event);
-                    }
-                });
-                playerAIField.getChildren().add(b);
-            }
-        }
 
         GrayButtons(fieldController.playerTurn);
 

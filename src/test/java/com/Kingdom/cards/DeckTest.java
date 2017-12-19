@@ -16,42 +16,23 @@ public class DeckTest {
 	}
 
 	@Test
-	public void test() {
-		System.out.println("Gello");
-		if ("Name".equals("Name")) {
-			System.out.println("Yp");
-		}
-	}
-
-	@Test
-	public void Shuffle() {
+    public void Shuffle() {
 		// Create 2 deck (no shuffle) => equalsd
 		Deck deckNoShuffle = new Deck(8);
 
-		Assert.assertEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // Before
-																		// shuffle
-																		// =>
-																		// equals
+		Assert.assertEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // Before shuffle => equals
 		deck.Shuffle(); // Shuffle 1 deck
-		Assert.assertNotEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // After
-																			// shuffle
-																			// =>
-																			// not
-																			// equals
+		Assert.assertNotEquals(deckNoShuffle.GetDeck(), deck.GetDeck()); // After shuffle => not equals
 	}
 
 	@Test
 	public void GetCard() {
 
-		int lenght = deck.Size(); // get initial size
+		int length = deck.Size(); // get initial size
 		Card first_card = deck.GetDeck().get(0); // get initial first card
 
-		Assert.assertEquals(first_card, deck.GetFirstCard()); // check if first
-																// card remove
-																// is the
-																// initial first
-																// card
-		Assert.assertEquals(lenght - 1, deck.Size()); // check if size is ok
+		Assert.assertEquals(first_card, deck.GetFirstCard()); // check if first	        // card
+		Assert.assertEquals(length - 1, deck.Size()); // check if size is ok
 														// with 1 card remove
 
 	}
