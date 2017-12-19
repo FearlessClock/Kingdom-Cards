@@ -81,7 +81,7 @@ public class FieldController {
         return player1;
     }
 
-    private AI playerAI = new AI();
+    private AI playerAI = new AI(board.getPlayerAICards(), board.getPlayer1Cards());
 
     public AI getPlayerAI() {
         return playerAI;
