@@ -16,6 +16,7 @@ public class MainMenuView {
     public void initialize() {
 
     }
+
     @FXML
     private void btnStartCall(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

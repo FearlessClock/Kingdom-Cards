@@ -97,12 +97,9 @@ public class FieldController {
             playerAI.Draw(deck);
         }
 
-        if(playerTurn != null)
-        {
+        if (playerTurn != null) {
             this.playerTurn = playerTurn;//FlipACoin();
-        }
-        else
-        {
+        } else {
             this.playerTurn = FlipACoin();
         }
 
@@ -116,13 +113,13 @@ public class FieldController {
         }
 
     }
+
     //Draw a card from the deck and add it to the player hand
     public void DrawCard() {
         if (!playerHasDrawn && playerTurn == PlayerTurn.player1) {
             Card card = player1.Draw(getDeck());
             playerHasDrawn = true;
-            if(fieldView != null)
-            {
+            if (fieldView != null) {
                 fieldView.AddCardToBoard(card, playerTurn);
             }
         }
@@ -130,10 +127,8 @@ public class FieldController {
 
     //Send a card to the playing field and activate the power
     public void SendCard(int index) {
-        if (!playerHasPlay)
-        {
-            if (playerTurn == PlayerTurn.player1)
-            {
+        if (!playerHasPlay) {
+            if (playerTurn == PlayerTurn.player1) {
                 Card playedCard = player1.hand.playCard(index);
                 board.PlayCard(playedCard, deck, playerTurn, player1, playerAI, fieldView);
             }
@@ -146,15 +141,13 @@ public class FieldController {
     }
 
     private void UpdateHands() {
-        if(fieldView != null)
-        {
+        if (fieldView != null) {
             fieldView.UpdateHands(player1.hand, playerAI.hand);
         }
     }
 
     private void UpdateBoard() {
-        if(fieldView != null)
-        {
+        if (fieldView != null) {
             fieldView.UpdateBoard(board);
         }
     }
@@ -170,8 +163,7 @@ public class FieldController {
         // Draw Card
         Card c = playerAI.Draw(getDeck());
         playerHasDrawn = true;
-        if(fieldView != null)
-        {
+        if (fieldView != null) {
             fieldView.AddCardToBoard(c, PlayerTurn.playerAI);
         }
 
@@ -179,8 +171,7 @@ public class FieldController {
         Card playedCard = playerAI.PlayCard();
         board.PlayCard(playedCard, getDeck(), playerTurn, player1, playerAI, fieldView);
 
-        if(fieldView != null)
-        {
+        if (fieldView != null) {
             // Remove the card from the hand of the AI
             fieldView.RemoveCardFromHand(playedCard, PlayerTurn.playerAI);
         }
@@ -205,8 +196,7 @@ public class FieldController {
                 playerHasPlay = false;
                 playerTurn = PlayerTurn.player1;
 
-                if(fieldView != null)
-                {
+                if (fieldView != null) {
                     fieldView.GrayButtons(playerTurn);
                 }
             }
@@ -227,8 +217,7 @@ public class FieldController {
             playerWin = board.getPlayer1Score() > board.getPlayerAIScore();
             try {
 
-                if(fieldView != null)
-                {
+                if (fieldView != null) {
                     fieldView.ShowEndScreen(playerWin);
                 }
             } catch (IOException e) {

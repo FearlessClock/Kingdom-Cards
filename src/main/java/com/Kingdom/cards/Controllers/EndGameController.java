@@ -1,17 +1,13 @@
 package com.Kingdom.cards.Controllers;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
 
@@ -24,11 +20,10 @@ public class EndGameController {
 
     @FXML
     public void keyPressed(KeyEvent keyEvent) throws IOException {
-        switch (keyEvent.getCode())
-        {
+        switch (keyEvent.getCode()) {
             case ESCAPE:
                 try {
-                    LoadMainMenu((Node)keyEvent.getSource());
+                    LoadMainMenu((Node) keyEvent.getSource());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -38,7 +33,7 @@ public class EndGameController {
 
     public void OnQuit(ActionEvent ev) {
         try {
-            LoadMainMenu((Node)ev.getSource());
+            LoadMainMenu((Node) ev.getSource());
         } catch (IOException e) {
             e.printStackTrace();
         }

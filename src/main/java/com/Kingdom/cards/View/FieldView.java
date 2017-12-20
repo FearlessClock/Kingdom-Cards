@@ -6,7 +6,6 @@ import com.Kingdom.cards.Model.*;
 import com.Kingdom.cards.PlayerTurn;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,13 +17,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
 import java.io.IOException;
-import java.util.Random;
 
 public class FieldView {
 
@@ -36,7 +33,7 @@ public class FieldView {
     private Label nmbrOfCardsPlayerAI;
 
     //Stage to make pop ups on
-    Stage popupStage = new Stage();
+    private Stage popupStage = new Stage();
 
     // The horizontal box
     @FXML
@@ -129,22 +126,14 @@ public class FieldView {
             case player1:
                 if (card != null) {
                     Button b = card.GetView(false);
-                    b.setOnAction(new EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent event) {
-                            SendCard(event);
-                        }
-                    });
+                    b.setOnAction(event -> SendCard(event));
                     player1Field.getChildren().add(b);
                 }
                 break;
             case playerAI:
                 if (card != null) {
                     Button b = card.GetView(false);
-                    b.setOnAction(new EventHandler<ActionEvent>() {
-                        public void handle(ActionEvent event) {
-                            SendCard(event);
-                        }
-                    });
+                    b.setOnAction(event -> SendCard(event));
                     playerAIField.getChildren().add(b);
                 }
                 break;
@@ -159,21 +148,13 @@ public class FieldView {
         Button b;
         for (int i = 0; i < player1Hand.getHand().size(); i++) {
             b = player1Hand.getHand().get(i).GetView(false);
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
+            b.setOnAction(event -> SendCard(event));
             b.setDisable(false);
             player1Field.getChildren().add(b);
         }
         for (int i = 0; i < playerAIHand.getHand().size(); i++) {
             b = playerAIHand.getHand().get(i).GetView(true);
-            b.setOnAction(new EventHandler<ActionEvent>() {
-                public void handle(ActionEvent event) {
-                    SendCard(event);
-                }
-            });
+            b.setOnAction(event -> SendCard(event));
             b.setDisable(false);
             playerAIField.getChildren().add(b);
         }
@@ -259,17 +240,9 @@ public class FieldView {
                 Button resume = new Button("Resume");
                 resume.setPrefSize(maxWidth, 64);
 
-                quit.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        Platform.exit();
-                    }
-                });
+                quit.setOnAction(event -> Platform.exit());
 
-                resume.setOnAction(new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent event) {
-                        popup.hide();
-                    }
-                });
+                resume.setOnAction(event -> popup.hide());
 
                 VBox box = new VBox();
                 box.setPrefSize(maxWidth, maxHeight);
@@ -308,7 +281,7 @@ public class FieldView {
         }
     }
 
-    public void pickACard(ActionEvent e, Board b, PlayerTurn playerTurn) {
+    private void pickACard(ActionEvent e, Board b, PlayerTurn playerTurn) {
 
         Card chosenCard = null;
         Button button = (Button) e.getSource();
@@ -370,7 +343,7 @@ public class FieldView {
         }
     }
 
-    public void playAPower(ActionEvent e, Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
+    private void playAPower(ActionEvent e, Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
         // See the button click
         Card chosenCard = null;
         Button button = (Button) e.getSource();

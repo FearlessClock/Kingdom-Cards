@@ -5,8 +5,7 @@ import com.Kingdom.cards.PlayerTurn;
 import com.Kingdom.cards.View.FieldView;
 import javafx.scene.control.Button;
 
-public abstract class Card
-{
+public abstract class Card {
     protected String race;
 
     // Constructor
@@ -24,7 +23,7 @@ public abstract class Card
         view.setMinWidth(50);
         view.setMinHeight(50);
         view.getStyleClass().add(race.toLowerCase());
-        if(isAI){
+        if (isAI) {
             view.getStyleClass().add("verso");
         }
         view.getStylesheets().add("@Cards.css");
@@ -34,12 +33,10 @@ public abstract class Card
     // Override
     @Override
     public boolean equals(Object obj) {
-        if (obj == null)
-        {
+        if (obj == null) {
             return false;
         }
-        if (obj == this)
-        {
+        if (obj == this) {
             return true;
         }
         return obj.getClass() == this.getClass();

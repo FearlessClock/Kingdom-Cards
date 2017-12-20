@@ -55,47 +55,47 @@ public class Board {
     public List<Card> getPlayerAICards() {
         return playerAICards;
     }
-    
-    public void addCard(Card card, PlayerTurn playerTurn){
-    	if (card != null) {
+
+    public void addCard(Card card, PlayerTurn playerTurn) {
+        if (card != null) {
             if (PlayerTurn.player1 == playerTurn) {
-            	player1Cards.add(card);
-            } else { 
-            	playerAICards.add(card);
+                player1Cards.add(card);
+            } else {
+                playerAICards.add(card);
             }
         }
-    }
-    
-    public void removeCard(Card card, PlayerTurn playerTurn){
-    	if (card != null) {
-            if (PlayerTurn.player1 == playerTurn) {
-            	playerAICards.remove(card);
-            } else { 
-            	player1Cards.remove(card);
-            }
-        }
-    }
-    
-    public Card getCard(int index, PlayerTurn playerTurn){
-    	Card chosenCard;
-    	if (PlayerTurn.player1 == playerTurn) {
-        	chosenCard = playerAICards.get(index);
-        } else { 
-        	chosenCard = player1Cards.get(index);
-        }
-    	
-    	return chosenCard;
     }
 
-    
+    public void removeCard(Card card, PlayerTurn playerTurn) {
+        if (card != null) {
+            if (PlayerTurn.player1 == playerTurn) {
+                playerAICards.remove(card);
+            } else {
+                player1Cards.remove(card);
+            }
+        }
+    }
+
+    public Card getCard(int index, PlayerTurn playerTurn) {
+        Card chosenCard;
+        if (PlayerTurn.player1 == playerTurn) {
+            chosenCard = playerAICards.get(index);
+        } else {
+            chosenCard = player1Cards.get(index);
+        }
+
+        return chosenCard;
+    }
+
+
     //Play the chosen card for the current playerturns player
     public void PlayCard(Card card, Deck deck, PlayerTurn playerTurn, Player p1, Player p2, FieldView fieldView) {
         if (card != null) {
             if (PlayerTurn.player1 == playerTurn) {
-            	card.power(this, deck, p1, p2, playerTurn, fieldView);
+                card.power(this, deck, p1, p2, playerTurn, fieldView);
                 player1Cards.add(card);
                 GetScorePlayer(1);
-            } else { 
+            } else {
                 card.power(this, deck, p2, p1, playerTurn, fieldView);
                 playerAICards.add(card);
                 GetScorePlayer(2);
