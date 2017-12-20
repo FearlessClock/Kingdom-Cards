@@ -280,7 +280,7 @@ public class FieldView {
                     card.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
                 }
                 // Create the new scene and display it
-                Scene scene = new Scene(root, 500, 500);
+                Scene scene = new Scene(root, 300, 500);
                 popupStage.setScene(scene);
                 popupStage.show();
             }
@@ -340,13 +340,18 @@ public class FieldView {
                         nbOfNoElf++;
                         card = new Button(b.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
                         root.getChildren().add(card);// Add card to the VBox
+                        // Set displays attributes to the button
+                        card.setMinWidth(50);
+                        card.setMinHeight(50);
+                        card.getStyleClass().add(b.getPlayer1Cards().get(i).GetRace().toLowerCase());
+                        card.getStylesheets().add("@Cards.css");
                         card.setOnAction(e -> playAPower(e, b, d, p1, p2, playerTurn));// When clicked
                     }
                 }
                 if (nbOfNoElf > 0)// Display only if there is something to display (i.e. not only elf)
                 {
                     // Create the new scene and display it
-                    Scene scene = new Scene(root, 500, 500);
+                    Scene scene = new Scene(root, 300, 100 + (50 * nbOfNoElf));
                     popupStage.setScene(scene);
                     popupStage.show();
                 } else
