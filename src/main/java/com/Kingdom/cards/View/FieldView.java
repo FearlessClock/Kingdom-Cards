@@ -322,6 +322,12 @@ public class FieldView
                 for (int i = 0; i < b.getPlayerAICards().size(); i++)
                 {
                     card = new Button(b.getPlayerAICards().get(i).GetRace());// Create a button for each card in the opponent's field
+                    // Set displays attributes to the button
+                    card.setMinWidth(50);
+                    card.setMinHeight(50);
+                    card.getStyleClass().add(b.getPlayer1Cards().get(i).GetRace().toLowerCase());
+                    card.getStylesheets().add("@Cards.css");
+
                     root.getChildren().add(card);// Add card to the VBox
                     card.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
                 }
@@ -366,7 +372,7 @@ public class FieldView
             b.addCard(chosenCard, playerTurn);
             b.removeCard(chosenCard, playerTurn);
         }
-        
+
         UpdateBoard(fieldController.getBoard());
         UpdateHands(fieldController.getPlayer1().hand, fieldController.getPlayerAI().hand);
         // Close the stage
@@ -389,9 +395,9 @@ public class FieldView
                 // For every cards in the player's field
                 for (int i = 0; i < b.getPlayer1Cards().size(); i++)
                 {
-                    nbOfNoElf++;
                     if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace()))// Check if the card isn't an elf
                     {
+                        nbOfNoElf++;
                         card = new Button(b.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
                         root.getChildren().add(card);// Add card to the VBox
                         card.setOnAction(e -> playAPower(e, b, d, p1, p2, playerTurn));// When clicked
