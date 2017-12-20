@@ -258,7 +258,7 @@ public class FieldView {
     }
 
     public void PopupPowerForDryad(Board b, PlayerTurn playerTurn) {
-        Button card;
+        Button button;
         // If it's the human player whom play
         if (playerTurn.equals(PlayerTurn.player1)) {
             if (b.getPlayerAICards().size() > 0)// Check if there is cards in the opponent field
@@ -269,15 +269,13 @@ public class FieldView {
 
                 // For every cards in the opponent's field
                 for (int i = 0; i < b.getPlayerAICards().size(); i++) {
-                    card = new Button(b.getPlayerAICards().get(i).GetRace());// Create a button for each card in the opponent's field
+                    Card card = b.getPlayerAICards().get(i);
+                    button = card.GetView(false);// Create a button for each card in the opponent's field
                     // Set displays attributes to the button
-                    card.setMinWidth(50);
-                    card.setMinHeight(50);
-                    card.getStyleClass().add(b.getPlayer1Cards().get(i).GetRace().toLowerCase());
-                    card.getStylesheets().add("@Cards.css");
+                    button.setText(card.GetRace());
 
-                    root.getChildren().add(card);// Add card to the VBox
-                    card.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
+                    root.getChildren().add(button);// Add card to the VBox
+                    button.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
                 }
                 // Create the new scene and display it
                 Scene scene = new Scene(root, 300, 500);
@@ -321,31 +319,28 @@ public class FieldView {
     }
 
     // Functions
-    public void PopupPowerForElf(Board b, Deck d, Player p1, Player p2, PlayerTurn playerTurn) {
-        Button card;
+    public void PopupPowerForElf(Board board, Deck deck, Player player1, Player player2, PlayerTurn playerTurn) {
+        Button button;
         // If it's the human player whom play
         if (playerTurn.equals(PlayerTurn.player1)) {
-            if (b.getPlayer1Cards().size() > 0)// Check if there is cards in the player field
+            if (board.getPlayer1Cards().size() > 0)// Check if there is cards in the player field
             {
                 int nbOfNoElf = 0;// Count the number of cards different of elf
-                VBox root = new VBox(b.getPlayer1Cards().size() + 10);// Create a new VBox
+                VBox root = new VBox(board.getPlayer1Cards().size() + 10);// Create a new VBox
                 Label modalityLabel = new Label("Choose a card");// Create a new label to display what the player has to do
                 root.getChildren().add(modalityLabel);// Add the label to the VBox
 
                 // For every cards in the player's field
-                for (int i = 0; i < b.getPlayer1Cards().size(); i++)
-                {
-                    if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace()))// Check if the card isn't an elf
+                for (int i = 0; i < board.getPlayer1Cards().size(); i++) {
+                    if (!"Elf".equals(board.getPlayer1Cards().get(i).GetRace()))// Check if the card isn't an elf
                     {
                         nbOfNoElf++;
-                        card = new Button(b.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
-                        root.getChildren().add(card);// Add card to the VBox
+                        Card card = board.getPlayer1Cards().get(i);
+                        button = board.getPlayer1Cards().get(i).GetView(false);//new Button(board.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
                         // Set displays attributes to the button
-                        card.setMinWidth(50);
-                        card.setMinHeight(50);
-                        card.getStyleClass().add(b.getPlayer1Cards().get(i).GetRace().toLowerCase());
-                        card.getStylesheets().add("@Cards.css");
-                        card.setOnAction(e -> playAPower(e, b, d, p1, p2, playerTurn));// When clicked
+                        button.setText(card.GetRace());
+                        button.setOnAction(e -> playAPower(e, board, deck, player1, player2, playerTurn));// When clicked
+                        root.getChildren().add(button);// Add card to the VBox
                     }
                 }
                 if (nbOfNoElf > 0)// Display only if there is something to display (i.e. not only elf)
@@ -354,8 +349,7 @@ public class FieldView {
                     Scene scene = new Scene(root, 300, 100 + (50 * nbOfNoElf));
                     popupStage.setScene(scene);
                     popupStage.show();
-                } else
-                {
+                } else {
                     return;
                 }
             }
