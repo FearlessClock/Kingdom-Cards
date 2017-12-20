@@ -270,6 +270,12 @@ public class FieldView {
                 // For every cards in the opponent's field
                 for (int i = 0; i < b.getPlayerAICards().size(); i++) {
                     card = new Button(b.getPlayerAICards().get(i).GetRace());// Create a button for each card in the opponent's field
+                    // Set displays attributes to the button
+                    card.setMinWidth(50);
+                    card.setMinHeight(50);
+                    card.getStyleClass().add(b.getPlayer1Cards().get(i).GetRace().toLowerCase());
+                    card.getStylesheets().add("@Cards.css");
+
                     root.getChildren().add(card);// Add card to the VBox
                     card.setOnAction(e -> pickACard(e, b, playerTurn));// When clicked
                 }
@@ -321,23 +327,32 @@ public class FieldView {
         if (playerTurn.equals(PlayerTurn.player1)) {
             if (b.getPlayer1Cards().size() > 0)// Check if there is cards in the player field
             {
+                int nbOfNoElf = 0;// Count the number of cards different of elf
                 VBox root = new VBox(b.getPlayer1Cards().size() + 10);// Create a new VBox
                 Label modalityLabel = new Label("Choose a card");// Create a new label to display what the player has to do
                 root.getChildren().add(modalityLabel);// Add the label to the VBox
 
                 // For every cards in the player's field
-                for (int i = 0; i < b.getPlayer1Cards().size(); i++) {
+                for (int i = 0; i < b.getPlayer1Cards().size(); i++)
+                {
                     if (!"Elf".equals(b.getPlayer1Cards().get(i).GetRace()))// Check if the card isn't an elf
                     {
+                        nbOfNoElf++;
                         card = new Button(b.getPlayer1Cards().get(i).GetRace());// Create a button for each card in the player's field
                         root.getChildren().add(card);// Add card to the VBox
                         card.setOnAction(e -> playAPower(e, b, d, p1, p2, playerTurn));// When clicked
                     }
                 }
-                // Create the new scene and display it
-                Scene scene = new Scene(root, 500, 500);
-                popupStage.setScene(scene);
-                popupStage.show();
+                if (nbOfNoElf > 0)// Display only if there is something to display (i.e. not only elf)
+                {
+                    // Create the new scene and display it
+                    Scene scene = new Scene(root, 500, 500);
+                    popupStage.setScene(scene);
+                    popupStage.show();
+                } else
+                {
+                    return;
+                }
             }
 
         }
